@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+<meta name="author" content="Dirceu Nogueira de Sales Duarte Junior">
+<meta name="description" content="Livro Digital Interativo de Aprendizagem sobre Restrição de Acesso no Moodle — Coleção de Formação Docente.">
+<meta name="generator" content="LDI - Livro Digital Interativo de Aprendizagem — PROMPT-MESTRE 8.0">
+
+<title>Restrição de Acesso no Moodle — Livro Digital Interativo de Aprendizagem</title>
+
+<style>
+:root{
+ --bg:#f4f7fb;
+ --surface:#fff;
+ --surface2:#edf3f9;
+ --text:#172033;
+ --muted:#637084;
+ --primary:#315d9d;
+ --primary2:#234775;
+ --accent:#e0a13a;
+ --green:#438368;
+ --purple:#73599d;
+ --red:#b85c5c;
+ --border:#d8e0ea;
+ --shadow:0 12px 35px rgba(30,55,90,.10);
+ --radius:20px;
+ --font:1;
+ --width:850px;
+}
+
+html.dark{
+ --bg:#0f151d;
+ --surface:#19222d;
+ --surface2:#232e3b;
+ --text:#edf3f8;
+ --muted:#b5c0cc;
+ --primary:#8db7ee;
+ --primary2:#b0cdf1;
+ --accent:#efbd62;
+ --green:#7cb89b;
+ --purple:#b39bd7;
+ --red:#e08b8b;
+ --border:#354454;
+ --shadow:0 12px 35px rgba(0,0,0,.32);
+ color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75;font-size:calc(17px * var(--font));transition:.25s}
+a{color:var(--primary)}
+button{font:inherit;cursor:pointer}
+::selection{background:rgba(49,93,157,.25)}
+
+.progress{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:5000}
+.skip{position:absolute;left:-9999px;top:10px;z-index:9000;padding:12px 18px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px}
+.skip:focus{left:10px}
+
+.resume-banner{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:15px 25px;box-shadow:var(--shadow);z-index:8000;display:none;gap:15px;align-items:center}
+.resume-banner.open{display:flex}
+.resume-banner button{padding:8px 16px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700}
+.resume-banner button.secondary{background:var(--surface2);color:var(--text)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:60px 22px;background:radial-gradient(circle at 15% 20%,rgba(49,93,157,.22),transparent 35%),radial-gradient(circle at 85% 75%,rgba(224,161,58,.18),transparent 35%),var(--bg)}
+.hero-inner{width:100%;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.kicker{color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+h1{font-size:clamp(2.6rem,5.5vw,5rem);line-height:1.05;letter-spacing:-.04em;margin:20px 0}
+.hero h2{font-size:clamp(1.3rem,2.8vw,2rem);font-weight:500}
+.hero p{color:var(--muted);font-size:1.1rem}
+
+.cover{min-height:500px;border-radius:40px;color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:45px;box-shadow:var(--shadow);position:relative;overflow:hidden;background:linear-gradient(145deg,#28558f,#74599c)}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.2);border-radius:50%}
+.cover:before{width:440px;height:440px}
+.cover:after{width:260px;height:260px}
+.cover-content{position:relative;z-index:2;max-width:420px}
+.cover-icon{font-size:4.5rem}
+.meta{font-size:.9rem!important;color:rgba(255,255,255,.78)!important;margin-top:30px}
+
+main{max-width:var(--width);margin:auto;padding:60px 22px}
+section{scroll-margin-top:25px}
+.chapter{padding:80px 0;border-bottom:1px solid var(--border)}
+.eyebrow{color:var(--primary);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin-bottom:15px}
+.position-indicator{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 14px;font-size:.78rem;font-weight:800;margin-bottom:15px}
+h2{font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.15;margin:12px 0 25px}
+h3{font-size:1.45rem;line-height:1.25;margin-top:40px}
+.lead{font-size:1.2rem;color:var(--muted)}
+.quote{padding:25px 0;font-size:1.3rem;font-weight:750;color:var(--primary)}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0;box-shadow:0 7px 25px rgba(20,40,70,.05)}
+.callout{border-left:6px solid var(--primary);background:var(--surface2)}
+.callout.idea{border-left-color:var(--accent)}
+.callout.action{border-left-color:var(--green)}
+.callout.problem{border-left-color:var(--purple)}
+.callout.care{border-left-color:var(--red)}
+.callout.fundamento{border-left-color:var(--purple)}
+.callout.integracao{border-left-color:var(--green)}
+.callout.adaptacao{border-left-color:var(--red)}
+.callout-title{font-weight:800;margin-bottom:8px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid .card{margin:0}
+.badge{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:800}
+
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:25px;padding:28px;box-shadow:var(--shadow)}
+.toc a{display:block;padding:12px 10px;text-decoration:none;border-bottom:1px solid var(--border);color:var(--text)}
+.toc a:hover{background:var(--surface2)}
+.toc-group{margin:18px 0 8px;color:var(--primary);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+
+.problem-box{background:var(--surface);border:2px solid var(--purple);border-radius:24px;padding:30px;margin:30px 0}
+.question{color:var(--purple);font-weight:800}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:10px 0;border-bottom:1px solid var(--border)}
+.checklist li:before{content:"☐";color:var(--primary);margin-right:10px}
+
+.media{border:2px dashed var(--border);background:var(--surface2);border-radius:20px;padding:26px;margin:25px 0}
+.media strong{display:block;color:var(--primary)}
+
+.mission{border:2px solid var(--accent);background:linear-gradient(135deg,var(--surface),var(--surface2));border-radius:25px;padding:30px;margin:30px 0}
+.mission-title{color:var(--accent);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+
+.steps{counter-reset:step;list-style:none;padding:0}
+.steps li{counter-increment:step;padding:15px 15px 15px 55px;position:relative;margin:10px 0;background:var(--surface2);border-radius:14px}
+.steps li:before{content:counter(step);position:absolute;left:15px;top:12px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--primary);color:#fff;font-weight:800}
+
+.chapter-nav{display:flex;justify-content:space-between;gap:12px;margin-top:45px;flex-wrap:wrap}
+.chapter-nav button{padding:12px 17px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);cursor:pointer;font:inherit}
+.chapter-nav button:hover{background:var(--surface2)}
+
+.speak-block-btn{background:transparent;border:1px solid var(--border);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:13px;color:var(--primary);margin-top:12px;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:inherit}
+.speak-block-btn:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.speak-block-btn.speaking{background:var(--red);color:white;border-color:var(--red)}
+
+.toolbar{position:fixed;right:18px;bottom:18px;z-index:4000;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tool-main{width:56px;height:56px;border:0;border-radius:50%;background:var(--primary);color:white;box-shadow:var(--shadow);font-size:22px}
+.tool-panel{display:none;width:285px;padding:10px;grid-template-columns:1fr 1fr;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+.tool-panel.open{display:grid}
+.tool-panel button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:11px;padding:9px}
+.tool-panel button:hover{background:var(--surface2)}
+
+.voice-selector{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:var(--shadow);z-index:9000;width:350px;max-width:90vw;display:none}
+.voice-selector.open{display:block}
+.voice-selector h3{margin-top:0;color:var(--primary)}
+.voice-selector select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font:inherit;margin:15px 0}
+.voice-selector button{padding:10px 20px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700;cursor:pointer}
+
+.reading-mode main{max-width:720px}
+.reading-mode .decorative{display:none}
+.reading-mode .media{display:none}
+
+.selection-tools{position:fixed;display:none;z-index:6000;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:7px;box-shadow:var(--shadow)}
+.selection-tools button{border:0;border-radius:9px;padding:8px 12px;background:var(--primary);color:white;font-weight:700}
+.selection-tools button:hover{background:var(--primary2)}
+
+.reading-status{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:999px;display:none;z-index:7000;font-size:.88rem;box-shadow:var(--shadow)}
+
+.notice{padding:15px 18px;border-radius:14px;background:var(--surface2);border:1px solid var(--border)}
+.table-wrap{overflow-x:auto;margin:25px 0}
+table{width:100%;border-collapse:collapse;background:var(--surface)}
+th,td{border:1px solid var(--border);padding:13px;text-align:left;vertical-align:top}
+th{background:var(--surface2);color:var(--primary)}
+
+footer{padding:65px 22px;background:var(--surface);border-top:1px solid var(--border)}
+.footer-inner{max-width:850px;margin:auto}
+.small{color:var(--muted);font-size:.88rem}
+.disclosure{font-size:.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:20px;margin-top:30px}
+
+@media(max-width:800px){
+ .hero-inner{grid-template-columns:1fr}
+ .grid{grid-template-columns:1fr}
+ .cover{min-height:380px}
+ .chapter{padding:55px 0}
+ .toolbar{right:12px;bottom:12px}
+ .tool-panel{width:250px}
+ .resume-banner{flex-direction:column;text-align:center;width:90%}
+}
+
+@media print{
+ @page{size:A4;margin:18mm 16mm 20mm}
+ body{background:white!important;color:#111!important;font-size:11.5pt}
+ .toolbar,.progress,.skip,.selection-tools,.reading-status,.resume-banner,.chapter-nav,.speak-block-btn,.voice-selector,.no-print{display:none!important}
+ .hero{min-height:250mm;page-break-after:always;background:white!important}
+ .cover{box-shadow:none}
+ main{max-width:none;padding:0}
+ .chapter{page-break-before:always;border:0;padding:0}
+ .card,.problem-box,.mission,.media{break-inside:avoid;box-shadow:none}
+ h2,h3{break-after:avoid}
+ a{color:#111}
+ .toc a{color:#111}
+ footer{page-break-before:always}
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" id="progress"></div>
+
+<div class="resume-banner" id="resumeBanner">
+ <span>📖 Continuar de onde você parou?</span>
+ <button onclick="resumeReading()">Continuar</button>
+ <button class="secondary" onclick="dismissResume()">Recomeçar</button>
+</div>
+
+<div class="selection-tools" id="selectionTools">
+ <button onclick="speakSelection()">🔊 Ouvir seleção</button>
+</div>
+
+<div class="reading-status" id="readingStatus">🔊 Lendo seleção...</div>
+
+<div class="voice-selector" id="voiceSelector">
+ <h3>🎙️ Escolha a voz</h3>
+ <select id="voiceList" onchange="selectVoice(this.value)"></select>
+ <button onclick="closeVoiceSelector()">Fechar</button>
+</div>
+
+<div class="toolbar">
+ <div class="tool-panel" id="toolPanel">
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="next()">→ Próximo</button>
+  <button onclick="light()">☀️ Claro</button>
+  <button onclick="dark()">🌙 Escuro</button>
+  <button onclick="fontDown()">A−</button>
+  <button onclick="fontReset()">A</button>
+  <button onclick="fontUp()">A+</button>
+  <button onclick="reading()">📖 Leitura</button>
+  <button onclick="speakChapter()">🔊 Capítulo</button>
+  <button onclick="showVoiceSelector()">🎙️ Voz</button>
+  <button onclick="stopSpeak()">⏹ Parar</button>
+  <button onclick="window.print()">🖨️ PDF</button>
+  <button onclick="about()">ℹ️ Sobre</button>
+ </div>
+ <button class="tool-main" onclick="tools()" aria-label="Abrir ferramentas de leitura" aria-expanded="false">☰</button>
+</div>
+
+<header class="hero" id="inicio">
+ <div class="hero-inner">
+  <div>
+   <div class="kicker">Livro Digital Interativo de Aprendizagem</div>
+   <h1>Restrição de Acesso</h1>
+   <h2>Trilhas adaptativas e personalização da aprendizagem no Moodle</h2>
+   <p>Como usar critérios de disponibilidade para criar percursos de aprendizagem individualizados, respeitando ritmos e promovendo autonomia.</p>
+   <p>Uma jornada para dominar uma das funcionalidades mais poderosas do Moodle: a restrição de acesso como ferramenta de design pedagógico avançado.</p>
+   <p class="meta">Dirceu Nogueira de Sales Duarte Junior · Universidade Federal de Uberlândia — UFU · Centro de Educação a Distância — CEaD</p>
+  </div>
+  <div class="cover decorative">
+   <div class="cover-content">
+    <div class="cover-icon">🔓🧭🎯</div>
+    <h2>E se cada estudante pudesse seguir um caminho único, desenhado para suas necessidades?</h2>
+    <p>Restrições de acesso bem planejadas transformam um curso linear em uma experiência personalizada.</p>
+   </div>
+  </div>
+ </div>
+</header>
+
+<main id="conteudo">
+
+<section class="chapter" id="apresentacao">
+ <div class="breadcrumb">Início › Apresentação</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Apresentação</span>
+ <h2>Restrições de acesso são mais do que travas; são caminhos.</h2>
+ <p class="lead">No Moodle, restringir acesso não significa apenas esconder conteúdo. Significa desenhar rotas de aprendizagem que respeitam o ritmo, os pré-requisitos e as escolhas de cada estudante.</p>
+ <p>Este Livro Digital Interativo de Aprendizagem explora a fundo a funcionalidade de <strong>Restrição de Acesso</strong> — um recurso transversal que pode ser aplicado a qualquer atividade ou recurso do Moodle. Aqui, você aprenderá a utilizá-la com intencionalidade pedagógica, indo além da simples configuração técnica.</p>
+ <p>Com foco em nível avançado, abordaremos trilhas adaptativas, pré-requisitos, gamificação e integração com outras atividades, sempre fundamentados em teorias de aprendizagem e exemplos práticos.</p>
+ <p>A pergunta central que nos guiará:</p>
+ <div class="quote">Como criar experiências de aprendizagem personalizadas, sem perder a coerência do curso?</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 O desafio do design adaptativo</div>
+  <p>Uma restrição bem configurada pode ser a diferença entre um estudante frustrado e um estudante engajado. Ao longo deste livro, você será desafiado a pensar como um designer de experiências de aprendizagem.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital mostrando um labirinto com diferentes caminhos iluminados, representando trilhas de aprendizagem personalizadas no Moodle. Elementos como cadeados abertos, setas e ícones de atividades. Estilo flat design, cores azul e dourado, visual acolhedor e organizado."</p>
+  <p><strong>Descrição alternativa:</strong> "Labirinto com caminhos iluminados e cadeados abertos simbolizando trilhas adaptativas."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="como-usar">
+ <div class="breadcrumb">Início › Como utilizar este LDI</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Como utilizar</span>
+ <h2>Esta publicação é uma jornada de design pedagógico.</h2>
+ <p>Não leia apenas para aprender a configurar. Leia para compreender quando, por que e como as restrições de acesso podem melhorar a experiência do estudante. Cada capítulo foi elaborado para construir uma compreensão progressiva.</p>
+ <div class="grid">
+  <div class="card"><span class="badge">01</span><h3>Compreenda</h3><p>Entenda o que são restrições de acesso, seus tipos e possibilidades técnicas no Moodle.</p></div>
+  <div class="card"><span class="badge">02</span><h3>Questione</h3><p>Analise quando usar restrições e quando evitá-las, considerando os efeitos sobre a motivação e autonomia.</p></div>
+  <div class="card"><span class="badge">03</span><h3>Planeje</h3><p>Desenhe trilhas de aprendizagem coerentes, com critérios claros e alinhados aos objetivos.</p></div>
+  <div class="card"><span class="badge">04</span><h3>Fundamente</h3><p>Conecte suas escolhas a teorias como Vygotsky, Freire e o Design Universal para Aprendizagem.</p></div>
+ </div>
+ <div class="card callout action">
+  <div class="callout-title">🛠️ Uma recomendação importante</div>
+  <p>Durante a leitura, você pode selecionar qualquer trecho e ouvi-lo. O botão <strong>"Ouvir seleção"</strong> aparecerá automaticamente. Além disso, os blocos de destaque possuem botões individuais de leitura em voz alta.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="sumario">
+ <div class="breadcrumb">Início › Sumário</div>
+ <span class="position-indicator">Navegação</span>
+ <span class="eyebrow">Sumário navegável</span>
+ <h2>Nosso caminho</h2>
+ <p>Você pode percorrer o livro em sequência ou acessar diretamente qualquer seção pelo sumário abaixo.</p>
+ <div class="toc">
+  <div class="toc-group">Começo da jornada</div>
+  <a href="#apresentacao">Apresentação</a>
+  <a href="#como-usar">Como utilizar este LDI</a>
+  <div class="toc-group">Compreender</div>
+  <a href="#c1">01 · O que é Restrição de Acesso?</a>
+  <a href="#c2">02 · Tipos de restrições disponíveis</a>
+  <a href="#c3">03 · Quando utilizar restrições?</a>
+  <a href="#c4">04 · Quando não utilizar?</a>
+  <div class="toc-group">Planejar</div>
+  <a href="#c5">05 · Planejamento pedagógico com restrições</a>
+  <a href="#c6">06 · Configuração passo a passo</a>
+  <a href="#c7">07 · Restrições aninhadas e lógica condicional</a>
+  <div class="toc-group">Aplicar</div>
+  <a href="#c8">08 · Trilhas de aprendizagem adaptativas</a>
+  <a href="#c9">09 · Pré-requisitos e progressão</a>
+  <a href="#c10">10 · Gamificação e restrições</a>
+  <div class="toc-group">Fundamentar</div>
+  <a href="#c11">11 · Fundamentos pedagógicos</a>
+  <a href="#c12">12 · Rubrica para design de trilhas</a>
+  <div class="toc-group">Integrar e adaptar</div>
+  <a href="#c13">13 · Integração com outras atividades</a>
+  <a href="#c14">14 · Adaptação a diferentes contextos</a>
+  <div class="toc-group">Refletir</div>
+  <a href="#c15">15 · Situações-problema</a>
+  <a href="#c16">16 · Missões práticas</a>
+  <div class="toc-group">Concluir</div>
+  <a href="#c17">17 · Síntese e avaliação do LDI</a>
+  <a href="#c18">18 · Referências</a>
+  <a href="#c19">19 · Autoria e transparência</a>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 1-4 ========== -->
+
+<section class="chapter" id="c1">
+ <div class="breadcrumb">Compreender › Capítulo 1</div>
+ <span class="position-indicator">Capítulo 1 de 19</span>
+ <span class="eyebrow">Capítulo 01</span>
+ <h2>O que é Restrição de Acesso?</h2>
+ <p>No Moodle, a <strong>Restrição de Acesso</strong> é uma funcionalidade que permite ao professor controlar a disponibilidade de atividades e recursos com base em critérios predefinidos. Em vez de exibir todos os itens do curso simultaneamente, você pode liberar conteúdos conforme o estudante atende a determinadas condições.</p>
+ <p>Essa funcionalidade é transversal: pode ser aplicada a qualquer recurso (Arquivo, Página, URL, Livro) ou atividade (Fórum, Tarefa, Questionário, Lição). Ela aparece na seção "Restringir acesso" dentro das configurações de cada item.</p>
+ <p>As condições podem ser baseadas em datas, notas, conclusão de atividades, campos de perfil, grupos e combinações lógicas (E/OU). Com isso, é possível criar experiências de aprendizagem dinâmicas e personalizadas.</p>
+ <div class="card">
+  <h3>O que a Restrição de Acesso permite</h3>
+  <ul class="checklist">
+   <li>Liberar conteúdo apenas após a conclusão de uma atividade anterior.</li>
+   <li>Exigir nota mínima em um questionário antes de liberar o próximo tópico.</li>
+   <li>Restringir acesso a grupos específicos ou perfis de usuário.</li>
+   <li>Definir datas de abertura e fechamento de módulos.</li>
+   <li>Criar trilhas adaptativas com múltiplos caminhos.</li>
+  </ul>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <p>É importante compreender que a restrição de acesso <strong>não é uma punição</strong>, mas uma ferramenta de design instrucional. Quando bem utilizada, orienta o estudante pelo percurso desejado, respeitando seu ritmo e oferecendo suporte adequado.</p>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital mostrando a tela de configuração de um recurso no Moodle com a seção 'Restringir acesso' expandida, destacando o botão 'Adicionar restrição'. Estilo flat design, cores azul e branco, interface limpa e didática."</p>
+  <p><strong>Descrição alternativa:</strong> "Tela de configuração do Moodle com a seção Restringir acesso destacada."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c2">
+ <div class="breadcrumb">Compreender › Capítulo 2</div>
+ <span class="position-indicator">Capítulo 2 de 19</span>
+ <span class="eyebrow">Capítulo 02</span>
+ <h2>Tipos de restrições disponíveis</h2>
+ <p>O Moodle oferece uma variedade de condições que podem ser combinadas. Conhecer cada tipo é essencial para projetar trilhas eficazes.</p>
+ <div class="table-wrap">
+  <table>
+   <thead>
+    <tr><th>Tipo de restrição</th><th>Descrição</th><th>Exemplo de uso</th></tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Data</strong></td>
+     <td>Libera o item a partir de uma data/hora específica, ou até uma data limite.</td>
+     <td>Disponibilizar um módulo apenas na segunda semana do curso.</td>
+    </tr>
+    <tr>
+     <td><strong>Nota</strong></td>
+     <td>Requer que o estudante alcance uma nota mínima em uma atividade específica.</td>
+     <td>Liberar um desafio extra apenas para quem obteve nota ≥ 7 no questionário.</td>
+    </tr>
+    <tr>
+     <td><strong>Conclusão de atividade</strong></td>
+     <td>Verifica se o estudante concluiu (ou não) uma atividade anterior.</td>
+     <td>Exigir a leitura de um Arquivo antes de liberar o Fórum.</td>
+    </tr>
+    <tr>
+     <td><strong>Grupo</strong></td>
+     <td>Restringe o acesso a membros de um grupo específico.</td>
+     <td>Mostrar atividades diferentes para turmas A e B.</td>
+    </tr>
+    <tr>
+     <td><strong>Campo de perfil</strong></td>
+     <td>Utiliza um campo do perfil do usuário como condição.</td>
+     <td>Liberar conteúdo apenas para estudantes de um determinado curso ou cidade.</td>
+    </tr>
+    <tr>
+     <td><strong>Conjunto de restrições</strong></td>
+     <td>Permite aninhar várias restrições com lógica E/OU.</td>
+     <td>Liberar um módulo se o estudante concluiu a leitura E obteve nota mínima OU pertence a um grupo avançado.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p>A combinação dessas condições, especialmente com o uso de <strong>conjuntos de restrições</strong>, permite criar regras sofisticadas. Na prática, você pode desenhar percursos que se adaptam ao desempenho e às características de cada estudante.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c3">
+ <div class="breadcrumb">Compreender › Capítulo 3</div>
+ <span class="position-indicator">Capítulo 3 de 19</span>
+ <span class="eyebrow">Capítulo 03</span>
+ <h2>Quando utilizar restrições?</h2>
+ <p>As restrições de acesso são especialmente úteis em contextos que exigem <strong>progressão estruturada</strong> ou <strong>personalização</strong>. Alguns cenários típicos:</p>
+ <div class="grid">
+  <div class="card">
+   <h3>🔒 Pré-requisitos</h3>
+   <p>Garantir que o estudante tenha concluído uma atividade antes de avançar. Exemplo: só liberar o Fórum após a leitura do texto-base.</p>
+  </div>
+  <div class="card">
+   <h3>📅 Sequenciamento temporal</h3>
+   <p>Controlar o ritmo do curso, liberando módulos semana a semana, evitando sobrecarga.</p>
+  </div>
+  <div class="card">
+   <h3>🎯 Diferenciação por desempenho</h3>
+   <p>Oferecer atividades de reforço para quem não atingiu a nota mínima e desafios extras para quem superou.</p>
+  </div>
+  <div class="card">
+   <h3>🧩 Gamificação</h3>
+   <p>Criar níveis ou fases que só são desbloqueados após completar missões anteriores.</p>
+  </div>
+ </div>
+ <p>Em todos esses casos, a restrição não é um obstáculo, mas um <strong>orientador do percurso</strong>. Ela comunica ao estudante o que é esperado antes de seguir adiante.</p>
+ <div class="callout idea">
+  <div class="callout-title">💡 Pense no fluxo</div>
+  <p>Uma boa pergunta para se fazer: "O que o estudante precisa saber ou fazer antes de chegar a este ponto?" A restrição deve responder a essa necessidade.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c4">
+ <div class="breadcrumb">Compreender › Capítulo 4</div>
+ <span class="position-indicator">Capítulo 4 de 19</span>
+ <span class="eyebrow">Capítulo 04</span>
+ <h2>Quando não utilizar?</h2>
+ <p>Apesar do potencial, o uso excessivo ou inadequado de restrições pode gerar frustração e desmotivação. Evite restrições quando:</p>
+ <ul class="checklist">
+  <li><strong>Não há justificativa pedagógica clara:</strong> restringir apenas por restringir pode confundir o estudante.</li>
+  <li><strong>O conteúdo é opcional ou exploratório:</strong> forçar uma sequência pode limitar a autonomia.</li>
+  <li><strong>O grupo é heterogêneo e precisa de flexibilidade:</strong> restrições rígidas podem excluir quem tem ritmo diferente.</li>
+  <li><strong>As condições são complexas demais:</strong> múltiplas restrições aninhadas podem dificultar a compreensão do percurso.</li>
+  <li><strong>Há risco de o estudante não conseguir cumprir o pré-requisito:</strong> verifique se todos têm condições reais de atender à condição.</li>
+ </ul>
+ <div class="callout care">
+  <div class="callout-title">⚠️ Cuidado importante</div>
+  <p>Restrição baseada em nota pode desmotivar estudantes com dificuldade. Considere oferecer rotas alternativas ou feedback de apoio antes de bloquear completamente o acesso.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <p>Lembre-se: o objetivo não é controlar, mas <strong>orientar</strong>. A restrição deve ser transparente e, sempre que possível, explicada ao estudante.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 5-7 ========== -->
+
+<section class="chapter" id="c5">
+ <div class="breadcrumb">Planejar › Capítulo 5</div>
+ <span class="position-indicator">Capítulo 5 de 19</span>
+ <span class="eyebrow">Capítulo 05</span>
+ <h2>Planejamento pedagógico com restrições</h2>
+ <p>Antes de configurar qualquer restrição, é essencial planejar o percurso de aprendizagem como um todo. Um bom design começa com perguntas:</p>
+ <ul class="checklist">
+  <li>Quais são os objetivos de aprendizagem de cada módulo?</li>
+  <li>Existe uma sequência lógica que os estudantes devem seguir?</li>
+  <li>Quais são os pré-requisitos reais entre as atividades?</li>
+  <li>Que alternativas posso oferecer para diferentes ritmos?</li>
+  <li>Como comunicarei as regras aos estudantes?</li>
+ </ul>
+ <p>Uma estratégia eficaz é desenhar um <strong>mapa do curso</strong> (storyboard) com as atividades e as setas indicando as dependências. Isso ajuda a visualizar onde as restrições são necessárias e onde podem ser dispensadas.</p>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital de um mapa conceitual de um curso, mostrando atividades conectadas por setas e cadeados representando restrições de acesso. Estilo flat design, cores azul e dourado, visual organizado e acolhedor."</p>
+  <p><strong>Descrição alternativa:</strong> "Mapa de curso com setas e cadeados ilustrando restrições de acesso."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <p>Planejar também significa antecipar possíveis problemas: e se um estudante não atingir a nota mínima? E se o grupo terminar antes do previsto? Tenha planos de contingência.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c6">
+ <div class="breadcrumb">Planejar › Capítulo 6</div>
+ <span class="position-indicator">Capítulo 6 de 19</span>
+ <span class="eyebrow">Capítulo 06</span>
+ <h2>Configuração passo a passo</h2>
+ <p>A configuração de restrições no Moodle é feita em cada atividade ou recurso, na seção <strong>Restringir acesso</strong>. Veja o passo a passo:</p>
+ <ol class="steps">
+  <li>Abra o curso e ative o modo de edição.</li>
+  <li>Clique no item (atividade ou recurso) ao qual deseja aplicar a restrição, ou crie um novo.</li>
+  <li>Nas configurações, role até a seção <strong>"Restringir acesso"</strong> e clique em <strong>"Adicionar restrição"</strong>.</li>
+  <li>Escolha o tipo de restrição desejada (Data, Nota, Conclusão, Grupo, Perfil, etc.).</li>
+  <li>Configure os parâmetros da restrição conforme necessário (ex.: nota mínima, data, grupo).</li>
+  <li>Se necessário, adicione mais restrições e defina a lógica (E/OU) clicando no ícone correspondente.</li>
+  <li>Marque a opção <strong>"Ocultar a atividade completamente"</strong> se quiser que o item fique invisível até as condições serem atendidas, ou deixe visível com mensagem de explicação.</li>
+  <li>Salve as alterações.</li>
+ </ol>
+ <div class="notice">
+  <strong>Observação:</strong> Ao ocultar uma atividade, você pode configurar uma mensagem personalizada que aparecerá ao estudante, explicando por que o item está indisponível e o que ele precisa fazer para liberá-lo.
+ </div>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Captura de tela da seção 'Restringir acesso' do Moodle, mostrando o menu 'Adicionar restrição' aberto com as opções listadas. Interface em português, estilo flat design, cores padrão do Moodle."</p>
+  <p><strong>Descrição alternativa:</strong> "Menu Adicionar restrição no Moodle com opções."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c7">
+ <div class="breadcrumb">Planejar › Capítulo 7</div>
+ <span class="position-indicator">Capítulo 7 de 19</span>
+ <span class="eyebrow">Capítulo 07</span>
+ <h2>Restrições aninhadas e lógica condicional</h2>
+ <p>Uma das funcionalidades mais poderosas das restrições é a possibilidade de criar <strong>conjuntos de restrições</strong> com lógica condicional. Isso permite expressar regras complexas, como:</p>
+ <div class="card">
+  <p><strong>Exemplo:</strong> Liberar o módulo avançado se:</p>
+  <p>(Nota no questionário ≥ 7 <strong>E</strong> Conclusão da leitura obrigatória) <strong>OU</strong> (Pertence ao grupo de alunos avançados)</p>
+ </div>
+ <p>Para configurar isso:</p>
+ <ol class="steps">
+  <li>Adicione um <strong>"Conjunto de restrições"</strong>.</li>
+  <li>Dentro desse conjunto, adicione as restrições desejadas com a lógica <strong>E</strong> (todas devem ser satisfeitas).</li>
+  <li>Adicione outro conjunto e dentro dele as restrições alternativas.</li>
+  <li>Ajuste a lógica entre os conjuntos para <strong>OU</strong> (qualquer conjunto pode satisfazer).</li>
+ </ol>
+ <p>Com essa estrutura, você pode criar caminhos ramificados, onde diferentes perfis de estudantes têm acesso a diferentes recursos.</p>
+ <div class="callout idea">
+  <div class="callout-title">💡 Dica de design</div>
+  <p>Mantenha a lógica simples e documentada. Restrições muito complexas são difíceis de depurar e podem confundir os estudantes.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 8-10 ========== -->
+
+<section class="chapter" id="c8">
+ <div class="breadcrumb">Aplicar › Capítulo 8</div>
+ <span class="position-indicator">Capítulo 8 de 19</span>
+ <span class="eyebrow">Capítulo 08</span>
+ <h2>Trilhas de aprendizagem adaptativas</h2>
+ <p>Trilhas adaptativas são percursos que se ajustam ao desempenho e às necessidades do estudante. Com restrições de acesso, é possível criar:</p>
+ <div class="grid">
+  <div class="card">
+   <h3>🔀 Ramificação por nota</h3>
+   <p>Após um questionário diagnóstico, estudantes com nota baixa são direcionados a atividades de reforço; estudantes com nota alta recebem desafios avançados.</p>
+  </div>
+  <div class="card">
+   <h3>📚 Liberação progressiva</h3>
+   <p>Conteúdos são liberados à medida que o estudante conclui módulos anteriores, garantindo que os pré-requisitos sejam atendidos.</p>
+  </div>
+  <div class="card">
+   <h3>🧭 Escolha do caminho</h3>
+   <p>O estudante pode escolher entre diferentes trilhas (ex.: trilha teórica ou trilha prática), cada uma com seu conjunto de atividades.</p>
+  </div>
+ </div>
+ <p>Implementar trilhas adaptativas exige planejamento cuidadoso e testes constantes. Lembre-se de sempre explicar ao estudante como o sistema funciona e quais critérios são usados para liberar cada etapa.</p>
+ <div class="callout integracao">
+  <div class="callout-title">🔗 Exemplo prático</div>
+  <p>Em um curso de programação, o professor configurou:</p>
+  <ul>
+   <li>Questionário de nivelamento (obrigatório).</li>
+   <li>Trilha básica: liberada para nota &lt; 6 (vídeos e exercícios de reforço).</li>
+   <li>Trilha avançada: liberada para nota ≥ 6 (projeto desafiador).</li>
+  </ul>
+  <p>Os estudantes seguem automaticamente o caminho adequado ao seu nível.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c9">
+ <div class="breadcrumb">Aplicar › Capítulo 9</div>
+ <span class="position-indicator">Capítulo 9 de 19</span>
+ <span class="eyebrow">Capítulo 09</span>
+ <h2>Pré-requisitos e progressão</h2>
+ <p>A restrição por <strong>conclusão de atividade</strong> é a base para criar pré-requisitos. Ao marcar uma atividade como "concluída" (por visualização, nota, envio etc.), você pode liberar a próxima etapa.</p>
+ <p>Para configurar:</p>
+ <ol class="steps">
+  <li>Na atividade que servirá como pré-requisito, defina os critérios de conclusão (ex.: visualizar o recurso, obter nota, enviar tarefa).</li>
+  <li>Na atividade seguinte, adicione a restrição <strong>"Conclusão de atividade"</strong> e selecione a atividade anterior.</li>
+  <li>Marque a opção para que a atividade fique oculta até a condição ser cumprida.</li>
+ </ol>
+ <p>Isso garante uma progressão lógica e evita que o estudante pule etapas importantes.</p>
+ <div class="callout action">
+  <div class="callout-title">🛠️ Boa prática</div>
+  <p>Sempre informe ao estudante o que ele precisa fazer para desbloquear a próxima etapa. A mensagem de restrição pode ser usada para isso.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c10">
+ <div class="breadcrumb">Aplicar › Capítulo 10</div>
+ <span class="position-indicator">Capítulo 10 de 19</span>
+ <span class="eyebrow">Capítulo 10</span>
+ <h2>Gamificação e restrições</h2>
+ <p>Restrições de acesso são ferramentas poderosas para a gamificação. Você pode criar fases, níveis e recompensas que só são desbloqueadas mediante o cumprimento de desafios.</p>
+ <div class="grid">
+  <div class="card">
+   <h3>🏆 Fases desbloqueáveis</h3>
+   <p>Cada módulo é uma fase; para avançar, o estudante precisa completar a fase anterior.</p>
+  </div>
+  <div class="card">
+   <h3>🎖️ Recompensas por desempenho</h3>
+   <p>Emblemas ou certificados são liberados apenas para quem atinge certas condições (nota alta, conclusão rápida).</p>
+  </div>
+  <div class="card">
+   <h3>🧩 Missões ocultas</h3>
+   <p>Conteúdos secretos aparecem apenas para quem cumpre requisitos especiais, incentivando a exploração.</p>
+  </div>
+ </div>
+ <p>Lembre-se de equilibrar desafio e acessibilidade: a gamificação deve motivar, não excluir.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 11-14 ========== -->
+
+<section class="chapter" id="c11">
+ <div class="breadcrumb">Fundamentar › Capítulo 11</div>
+ <span class="position-indicator">Capítulo 11 de 19</span>
+ <span class="eyebrow">Fundamentos pedagógicos</span>
+ <h2>Fundamentos pedagógicos</h2>
+ <p>O uso de restrições de acesso encontra respaldo em teorias de aprendizagem e design instrucional.</p>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Vygotsky e a Zona de Desenvolvimento Proximal</div>
+  <p>Ao liberar atividades de reforço para quem não atingiu a nota mínima, você oferece o suporte necessário para que o estudante avance dentro da sua ZDP. A restrição não é punição, mas scaffolding.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Freire e a autonomia</div>
+  <p>Restrições bem desenhadas podem promover autonomia ao permitir que o estudante escolha entre trilhas e avance no seu ritmo. A transparência sobre as regras é essencial para a dialogicidade.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Design Universal para Aprendizagem (DUA)</div>
+  <p>O DUA propõe múltiplos meios de engajamento, representação e ação. As restrições podem criar rotas alternativas que atendem a diferentes perfis, promovendo a equidade.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Aprendizagem para o domínio (Mastery Learning)</div>
+  <p>Bloom defendia que todos podem aprender, desde que haja tempo e apoio adequados. As restrições por nota e conclusão permitem que cada estudante progrida somente após demonstrar domínio do conteúdo anterior.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c12">
+ <div class="breadcrumb">Fundamentar › Capítulo 12</div>
+ <span class="position-indicator">Capítulo 12 de 19</span>
+ <span class="eyebrow">Rubrica</span>
+ <h2>Rubrica para design de trilhas</h2>
+ <p>Utilize esta rubrica para avaliar a qualidade do design de trilhas com restrições de acesso em um curso.</p>
+ <div class="table-wrap">
+  <table>
+   <thead>
+    <tr><th>Critério</th><th>Insuficiente</th><th>Básico</th><th>Proficiente</th><th>Avançado</th></tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Clareza dos objetivos</strong></td>
+     <td>Os objetivos não estão definidos ou não se relacionam com as restrições.</td>
+     <td>Objetivos definidos, mas restrições não alinhadas.</td>
+     <td>Restrições alinhadas aos objetivos, com justificativa clara.</td>
+     <td>Restrições promovem objetivos e oferecem rotas alternativas coerentes.</td>
+    </tr>
+    <tr>
+     <td><strong>Transparência para o estudante</strong></td>
+     <td>Estudante não sabe por que está bloqueado.</td>
+     <td>Mensagem de bloqueio genérica.</td>
+     <td>Mensagem explica o motivo e o que fazer para desbloquear.</td>
+     <td>Além da mensagem, há um mapa do percurso com os critérios visíveis.</td>
+    </tr>
+    <tr>
+     <td><strong>Flexibilidade</strong></td>
+     <td>A trilha é rígida, sem alternativas.</td>
+     <td>Oferece poucas alternativas para casos especiais.</td>
+     <td>Possui rotas alternativas para diferentes perfis.</td>
+     <td>Trilha adaptativa com múltiplos caminhos e suporte individualizado.</td>
+    </tr>
+    <tr>
+     <td><strong>Equilíbrio entre desafio e suporte</strong></td>
+     <td>Restrições excessivas, sem suporte.</td>
+     <td>Suporte limitado.</td>
+     <td>Suporte adequado para quem não atinge os critérios.</td>
+     <td>Suporte proativo e feedback imediato, reduzindo frustração.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c13">
+ <div class="breadcrumb">Integrar e adaptar › Capítulo 13</div>
+ <span class="position-indicator">Capítulo 13 de 19</span>
+ <span class="eyebrow">Integração</span>
+ <h2>Integração com outras atividades</h2>
+ <p>As restrições de acesso ganham poder quando combinadas com outras atividades do Moodle. Veja alguns fluxos integrados:</p>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 1: Diagnóstico → Rota personalizada</div>
+  <p><strong>Questionário diagnóstico</strong> (nota) → Restrição de acesso direciona para trilha básica ou avançada.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 2: Leitura → Discussão</div>
+  <p><strong>Arquivo</strong> (conclusão por visualização) → Libera <strong>Fórum</strong> de discussão.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 3: Tarefa → Feedback → Revisão</div>
+  <p><strong>Tarefa</strong> (nota mínima) → Libera <strong>Tarefa de revisão</strong> ou <strong>Questionário de recuperação</strong>.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c14">
+ <div class="breadcrumb">Integrar e adaptar › Capítulo 14</div>
+ <span class="position-indicator">Capítulo 14 de 19</span>
+ <span class="eyebrow">Adaptação</span>
+ <h2>Adaptação a diferentes contextos</h2>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Ensino presencial</div>
+  <p>Use restrições para liberar materiais de revisão após cada aula, ou para gerenciar entregas de atividades práticas.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Educação a distância</div>
+  <p>Restrições são essenciais para criar ritmo e evitar sobrecarga. Libere módulos semanalmente e crie trilhas adaptativas com base em questionários.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Ensino híbrido</div>
+  <p>Combine restrições de datas com atividades presenciais: libere materiais preparatórios antes dos encontros e atividades de aprofundamento depois.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Turmas grandes e pequenas</div>
+  <p>Em turmas grandes, use grupos para restringir acesso a atividades específicas. Em turmas pequenas, personalize com campos de perfil.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Acessibilidade e inclusão</div>
+  <p>Garanta que as mensagens de restrição sejam claras e que haja rotas alternativas para estudantes com necessidades específicas.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== SITUAÇÕES-PROBLEMA ========== -->
+
+<section class="chapter" id="c15">
+ <div class="breadcrumb">Refletir › Situações-problema</div>
+ <span class="position-indicator">Capítulo 15 de 19</span>
+ <span class="eyebrow">Situações-problema</span>
+ <h2>Situações-problema</h2>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 1 — Restrição mal configurada</div>
+  <p><strong>Contexto:</strong> O professor João configurou uma restrição por conclusão de atividade: o Fórum só seria liberado após a leitura de um Arquivo. No entanto, ele esqueceu de marcar o Arquivo como "concluído ao visualizar". Resultado: nenhum estudante conseguiu acessar o Fórum, pois a condição nunca era satisfeita.</p>
+  <p><strong>O desafio:</strong> Identificar o erro e corrigir a configuração para que a restrição funcione corretamente.</p>
+  <p><strong>Pense como professor:</strong> Você verificou se o critério de conclusão do Arquivo está corretamente definido? Que testes realizaria para garantir que a restrição será satisfeita?</p>
+  <p><strong>Pense como estudante:</strong> Como você se sentiria ao se deparar com uma atividade bloqueada sem explicação? Que mensagem gostaria de receber?</p>
+  <p><strong>Possibilidades:</strong> Verificar as configurações de conclusão do Arquivo; testar com um usuário de teste; adicionar uma mensagem explicativa no Fórum.</p>
+  <p><strong>Para refletir:</strong> Você costuma testar suas restrições antes de disponibilizar o curso?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 2 — Excesso de restrições</div>
+  <p><strong>Contexto:</strong> A professora Ana criou uma trilha com 8 atividades encadeadas, cada uma com restrição baseada na conclusão da anterior. Os estudantes relatam frustração: se esquecerem de marcar uma atividade como concluída, ficam bloqueados e não sabem como prosseguir.</p>
+  <p><strong>O desafio:</strong> Reduzir a complexidade da trilha sem perder a estrutura de progressão.</p>
+  <p><strong>Pense como professor:</strong> Todas as restrições são realmente necessárias? Existe risco de o estudante não perceber que precisa concluir uma atividade manualmente?</p>
+  <p><strong>Pense como estudante:</strong> Você saberia exatamente o que fazer para desbloquear a próxima etapa?</p>
+  <p><strong>Possibilidades:</strong> Usar conclusão automática sempre que possível; agrupar etapas menores; fornecer um mapa visual do progresso; reduzir o número de restrições encadeadas.</p>
+  <p><strong>Para refletir:</strong> Como simplificar a experiência sem comprometer os objetivos?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 3 — Restrição por nota desmotiva</div>
+  <p><strong>Contexto:</strong> O professor Carlos configurou uma atividade de recuperação liberada apenas para quem tirasse nota abaixo de 6 no questionário. Alguns estudantes que tiraram 5,5 se sentiram punidos e desistiram de tentar novamente.</p>
+  <p><strong>O desafio:</strong> Ajustar a abordagem para que a restrição por nota funcione como suporte, não como punição.</p>
+  <p><strong>Pense como professor:</strong> Que mensagem acompanharia a restrição? Como transformar a recuperação em uma oportunidade positiva?</p>
+  <p><strong>Pense como estudante:</strong> O que você gostaria de ouvir após não atingir a nota mínima?</p>
+  <p><strong>Possibilidades:</strong> Oferecer feedback encorajador junto com a restrição; permitir múltiplas tentativas no questionário; criar trilha de reforço opcional para todos, não apenas para quem foi mal.</p>
+  <p><strong>Para refletir:</strong> A restrição por nota está promovendo aprendizagem ou apenas classificando?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== MISSÕES ========== -->
+
+<section class="chapter" id="c16">
+ <div class="breadcrumb">Refletir › Missões práticas</div>
+ <span class="position-indicator">Capítulo 16 de 19</span>
+ <span class="eyebrow">Missões</span>
+ <h2>Missões práticas</h2>
+
+ <div class="mission">
+  <div class="mission-title">🎯 MISSÃO 1 — Desenhar trilha adaptativa</div>
+  <p>Escolha uma unidade do seu curso e desenhe uma trilha adaptativa com pelo menos dois caminhos baseados em nota de um questionário diagnóstico.</p>
+  <ol class="steps">
+   <li>Crie um questionário diagnóstico com nota de 0 a 10.</li>
+   <li>Defina duas trilhas: uma para nota &lt; 6 (reforço) e outra para nota ≥ 6 (aprofundamento).</li>
+   <li>Configure as restrições de acesso em cada trilha.</li>
+   <li>Adicione mensagens explicativas para os estudantes.</li>
+   <li>Teste com dois usuários fictícios (um com nota baixa, outro com nota alta).</li>
+  </ol>
+  <p><strong>Evidência:</strong> Captura de tela das configurações e relato do teste.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="mission">
+  <div class="mission-title">🎯 MISSÃO 2 — Configurar conjunto de restrições aninhadas</div>
+  <p>Crie uma atividade que só é liberada se o estudante atender a uma condição composta: (concluiu leitura E nota mínima) OU pertence a grupo avançado.</p>
+  <ol class="steps">
+   <li>Escolha uma atividade do seu curso.</li>
+   <li>Adicione um conjunto de restrições com lógica E para leitura e nota.</li>
+   <li>Adicione outro conjunto com restrição de grupo.</li>
+   <li>Configure a lógica OU entre os conjuntos.</li>
+   <li>Teste com diferentes perfis.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Print da configuração e descrição do comportamento.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="mission">
+  <div class="mission-title">🎯 PROJETO FINAL — Trilha de aprendizagem completa</div>
+  <p>Projete uma trilha completa para uma semana do seu curso, combinando restrições de data, conclusão e nota, com rotas alternativas.</p>
+  <ol class="steps">
+   <li>Defina os objetivos da semana.</li>
+   <li>Liste as atividades e suas dependências.</li>
+   <li>Desenhe o fluxo com restrições (use um mapa).</li>
+   <li>Configure no Moodle.</li>
+   <li>Teste com diferentes cenários.</li>
+   <li>Documente a experiência e os ajustes.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Mapa da trilha + capturas de tela + relato reflexivo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== SÍNTESE E AVALIAÇÃO ========== -->
+
+<section class="chapter" id="c17">
+ <div class="breadcrumb">Concluir › Síntese</div>
+ <span class="position-indicator">Capítulo 17 de 19</span>
+ <span class="eyebrow">Síntese</span>
+ <h2>O que aprendemos?</h2>
+ <p>Ao longo deste livro, exploramos a Restrição de Acesso como uma ferramenta de design pedagógico avançado. Principais aprendizados:</p>
+ <div class="card">
+  <p><strong>Restrições são caminhos, não barreiras.</strong> Quando bem planejadas, orientam o estudante e promovem autonomia.</p>
+  <p><strong>Existem múltiplos tipos de restrições</strong> que podem ser combinados para criar trilhas complexas.</p>
+  <p><strong>A transparência é essencial:</strong> o estudante deve saber por que algo está bloqueado e o que fazer para desbloquear.</p>
+  <p><strong>O excesso de restrições pode frustrar:</strong> simplicidade e clareza são fundamentais.</p>
+  <p><strong>A integração com outras atividades</strong> (questionários, tarefas, fóruns) potencializa a personalização.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="quote">Uma restrição de acesso bem projetada é invisível: o estudante apenas percebe que está no caminho certo.</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 Para levar com você</div>
+  <p><strong>Não pergunte apenas "como restringir?"</strong></p>
+  <p>Pergunte: <strong>"Como orientar cada estudante pelo melhor caminho possível?"</strong></p>
+  <p>Essa mudança de perspectiva transforma a restrição em uma ferramenta de inclusão e personalização.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== REFERÊNCIAS ========== -->
+
+<section class="chapter" id="c18">
+ <div class="breadcrumb">Concluir › Referências</div>
+ <span class="position-indicator">Capítulo 18 de 19</span>
+ <span class="eyebrow">Fontes</span>
+ <h2>Referências</h2>
+ <div class="card">
+  <h3>Documentação oficial do Moodle</h3>
+  <p>Restrições de acesso: <a href="https://docs.moodle.org" target="_blank" rel="noopener">https://docs.moodle.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>UNESCO — Educação e Tecnologia</h3>
+  <p>Diretrizes sobre educação digital e inclusão: <a href="https://www.unesco.org" target="_blank" rel="noopener">https://www.unesco.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>W3C — WCAG 2.1</h3>
+  <p>Diretrizes de acessibilidade: <a href="https://www.w3.org/WAI/WCAG21" target="_blank" rel="noopener">https://www.w3.org/WAI/WCAG21</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>Design Universal para Aprendizagem</h3>
+  <p>CAST - Universal Design for Learning: <a href="https://www.cast.org" target="_blank" rel="noopener">https://www.cast.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>Bloom e Mastery Learning</h3>
+  <p>BLOOM, B. S. <strong>Human characteristics and school learning.</strong> New York: McGraw-Hill, 1976.</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== AUTORIA E TRANSPARÊNCIA ========== -->
+
+<section class="chapter" id="c19">
+ <div class="breadcrumb">Concluir › Autoria</div>
+ <span class="position-indicator">Capítulo 19 de 19</span>
+ <span class="eyebrow">Autoria e transparência</span>
+ <h2>Sobre esta publicação</h2>
+ <div class="card">
+  <h3>Autoria</h3>
+  <p><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+ </div>
+ <div class="card">
+  <h3>Ficha da publicação</h3>
+  <p><strong>LDI:</strong> Restrição de Acesso — v1.0<br>
+  <strong>Recurso estudado:</strong> Restrição de Acesso (funcionalidade transversal)<br>
+  <strong>Versão do Moodle considerada:</strong> 4.5<br>
+  <strong>Formatos:</strong> HTML interativo e PDF editorial<br>
+  <strong>Atualizado em:</strong> 07/09/2026<br>
+  <strong>Edição:</strong> 1.0<br>
+  <strong>Ano:</strong> 2026</p>
+ </div>
+ <div class="card callout idea">
+  <div class="callout-title">🤖 Transparência sobre o uso de IA</div>
+  <p>Esta publicação foi elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com apoio de ferramentas de Inteligência Artificial generativa em etapas de planejamento, elaboração, revisão, organização e desenvolvimento de elementos textuais, visuais e computacionais.</p>
+  <p>A utilização de Inteligência Artificial não substitui a autoria, a responsabilidade intelectual, a revisão humana ou a validação do conteúdo pelo autor. Cabe ao autor a responsabilidade final pelas decisões editoriais, pedagógicas, técnicas e acadêmicas apresentadas nesta publicação.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="go('inicio')">🏠 Início</button>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="footer-inner">
+  <h2>Restrição de Acesso</h2>
+  <p>Trilhas adaptativas e personalização da aprendizagem no Moodle.</p>
+  <p class="small"><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p class="small"><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p class="small"><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p class="small"><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+  <p class="small">LDI — Restrição de Acesso — v1.0 · 07/09/2026</p>
+  <div class="disclosure">
+   <strong>Transparência de autoria e uso de Inteligência Artificial</strong>
+   <p>Publicação elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com uso de ferramentas de IA generativa como apoio. A responsabilidade final é do autor.</p>
+  </div>
+ </div>
+</footer>
+
+<script>
+const root = document.documentElement;
+const sections = [...document.querySelectorAll("main .chapter")];
+let speechMode = null;
+let resumeChapterIndex = null;
+let currentVoice = null;
+
+function tools(){
+ const panel = document.getElementById("toolPanel");
+ const button = document.querySelector(".tool-main");
+ panel.classList.toggle("open");
+ button.setAttribute("aria-expanded", panel.classList.contains("open"));
+}
+
+function go(id){
+ const target = document.getElementById(id);
+ if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function getCurrent(){
+ const y = window.scrollY + window.innerHeight * .25;
+ let current = sections[0];
+ for(const section of sections){
+  if(section.offsetTop <= y) current = section;
+ }
+ return current;
+}
+
+function previous(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index > 0) sections[index - 1].scrollIntoView({behavior:"smooth"});
+}
+
+function next(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index < sections.length - 1) sections[index + 1].scrollIntoView({behavior:"smooth"});
+}
+
+function saveReadingPosition(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ localStorage.setItem("ldi-restricao-reading-position", index);
+}
+
+function offerResume(){
+ const saved = localStorage.getItem("ldi-restricao-reading-position");
+ if(saved !== null && saved !== undefined){
+  const index = parseInt(saved);
+  if(index > 0 && index < sections.length){
+   resumeChapterIndex = index;
+   document.getElementById("resumeBanner").classList.add("open");
+  }
+ }
+}
+
+function resumeReading(){
+ if(resumeChapterIndex !== null){
+  sections[resumeChapterIndex].scrollIntoView({behavior:"smooth"});
+  document.getElementById("resumeBanner").classList.remove("open");
+ }
+}
+
+function dismissResume(){
+ document.getElementById("resumeBanner").classList.remove("open");
+ localStorage.removeItem("ldi-restricao-reading-position");
+}
+
+function dark(){root.classList.add("dark");localStorage.setItem("ldi-theme","dark");}
+function light(){root.classList.remove("dark");localStorage.setItem("ldi-theme","light");}
+
+function fontUp(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.min(1.5, size + .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontDown(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.max(.85, size - .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontReset(){
+ root.style.setProperty("--font", 1);
+ localStorage.setItem("ldi-font", 1);
+}
+
+function reading(){document.body.classList.toggle("reading-mode");}
+
+function loadVoices(){
+ return new Promise((resolve) => {
+  const voices = speechSynthesis.getVoices();
+  if(voices.length > 0){
+   resolve(voices);
+  } else {
+   speechSynthesis.onvoiceschanged = () => {
+    resolve(speechSynthesis.getVoices());
+   };
+  }
+ });
+}
+
+function getPortugueseVoices(voices){
+ return voices.filter(voice => voice.lang === "pt-BR" || voice.lang === "pt-PT");
+}
+
+async function populateVoiceSelector(){
+ const voices = await loadVoices();
+ const ptVoices = getPortugueseVoices(voices);
+ const select = document.getElementById("voiceList");
+ select.innerHTML = "";
+ ptVoices.forEach(voice => {
+  const option = document.createElement("option");
+  option.value = voice.name;
+  option.textContent = voice.name + " (" + voice.lang + ")";
+  if(voice.name.toLowerCase().includes("francisca")){
+   option.textContent = "⭐ " + option.textContent;
+  }
+  select.appendChild(option);
+ });
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  select.value = savedVoice;
+ }
+}
+
+function showVoiceSelector(){
+ document.getElementById("voiceSelector").classList.add("open");
+ populateVoiceSelector();
+}
+
+function closeVoiceSelector(){
+ document.getElementById("voiceSelector").classList.remove("open");
+}
+
+function selectVoice(voiceName){
+ localStorage.setItem("ldi-voice", voiceName);
+ applyVoice(voiceName);
+}
+
+async function applyVoice(voiceName){
+ const voices = await loadVoices();
+ const voice = voices.find(v => v.name === voiceName);
+ if(voice){
+  currentVoice = voice;
+ }
+}
+
+async function getVoice(){
+ if(currentVoice) return currentVoice;
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  const voices = await loadVoices();
+  const voice = voices.find(v => v.name === savedVoice);
+  if(voice) return voice;
+ }
+ const voices = await loadVoices();
+ const francisca = voices.find(v => v.name.toLowerCase().includes("francisca"));
+ if(francisca) return francisca;
+ const ptBR = voices.find(v => v.lang === "pt-BR");
+ if(ptBR) return ptBR;
+ const ptPT = voices.find(v => v.lang === "pt-PT");
+ if(ptPT) return ptPT;
+ return voices[0] || null;
+}
+
+function cleanTextForSpeech(element){
+ const clone = element.cloneNode(true);
+ const speakBtns = clone.querySelectorAll(".speak-block-btn");
+ speakBtns.forEach(b => b.remove());
+ const mediaElements = clone.querySelectorAll(".media");
+ mediaElements.forEach(m => m.remove());
+ const visualElements = clone.querySelectorAll(".badge, .icon, .emoji");
+ visualElements.forEach(v => v.remove());
+ const navElements = clone.querySelectorAll(".chapter-nav");
+ navElements.forEach(n => n.remove());
+ const toolbarElements = clone.querySelectorAll(".toolbar");
+ toolbarElements.forEach(t => t.remove());
+ let text = clone.innerText || clone.textContent || "";
+ text = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "");
+ text = text.replace(/[←→↑↓↔⇒⇐⇑⇓⇔]/gu, "");
+ text = text.replace(/\s*→\s*/g, " ");
+ text = text.replace(/\n{3,}/g, "\n\n");
+ text = text.replace(/[ \t]+/g, " ").trim();
+ return text;
+}
+
+async function speakChapter(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ stopSpeak();
+ const current = getCurrent();
+ const text = cleanTextForSpeech(current);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "chapter";
+ utterance.onend = function(){speechMode = null;};
+ speechSynthesis.speak(utterance);
+}
+
+async function speakBlock(btn){
+ const block = btn.closest(".callout, .problem-box, .mission, .card, .notice");
+ if(!block) return;
+ if(!("speechSynthesis" in window)){
+  alert("Seu navegador não oferece leitura em voz alta.");
+  return;
+ }
+ if(btn.classList.contains("speaking")){
+  stopSpeak();
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+  return;
+ }
+ stopSpeak();
+ const text = cleanTextForSpeech(block);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ btn.classList.add("speaking"); 
+ btn.textContent = "🔇 Parar";
+ utterance.onend = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ utterance.onerror = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ speechSynthesis.speak(utterance);
+}
+
+async function speakSelection(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ const selection = window.getSelection();
+ const text = selection ? selection.toString().trim() : "";
+ if(!text){hideSelectionTools();return;}
+ stopSpeak();
+ const status = document.getElementById("readingStatus");
+ status.style.display = "block";
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "selection";
+ utterance.onend = function(){status.style.display = "none";speechMode = null;};
+ utterance.onerror = function(){status.style.display = "none";speechMode = null;};
+ speechSynthesis.speak(utterance);
+ hideSelectionTools();
+}
+
+function stopSpeak(){
+ if("speechSynthesis" in window) speechSynthesis.cancel();
+ document.getElementById("readingStatus").style.display = "none";
+ speechMode = null;
+}
+
+function showSelectionTools(){
+ const selection = window.getSelection();
+ if(!selection || selection.isCollapsed || !selection.toString().trim()){hideSelectionTools();return;}
+ const range = selection.getRangeAt(0);
+ const rect = range.getBoundingClientRect();
+ const tools = document.getElementById("selectionTools");
+ tools.style.display = "block";
+ let left = rect.left + (rect.width / 2) - 90;
+ let top = rect.top - 52;
+ if(left < 10) left = 10;
+ if(left + 190 > window.innerWidth - 10) left = window.innerWidth - 200;
+ if(top < 10) top = rect.bottom + 10;
+ tools.style.left = left + "px";
+ tools.style.top = top + "px";
+}
+
+function hideSelectionTools(){
+ document.getElementById("selectionTools").style.display = "none";
+}
+
+function about(){
+ alert("Restrição de Acesso — LDI v1.0\n\nAutor: Dirceu Nogueira de Sales Duarte Junior\nCurrículo Lattes: http://lattes.cnpq.br/8037598190568108\nUFU — CEaD\n\nPublicação educacional com apoio de ferramentas de IA generativa.");
+}
+
+window.addEventListener("scroll", function(){
+ const top = window.scrollY;
+ const total = document.documentElement.scrollHeight - window.innerHeight;
+ const value = total > 0 ? (top / total) * 100 : 0;
+ document.getElementById("progress").style.width = value + "%";
+});
+
+document.addEventListener("mouseup", function(){setTimeout(showSelectionTools, 50);});
+document.addEventListener("touchend", function(){setTimeout(showSelectionTools, 150);});
+document.addEventListener("mousedown", function(event){
+ const tools = document.getElementById("selectionTools");
+ if(tools.style.display === "block" && !tools.contains(event.target)) hideSelectionTools();
+});
+
+(function(){
+ const theme = localStorage.getItem("ldi-theme");
+ const font = localStorage.getItem("ldi-font");
+ if(theme === "dark") root.classList.add("dark");
+ if(font) root.style.setProperty("--font", font);
+})();
+
+setInterval(saveReadingPosition, 5000);
+setTimeout(offerResume, 2000);
+</script>
+
+</body>
+</html>
