@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+<meta name="author" content="Dirceu Nogueira de Sales Duarte Junior">
+<meta name="description" content="Livro Digital Interativo de Aprendizagem sobre o Bloco Progresso da Conclusão no Moodle — Coleção de Formação Docente.">
+<meta name="generator" content="LDI - Livro Digital Interativo de Aprendizagem — PROMPT-MESTRE 8.0">
+
+<title>Bloco Progresso da Conclusão no Moodle — Livro Digital Interativo de Aprendizagem</title>
+
+<style>
+:root{
+ --bg:#f4f7fb;
+ --surface:#fff;
+ --surface2:#edf3f9;
+ --text:#172033;
+ --muted:#637084;
+ --primary:#315d9d;
+ --primary2:#234775;
+ --accent:#e0a13a;
+ --green:#438368;
+ --purple:#73599d;
+ --red:#b85c5c;
+ --border:#d8e0ea;
+ --shadow:0 12px 35px rgba(30,55,90,.10);
+ --radius:20px;
+ --font:1;
+ --width:850px;
+}
+
+html.dark{
+ --bg:#0f151d;
+ --surface:#19222d;
+ --surface2:#232e3b;
+ --text:#edf3f8;
+ --muted:#b5c0cc;
+ --primary:#8db7ee;
+ --primary2:#b0cdf1;
+ --accent:#efbd62;
+ --green:#7cb89b;
+ --purple:#b39bd7;
+ --red:#e08b8b;
+ --border:#354454;
+ --shadow:0 12px 35px rgba(0,0,0,.32);
+ color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75;font-size:calc(17px * var(--font));transition:.25s}
+a{color:var(--primary)}
+button{font:inherit;cursor:pointer}
+::selection{background:rgba(49,93,157,.25)}
+
+.progress{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:5000}
+.skip{position:absolute;left:-9999px;top:10px;z-index:9000;padding:12px 18px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px}
+.skip:focus{left:10px}
+
+.resume-banner{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:15px 25px;box-shadow:var(--shadow);z-index:8000;display:none;gap:15px;align-items:center}
+.resume-banner.open{display:flex}
+.resume-banner button{padding:8px 16px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700}
+.resume-banner button.secondary{background:var(--surface2);color:var(--text)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:60px 22px;background:radial-gradient(circle at 15% 20%,rgba(49,93,157,.22),transparent 35%),radial-gradient(circle at 85% 75%,rgba(224,161,58,.18),transparent 35%),var(--bg)}
+.hero-inner{width:100%;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.kicker{color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+h1{font-size:clamp(2.6rem,5.5vw,5rem);line-height:1.05;letter-spacing:-.04em;margin:20px 0}
+.hero h2{font-size:clamp(1.3rem,2.8vw,2rem);font-weight:500}
+.hero p{color:var(--muted);font-size:1.1rem}
+
+.cover{min-height:500px;border-radius:40px;color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:45px;box-shadow:var(--shadow);position:relative;overflow:hidden;background:linear-gradient(145deg,#28558f,#74599c)}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.2);border-radius:50%}
+.cover:before{width:440px;height:440px}
+.cover:after{width:260px;height:260px}
+.cover-content{position:relative;z-index:2;max-width:420px}
+.cover-icon{font-size:4.5rem}
+.meta{font-size:.9rem!important;color:rgba(255,255,255,.78)!important;margin-top:30px}
+
+main{max-width:var(--width);margin:auto;padding:60px 22px}
+section{scroll-margin-top:25px}
+.chapter{padding:80px 0;border-bottom:1px solid var(--border)}
+.eyebrow{color:var(--primary);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin-bottom:15px}
+.position-indicator{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 14px;font-size:.78rem;font-weight:800;margin-bottom:15px}
+h2{font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.15;margin:12px 0 25px}
+h3{font-size:1.45rem;line-height:1.25;margin-top:40px}
+.lead{font-size:1.2rem;color:var(--muted)}
+.quote{padding:25px 0;font-size:1.3rem;font-weight:750;color:var(--primary)}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0;box-shadow:0 7px 25px rgba(20,40,70,.05)}
+.callout{border-left:6px solid var(--primary);background:var(--surface2)}
+.callout.idea{border-left-color:var(--accent)}
+.callout.action{border-left-color:var(--green)}
+.callout.problem{border-left-color:var(--purple)}
+.callout.care{border-left-color:var(--red)}
+.callout.fundamento{border-left-color:var(--purple)}
+.callout.integracao{border-left-color:var(--green)}
+.callout.adaptacao{border-left-color:var(--red)}
+.callout-title{font-weight:800;margin-bottom:8px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid .card{margin:0}
+.badge{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:800}
+
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:25px;padding:28px;box-shadow:var(--shadow)}
+.toc a{display:block;padding:12px 10px;text-decoration:none;border-bottom:1px solid var(--border);color:var(--text)}
+.toc a:hover{background:var(--surface2)}
+.toc-group{margin:18px 0 8px;color:var(--primary);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+
+.problem-box{background:var(--surface);border:2px solid var(--purple);border-radius:24px;padding:30px;margin:30px 0}
+.question{color:var(--purple);font-weight:800}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:10px 0;border-bottom:1px solid var(--border)}
+.checklist li:before{content:"☐";color:var(--primary);margin-right:10px}
+
+.media{border:2px dashed var(--border);background:var(--surface2);border-radius:20px;padding:26px;margin:25px 0}
+.media strong{display:block;color:var(--primary)}
+
+.mission{border:2px solid var(--accent);background:linear-gradient(135deg,var(--surface),var(--surface2));border-radius:25px;padding:30px;margin:30px 0}
+.mission-title{color:var(--accent);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+
+.steps{counter-reset:step;list-style:none;padding:0}
+.steps li{counter-increment:step;padding:15px 15px 15px 55px;position:relative;margin:10px 0;background:var(--surface2);border-radius:14px}
+.steps li:before{content:counter(step);position:absolute;left:15px;top:12px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--primary);color:#fff;font-weight:800}
+
+.chapter-nav{display:flex;justify-content:space-between;gap:12px;margin-top:45px;flex-wrap:wrap}
+.chapter-nav button{padding:12px 17px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);cursor:pointer;font:inherit}
+.chapter-nav button:hover{background:var(--surface2)}
+
+.speak-block-btn{background:transparent;border:1px solid var(--border);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:13px;color:var(--primary);margin-top:12px;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:inherit}
+.speak-block-btn:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.speak-block-btn.speaking{background:var(--red);color:white;border-color:var(--red)}
+
+.toolbar{position:fixed;right:18px;bottom:18px;z-index:4000;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tool-main{width:56px;height:56px;border:0;border-radius:50%;background:var(--primary);color:white;box-shadow:var(--shadow);font-size:22px}
+.tool-panel{display:none;width:285px;padding:10px;grid-template-columns:1fr 1fr;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+.tool-panel.open{display:grid}
+.tool-panel button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:11px;padding:9px}
+.tool-panel button:hover{background:var(--surface2)}
+
+.voice-selector{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:var(--shadow);z-index:9000;width:350px;max-width:90vw;display:none}
+.voice-selector.open{display:block}
+.voice-selector h3{margin-top:0;color:var(--primary)}
+.voice-selector select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font:inherit;margin:15px 0}
+.voice-selector button{padding:10px 20px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700;cursor:pointer}
+
+.reading-mode main{max-width:720px}
+.reading-mode .decorative{display:none}
+.reading-mode .media{display:none}
+
+.selection-tools{position:fixed;display:none;z-index:6000;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:7px;box-shadow:var(--shadow)}
+.selection-tools button{border:0;border-radius:9px;padding:8px 12px;background:var(--primary);color:white;font-weight:700}
+.selection-tools button:hover{background:var(--primary2)}
+
+.reading-status{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:999px;display:none;z-index:7000;font-size:.88rem;box-shadow:var(--shadow)}
+
+.notice{padding:15px 18px;border-radius:14px;background:var(--surface2);border:1px solid var(--border)}
+.table-wrap{overflow-x:auto;margin:25px 0}
+table{width:100%;border-collapse:collapse;background:var(--surface)}
+th,td{border:1px solid var(--border);padding:13px;text-align:left;vertical-align:top}
+th{background:var(--surface2);color:var(--primary)}
+
+footer{padding:65px 22px;background:var(--surface);border-top:1px solid var(--border)}
+.footer-inner{max-width:850px;margin:auto}
+.small{color:var(--muted);font-size:.88rem}
+.disclosure{font-size:.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:20px;margin-top:30px}
+
+@media(max-width:800px){
+ .hero-inner{grid-template-columns:1fr}
+ .grid{grid-template-columns:1fr}
+ .cover{min-height:380px}
+ .chapter{padding:55px 0}
+ .toolbar{right:12px;bottom:12px}
+ .tool-panel{width:250px}
+ .resume-banner{flex-direction:column;text-align:center;width:90%}
+}
+
+@media print{
+ @page{size:A4;margin:18mm 16mm 20mm}
+ body{background:white!important;color:#111!important;font-size:11.5pt}
+ .toolbar,.progress,.skip,.selection-tools,.reading-status,.resume-banner,.chapter-nav,.speak-block-btn,.voice-selector,.no-print{display:none!important}
+ .hero{min-height:250mm;page-break-after:always;background:white!important}
+ .cover{box-shadow:none}
+ main{max-width:none;padding:0}
+ .chapter{page-break-before:always;border:0;padding:0}
+ .card,.problem-box,.mission,.media{break-inside:avoid;box-shadow:none}
+ h2,h3{break-after:avoid}
+ a{color:#111}
+ .toc a{color:#111}
+ footer{page-break-before:always}
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" id="progress"></div>
+
+<div class="resume-banner" id="resumeBanner">
+ <span>📖 Continuar de onde você parou?</span>
+ <button onclick="resumeReading()">Continuar</button>
+ <button class="secondary" onclick="dismissResume()">Recomeçar</button>
+</div>
+
+<div class="selection-tools" id="selectionTools">
+ <button onclick="speakSelection()">🔊 Ouvir seleção</button>
+</div>
+
+<div class="reading-status" id="readingStatus">🔊 Lendo seleção...</div>
+
+<div class="voice-selector" id="voiceSelector">
+ <h3>🎙️ Escolha a voz</h3>
+ <select id="voiceList" onchange="selectVoice(this.value)"></select>
+ <button onclick="closeVoiceSelector()">Fechar</button>
+</div>
+
+<div class="toolbar">
+ <div class="tool-panel" id="toolPanel">
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="next()">→ Próximo</button>
+  <button onclick="light()">☀️ Claro</button>
+  <button onclick="dark()">🌙 Escuro</button>
+  <button onclick="fontDown()">A−</button>
+  <button onclick="fontReset()">A</button>
+  <button onclick="fontUp()">A+</button>
+  <button onclick="reading()">📖 Leitura</button>
+  <button onclick="speakChapter()">🔊 Capítulo</button>
+  <button onclick="showVoiceSelector()">🎙️ Voz</button>
+  <button onclick="stopSpeak()">⏹ Parar</button>
+  <button onclick="window.print()">🖨️ PDF</button>
+  <button onclick="about()">ℹ️ Sobre</button>
+ </div>
+ <button class="tool-main" onclick="tools()" aria-label="Abrir ferramentas de leitura" aria-expanded="false">☰</button>
+</div>
+
+<header class="hero" id="inicio">
+ <div class="hero-inner">
+  <div>
+   <div class="kicker">Livro Digital Interativo de Aprendizagem</div>
+   <h1>Bloco Progresso da Conclusão</h1>
+   <h2>Visualização, autorregulação e monitoramento no Moodle</h2>
+   <p>Como usar o bloco de progresso para dar visibilidade ao percurso de aprendizagem, motivar os estudantes e apoiar intervenções pedagógicas precisas.</p>
+   <p>Uma jornada para dominar um componente visual que transforma dados de conclusão em uma experiência clara, acessível e pedagógica.</p>
+   <p class="meta">Dirceu Nogueira de Sales Duarte Junior · Universidade Federal de Uberlândia — UFU · Centro de Educação a Distância — CEaD</p>
+  </div>
+  <div class="cover decorative">
+   <div class="cover-content">
+    <div class="cover-icon">📊🧩✅</div>
+    <h2>E se o progresso fosse visível, compreensível e motivador para cada estudante?</h2>
+    <p>O Bloco Progresso da Conclusão transforma dados em orientação e autonomia.</p>
+   </div>
+  </div>
+ </div>
+</header>
+
+<main id="conteudo">
+
+<section class="chapter" id="apresentacao">
+ <div class="breadcrumb">Início › Apresentação</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Apresentação</span>
+ <h2>Visualizar o progresso é o primeiro passo para assumir o controle da própria aprendizagem.</h2>
+ <p class="lead">No Moodle, o <strong>Bloco Progresso da Conclusão</strong> é uma ferramenta visual que exibe, em tempo real, o quanto o estudante já avançou em relação às atividades do curso. Ele materializa, de forma clara e imediata, os dados gerados pelo Acompanhamento da Conclusão.</p>
+ <p>Este Livro Digital Interativo de Aprendizagem explora o bloco como componente de interface que une três dimensões: <strong>visualização</strong>, <strong>autorregulação</strong> e <strong>monitoramento</strong>. Você aprenderá a configurá-lo, personalizá-lo e integrá-lo a um design pedagógico que coloca o estudante como protagonista do próprio percurso.</p>
+ <p>A pergunta central que nos guiará:</p>
+ <div class="quote">Como transformar uma barra de progresso em uma ferramenta de autonomia e engajamento?</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 O poder da visualização</div>
+  <p>Quando o estudante vê seu progresso, ele não apenas sabe onde está, mas também para onde pode ir. O bloco é uma bússola visual que orienta, motiva e convida à ação.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital mostrando um painel lateral de um curso Moodle com o Bloco Progresso da Conclusão em destaque, exibindo barras de progresso coloridas e percentuais de conclusão. Estilo flat design, cores azul e verde, visual limpo e acolhedor."</p>
+  <p><strong>Descrição alternativa:</strong> "Painel lateral do Moodle com Bloco Progresso da Conclusão exibindo barras e percentuais."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="como-usar">
+ <div class="breadcrumb">Início › Como utilizar este LDI</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Como utilizar</span>
+ <h2>Esta publicação é uma jornada de design e visualização.</h2>
+ <p>Não leia apenas para aprender a adicionar um bloco. Leia para compreender quando, por que e como a visualização do progresso pode melhorar a experiência do estudante e a eficácia do seu curso.</p>
+ <div class="grid">
+  <div class="card"><span class="badge">01</span><h3>Compreenda</h3><p>Entenda o que é o Bloco Progresso da Conclusão, suas diferenças em relação a outras ferramentas e suas possibilidades.</p></div>
+  <div class="card"><span class="badge">02</span><h3>Questione</h3><p>Analise quando o bloco agrega valor e quando pode se tornar apenas um elemento visual sem função.</p></div>
+  <div class="card"><span class="badge">03</span><h3>Planeje</h3><p>Desenhe a visualização do progresso alinhada aos objetivos e à autorregulação do estudante.</p></div>
+  <div class="card"><span class="badge">04</span><h3>Fundamente</h3><p>Conecte suas escolhas a teorias como Vygotsky, Freire e o Design Universal para Aprendizagem.</p></div>
+ </div>
+ <div class="card callout action">
+  <div class="callout-title">🛠️ Uma recomendação importante</div>
+  <p>Durante a leitura, você pode selecionar qualquer trecho e ouvi-lo. O botão <strong>"Ouvir seleção"</strong> aparecerá automaticamente. Além disso, os blocos de destaque possuem botões individuais de leitura em voz alta.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="sumario">
+ <div class="breadcrumb">Início › Sumário</div>
+ <span class="position-indicator">Navegação</span>
+ <span class="eyebrow">Sumário navegável</span>
+ <h2>Nosso caminho</h2>
+ <p>Você pode percorrer o livro em sequência ou acessar diretamente qualquer seção pelo sumário abaixo.</p>
+ <div class="toc">
+  <div class="toc-group">Começo da jornada</div>
+  <a href="#apresentacao">Apresentação</a>
+  <a href="#como-usar">Como utilizar este LDI</a>
+  <div class="toc-group">Compreender</div>
+  <a href="#c1">01 · O que é o Bloco Progresso da Conclusão?</a>
+  <a href="#c2">02 · Diferenças entre bloco, acompanhamento e relatórios</a>
+  <a href="#c3">03 · Quando utilizar o bloco?</a>
+  <a href="#c4">04 · Quando não utilizar?</a>
+  <div class="toc-group">Planejar</div>
+  <a href="#c5">05 · Planejamento pedagógico do bloco</a>
+  <a href="#c6">06 · Configuração passo a passo</a>
+  <a href="#c7">07 · Personalização visual e mensagens</a>
+  <div class="toc-group">Aplicar</div>
+  <a href="#c8">08 · Bloco para o estudante: autorregulação</a>
+  <a href="#c9">09 · Bloco para o professor: monitoramento</a>
+  <a href="#c10">10 · Integração com restrições de acesso e emblemas</a>
+  <div class="toc-group">Fundamentar</div>
+  <a href="#c11">11 · Fundamentos pedagógicos</a>
+  <a href="#c12">12 · Rubrica para uso do bloco</a>
+  <div class="toc-group">Integrar e adaptar</div>
+  <a href="#c13">13 · Integração com outras atividades</a>
+  <a href="#c14">14 · Adaptação a diferentes contextos</a>
+  <div class="toc-group">Refletir</div>
+  <a href="#c15">15 · Situações-problema</a>
+  <a href="#c16">16 · Missões práticas</a>
+  <div class="toc-group">Concluir</div>
+  <a href="#c17">17 · Síntese e avaliação do LDI</a>
+  <a href="#c18">18 · Referências</a>
+  <a href="#c19">19 · Autoria e transparência</a>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 1-4 ========== -->
+
+<section class="chapter" id="c1">
+ <div class="breadcrumb">Compreender › Capítulo 1</div>
+ <span class="position-indicator">Capítulo 1 de 19</span>
+ <span class="eyebrow">Capítulo 01</span>
+ <h2>O que é o Bloco Progresso da Conclusão?</h2>
+ <p>O <strong>Bloco Progresso da Conclusão</strong> é um componente visual do Moodle que exibe, em formato de barra de progresso, o percentual de conclusão das atividades de um curso. Ele pode ser adicionado à página do curso, ao painel do estudante ou a qualquer área que aceite blocos.</p>
+ <p>O bloco utiliza os dados do <strong>Acompanhamento da Conclusão</strong> para mostrar quais atividades já foram concluídas, quais estão pendentes e qual o percentual total de avanço. Ele pode ser configurado para exibir informações específicas, como datas de conclusão esperada e alertas para atividades atrasadas.</p>
+ <p>É importante destacar que o bloco <strong>não gera dados por si só</strong>; ele depende da configuração prévia do acompanhamento de conclusão nas atividades. Sem o rastreamento ativo, o bloco não terá informações para exibir.</p>
+ <div class="card">
+  <h3>O que o bloco permite</h3>
+  <ul class="checklist">
+   <li>Exibir barras de progresso visuais para o estudante.</li>
+   <li>Mostrar percentuais de conclusão por atividade ou global.</li>
+   <li>Incluir alertas para atividades atrasadas ou pendentes.</li>
+   <li>Ser personalizado com cores, textos e mensagens.</li>
+   <li>Ser posicionado em diferentes áreas da interface.</li>
+  </ul>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <p>Quando bem configurado, o bloco se torna uma <strong>ferramenta de autorregulação</strong> para o estudante e um <strong>painel de monitoramento</strong> para o professor.</p>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital mostrando o Bloco Progresso da Conclusão do Moodle com barra de progresso colorida, percentual e lista de atividades concluídas. Estilo flat design, cores azul e branco, interface limpa e didática."</p>
+  <p><strong>Descrição alternativa:</strong> "Bloco Progresso da Conclusão do Moodle com barra de progresso e atividades."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c2">
+ <div class="breadcrumb">Compreender › Capítulo 2</div>
+ <span class="position-indicator">Capítulo 2 de 19</span>
+ <span class="eyebrow">Capítulo 02</span>
+ <h2>Diferenças entre bloco, acompanhamento e relatórios</h2>
+ <p>É comum confundir o Bloco Progresso da Conclusão com outras ferramentas do Moodle. Vamos esclarecer as diferenças:</p>
+ <div class="table-wrap">
+  <table>
+   <thead>
+    <tr><th>Ferramenta</th><th>Função</th><th>Quem usa</th><th>Formato</th></tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Acompanhamento da Conclusão</strong></td>
+     <td>Registrar se uma atividade foi concluída, com base em critérios.</td>
+     <td>Professor (configura) e estudante (interage)</td>
+     <td>Caixas de seleção e estados de conclusão</td>
+    </tr>
+    <tr>
+     <td><strong>Relatório de Conclusão</strong></td>
+     <td>Exibir tabela com o progresso de todos os estudantes.</td>
+     <td>Professor</td>
+     <td>Tabela detalhada</td>
+    </tr>
+    <tr>
+     <td><strong>Bloco Progresso da Conclusão</strong></td>
+     <td>Exibir visualmente o progresso individual ou global em forma de barra e percentuais.</td>
+     <td>Estudante e professor</td>
+     <td>Bloco lateral com barra de progresso</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p>Enquanto o acompanhamento gera os dados e o relatório fornece uma visão analítica, o bloco oferece uma <strong>visão rápida e visual</strong>, acessível a qualquer momento durante a navegação.</p>
+ <p>A integração entre essas três ferramentas é o que torna o Moodle um ambiente poderoso para o acompanhamento da aprendizagem.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c3">
+ <div class="breadcrumb">Compreender › Capítulo 3</div>
+ <span class="position-indicator">Capítulo 3 de 19</span>
+ <span class="eyebrow">Capítulo 03</span>
+ <h2>Quando utilizar o bloco?</h2>
+ <p>O bloco é especialmente útil em contextos que exigem <strong>autorregulação</strong>, <strong>motivação</strong> ou <strong>monitoramento rápido</strong>. Alguns cenários típicos:</p>
+ <div class="grid">
+  <div class="card">
+   <h3>🧭 Orientação do estudante</h3>
+   <p>Quando o estudante precisa saber a qualquer momento onde está e o que falta para concluir o curso.</p>
+  </div>
+  <div class="card">
+   <h3>📈 Estímulo à progressão</h3>
+   <p>Quando a visualização do progresso serve como motivação para continuar avançando.</p>
+  </div>
+  <div class="card">
+   <h3>⏰ Alertas de pendências</h3>
+   <p>Quando é importante avisar o estudante sobre atividades atrasadas ou prazos próximos.</p>
+  </div>
+  <div class="card">
+   <h3>👁️ Monitoramento do professor</h3>
+   <p>Quando o professor precisa de uma visão rápida do progresso da turma sem abrir relatórios completos.</p>
+  </div>
+ </div>
+ <p>Em todos esses casos, o bloco funciona como um <strong>termômetro visual</strong> do engajamento e do avanço.</p>
+ <div class="callout idea">
+  <div class="callout-title">💡 Pense no estudante</div>
+  <p>Uma barra de progresso visível pode ser um poderoso motivador, especialmente quando está associada a metas claras e recompensas (emblemas, certificados).</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c4">
+ <div class="breadcrumb">Compreender › Capítulo 4</div>
+ <span class="position-indicator">Capítulo 4 de 19</span>
+ <span class="eyebrow">Capítulo 04</span>
+ <h2>Quando não utilizar?</h2>
+ <p>Apesar do potencial, o bloco pode se tornar <strong>poluição visual</strong> ou <strong>fonte de ansiedade</strong> se mal utilizado. Evite quando:</p>
+ <ul class="checklist">
+  <li><strong>Não há acompanhamento da conclusão configurado:</strong> o bloco ficará vazio ou sem função.</li>
+  <li><strong>O curso é muito curto ou informal:</strong> o progresso pode não ser relevante.</li>
+  <li><strong>O bloco sobrecarrega a interface:</strong> excesso de blocos pode distrair o estudante.</li>
+  <li><strong>O progresso é usado apenas para cobrança:</strong> se o bloco se torna um instrumento de pressão, perde o valor pedagógico.</li>
+  <li><strong>Os critérios de conclusão não são claros:</strong> o estudante não saberá o que fazer para avançar.</li>
+ </ul>
+ <div class="callout care">
+  <div class="callout-title">⚠️ Cuidado importante</div>
+  <p>O bloco não deve substituir o feedback qualitativo. Uma barra de progresso não diz se o estudante aprendeu; apenas indica que concluiu as atividades. Combine o bloco com feedback formativo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 5-7 ========== -->
+
+<section class="chapter" id="c5">
+ <div class="breadcrumb">Planejar › Capítulo 5</div>
+ <span class="position-indicator">Capítulo 5 de 19</span>
+ <span class="eyebrow">Capítulo 05</span>
+ <h2>Planejamento pedagógico do bloco</h2>
+ <p>Antes de adicionar o bloco, é essencial planejar como ele se integra ao design do curso. Um bom planejamento começa com perguntas:</p>
+ <ul class="checklist">
+  <li>Quais atividades serão rastreadas para a conclusão?</li>
+  <li>O bloco será visível para todos os estudantes ou apenas para grupos específicos?</li>
+  <li>Que mensagens ou alertas serão exibidos?</li>
+  <li>Como o bloco se relaciona com os objetivos de aprendizagem?</li>
+  <li>O bloco será usado para intervenção do professor?</li>
+ </ul>
+ <p>Uma estratégia eficaz é <strong>alinhar o bloco com o mapa do curso</strong>, garantindo que a visualização do progresso reflita as etapas que o estudante deve seguir.</p>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital de um mapa de curso com um bloco lateral mostrando barras de progresso conectadas às etapas do percurso. Estilo flat design, cores azul e dourado, visual organizado e acolhedor."</p>
+  <p><strong>Descrição alternativa:</strong> "Mapa de curso com bloco de progresso conectado às etapas."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <p>Planejar também significa antecipar possíveis problemas: e se o bloco não atualizar? E se o estudante não entender o que falta concluir? Tenha planos de contingência.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c6">
+ <div class="breadcrumb">Planejar › Capítulo 6</div>
+ <span class="position-indicator">Capítulo 6 de 19</span>
+ <span class="eyebrow">Capítulo 06</span>
+ <h2>Configuração passo a passo</h2>
+ <p>A configuração do bloco é feita diretamente na página do curso. Veja o passo a passo:</p>
+ <ol class="steps">
+  <li>Ative o modo de edição no curso.</li>
+  <li>No bloco lateral, clique em <strong>"Adicionar um bloco"</strong> e selecione <strong>"Progresso da Conclusão"</strong>.</li>
+  <li>O bloco aparecerá na barra lateral; clique no ícone de engrenagem para configurá-lo.</li>
+  <li>Defina um <strong>título personalizado</strong> para o bloco (opcional).</li>
+  <li>Escolha quais atividades serão consideradas no cálculo do progresso.</li>
+  <li>Configure a exibição de <strong>alertas</strong> para atividades atrasadas ou pendentes.</li>
+  <li>Defina as cores e o formato da barra de progresso.</li>
+  <li>Salve as alterações e teste com um usuário de estudante.</li>
+ </ol>
+ <div class="notice">
+  <strong>Observação:</strong> Para que o bloco funcione, o <strong>Acompanhamento da Conclusão</strong> deve estar ativado nas configurações do curso e nas atividades. Sem isso, o bloco não exibirá dados.
+ </div>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Captura de tela da configuração do Bloco Progresso da Conclusão no Moodle, mostrando opções de título, atividades e alertas. Interface em português, estilo flat design, cores padrão do Moodle."</p>
+  <p><strong>Descrição alternativa:</strong> "Configuração do Bloco Progresso da Conclusão no Moodle."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c7">
+ <div class="breadcrumb">Planejar › Capítulo 7</div>
+ <span class="position-indicator">Capítulo 7 de 19</span>
+ <span class="eyebrow">Capítulo 07</span>
+ <h2>Personalização visual e mensagens</h2>
+ <p>A personalização do bloco é fundamental para que ele se integre à identidade visual do curso e comunique de forma eficaz. Alguns aspectos que podem ser ajustados:</p>
+ <ul class="checklist">
+  <li><strong>Título:</strong> use um título que faça sentido para o estudante, como "Meu progresso" ou "Minha jornada".</li>
+  <li><strong>Cores:</strong> escolha cores que transmitam progresso (verde para concluído, azul para em andamento).</li>
+  <li><strong>Alertas:</strong> configure mensagens para atividades atrasadas, como "Atenção: você tem 2 atividades pendentes".</li>
+  <li><strong>Percentuais:</strong> decida se exibe percentual global, por categoria ou por atividade.</li>
+ </ul>
+ <p>Uma personalização bem feita transforma o bloco em um <strong>elemento de acolhimento</strong>, não apenas de controle.</p>
+ <div class="callout action">
+  <div class="callout-title">🛠️ Boa prática</div>
+  <p>Use mensagens positivas e encorajadoras. Em vez de "Você não concluiu 5 atividades", prefira "Você já concluiu 80%! Continue assim."</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 8-10 ========== -->
+
+<section class="chapter" id="c8">
+ <div class="breadcrumb">Aplicar › Capítulo 8</div>
+ <span class="position-indicator">Capítulo 8 de 19</span>
+ <span class="eyebrow">Capítulo 08</span>
+ <h2>Bloco para o estudante: autorregulação</h2>
+ <p>Quando o estudante vê seu progresso, ele desenvolve <strong>metacognição</strong> e <strong>autorregulação</strong>. Ele aprende a planejar seu estudo, monitorar seu avanço e avaliar seu próprio desempenho.</p>
+ <p>Para potencializar essa dimensão:</p>
+ <ul class="checklist">
+  <li><strong>Exiba o progresso de forma clara:</strong> barras e percentuais devem ser facilmente compreensíveis.</li>
+  <li><strong>Explique os critérios:</strong> o estudante precisa saber o que fazer para avançar.</li>
+  <li><strong>Ofereça feedback contínuo:</strong> combine o bloco com comentários e orientações.</li>
+  <li><strong>Estimule a reflexão:</strong> incentive o estudante a olhar para o progresso e pensar sobre o que aprendeu.</li>
+ </ul>
+ <div class="callout integracao">
+  <div class="callout-title">🔗 Exemplo prático</div>
+  <p>Em um curso de idiomas, a professora configurou o bloco para exibir o progresso por habilidade (leitura, escrita, conversação). Os estudantes visualizam rapidamente quais áreas precisam de mais atenção.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c9">
+ <div class="breadcrumb">Aplicar › Capítulo 9</div>
+ <span class="position-indicator">Capítulo 9 de 19</span>
+ <span class="eyebrow">Capítulo 09</span>
+ <h2>Bloco para o professor: monitoramento</h2>
+ <p>Para o professor, o bloco oferece uma <strong>visão rápida do progresso da turma</strong>. Embora não substitua os relatórios detalhados, permite identificar rapidamente quem está em dia e quem precisa de atenção.</p>
+ <p>Estratégias de uso para o professor:</p>
+ <ul class="checklist">
+  <li><strong>Check-in semanal:</strong> observe o bloco para identificar estudantes com baixo progresso.</li>
+  <li><strong>Intervenção precoce:</strong> entre em contato com estudantes atrasados antes que desistam.</li>
+  <li><strong>Feedback direcionado:</strong> utilize os dados do bloco para personalizar suas mensagens.</li>
+  <li><strong>Autoavaliação do design:</strong> se muitos estudantes estão atrasados, talvez o ritmo esteja inadequado.</li>
+ </ul>
+ <div class="callout action">
+  <div class="callout-title">🛠️ Boa prática</div>
+  <p>Combine o bloco com o relatório de conclusão para uma análise mais aprofundada. O bloco dá a visão geral; o relatório fornece os detalhes.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c10">
+ <div class="breadcrumb">Aplicar › Capítulo 10</div>
+ <span class="position-indicator">Capítulo 10 de 19</span>
+ <span class="eyebrow">Capítulo 10</span>
+ <h2>Integração com restrições de acesso e emblemas</h2>
+ <p>O bloco pode ser integrado a outras funcionalidades do Moodle para criar experiências mais ricas:</p>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Restrições de acesso</div>
+  <p>Quando uma atividade é concluída, o bloco é atualizado e pode liberar novas etapas. O estudante vê o progresso e, ao mesmo tempo, desbloqueia novos conteúdos.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Emblemas</div>
+  <p>Configure emblemas para serem concedidos automaticamente quando o estudante atinge determinados percentuais de conclusão. O bloco mostra o progresso em direção ao emblema.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <p>Essa integração cria um <strong>ciclo de motivação</strong>: o estudante vê o progresso, é recompensado e sente-se estimulado a continuar.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 11-14 ========== -->
+
+<section class="chapter" id="c11">
+ <div class="breadcrumb">Fundamentar › Capítulo 11</div>
+ <span class="position-indicator">Capítulo 11 de 19</span>
+ <span class="eyebrow">Fundamentos pedagógicos</span>
+ <h2>Fundamentos pedagógicos</h2>
+ <p>O uso do Bloco Progresso da Conclusão encontra respaldo em teorias de aprendizagem e design instrucional.</p>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Vygotsky e a Zona de Desenvolvimento Proximal</div>
+  <p>Ao visualizar o progresso, o estudante identifica onde está e para onde pode ir. O bloco funciona como um mapa da ZDP, mostrando as próximas etapas e o que falta para alcançá-las.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Freire e a autonomia</div>
+  <p>O bloco promove a autonomia ao dar ao estudante controle sobre seu percurso. Ele não é um instrumento de vigilância, mas de empoderamento.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Design Universal para Aprendizagem (DUA)</div>
+  <p>Oferecer múltiplos meios de engajamento é um princípio do DUA. O bloco é uma forma de representação visual que beneficia diferentes perfis de estudantes.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Aprendizagem para o domínio (Mastery Learning)</div>
+  <p>O bloco permite visualizar o progresso em direção ao domínio de cada etapa. A conclusão baseada em critérios claros é uma aplicação direta desse princípio.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c12">
+ <div class="breadcrumb">Fundamentar › Capítulo 12</div>
+ <span class="position-indicator">Capítulo 12 de 19</span>
+ <span class="eyebrow">Rubrica</span>
+ <h2>Rubrica para uso do bloco</h2>
+ <p>Utilize esta rubrica para avaliar a qualidade do uso do Bloco Progresso da Conclusão em um curso.</p>
+ <div class="table-wrap">
+  <table>
+   <thead>
+    <tr><th>Critério</th><th>Insuficiente</th><th>Básico</th><th>Proficiente</th><th>Avançado</th></tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Clareza visual</strong></td>
+     <td>O bloco está vazio ou sem dados, confundindo o estudante.</td>
+     <td>O bloco exibe dados, mas de forma confusa ou desorganizada.</td>
+     <td>O bloco exibe dados claros e compreensíveis.</td>
+     <td>O bloco exibe dados claros, com cores e mensagens que orientam o estudante.</td>
+    </tr>
+    <tr>
+     <td><strong>Alinhamento com objetivos</strong></td>
+     <td>O progresso não se relaciona com os objetivos do curso.</td>
+     <td>Relação parcial com os objetivos.</td>
+     <td>O progresso reflete as etapas previstas no design do curso.</td>
+     <td>O progresso reflete as etapas e oferece rotas alternativas coerentes.</td>
+    </tr>
+    <tr>
+     <td><strong>Transparência para o estudante</strong></td>
+     <td>Estudante não sabe o que fazer para avançar.</td>
+     <td>Informações genéricas sobre o progresso.</td>
+     <td>Critérios claros e visíveis para o estudante.</td>
+     <td>Além dos critérios, há feedback contínuo e orientações personalizadas.</td>
+    </tr>
+    <tr>
+     <td><strong>Integração com acompanhamento</strong></td>
+     <td>Bloco sem integração com o acompanhamento da conclusão.</td>
+     <td>Integração parcial, com dados inconsistentes.</td>
+     <td>Integração correta com o acompanhamento.</td>
+     <td>Integração correta e combinada com restrições e emblemas.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c13">
+ <div class="breadcrumb">Integrar e adaptar › Capítulo 13</div>
+ <span class="position-indicator">Capítulo 13 de 19</span>
+ <span class="eyebrow">Integração</span>
+ <h2>Integração com outras atividades</h2>
+ <p>O bloco ganha poder quando combinado com outras atividades do Moodle. Veja alguns fluxos integrados:</p>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 1: Leitura → Conclusão → Bloco atualizado</div>
+  <p><strong>Arquivo</strong> (conclusão por visualização) → Bloco atualiza o progresso → Estudante vê o avanço imediato.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 2: Questionário → Nota mínima → Bloco → Emblema</div>
+  <p><strong>Questionário</strong> (nota mínima) → Bloco marca como concluído → <strong>Emblema</strong> é concedido.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 3: Tarefa → Envio → Bloco → Liberação de próxima etapa</div>
+  <p><strong>Tarefa</strong> (envio) → Bloco registra conclusão → <strong>Restrição de acesso</strong> libera a próxima atividade.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c14">
+ <div class="breadcrumb">Integrar e adaptar › Capítulo 14</div>
+ <span class="position-indicator">Capítulo 14 de 19</span>
+ <span class="eyebrow">Adaptação</span>
+ <h2>Adaptação a diferentes contextos</h2>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Ensino presencial</div>
+  <p>Use o bloco para acompanhar leituras prévias e atividades preparatórias, liberando tempo de aula para discussões.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Educação a distância</div>
+  <p>O bloco é essencial para manter o estudante orientado e motivado. Configure alertas para atividades atrasadas e prazos próximos.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Ensino híbrido</div>
+  <p>Combine o bloco com atividades presenciais: a conclusão de uma etapa online libera a participação em uma atividade presencial.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Turmas grandes e pequenas</div>
+  <p>Em turmas grandes, use o bloco para monitoramento rápido. Em turmas pequenas, personalize as mensagens e alertas.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Acessibilidade e inclusão</div>
+  <p>Garanta que o bloco seja acessível, com contraste adequado e texto alternativo para leitores de tela.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== SITUAÇÕES-PROBLEMA ========== -->
+
+<section class="chapter" id="c15">
+ <div class="breadcrumb">Refletir › Situações-problema</div>
+ <span class="position-indicator">Capítulo 15 de 19</span>
+ <span class="eyebrow">Situações-problema</span>
+ <h2>Situações-problema</h2>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 1 — Bloco desatualizado gera confusão</div>
+  <p><strong>Contexto:</strong> O professor João adicionou o Bloco Progresso da Conclusão, mas os estudantes reclamam que o bloco não atualiza. Alguns aparecem com 0% mesmo depois de concluir várias atividades. A causa provável é a falta de configuração do acompanhamento da conclusão nas atividades.</p>
+  <p><strong>O desafio:</strong> Identificar o problema e corrigir a configuração para que o bloco funcione corretamente.</p>
+  <p><strong>Pense como professor:</strong> Você verificou se o acompanhamento da conclusão está ativado no curso e nas atividades? Que testes realizaria?</p>
+  <p><strong>Pense como estudante:</strong> Como você se sentiria ao ver uma barra de progresso que não reflete seu esforço?</p>
+  <p><strong>Possibilidades:</strong> Verificar as configurações de conclusão; testar com usuário de teste; revisar os critérios de conclusão.</p>
+  <p><strong>Para refletir:</strong> Você costuma testar o bloco antes de disponibilizar o curso?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 2 — Progresso visível, mas não compreendido</div>
+  <p><strong>Contexto:</strong> A professora Ana configurou o bloco, mas os estudantes não entendem o que a barra representa. Eles veem "60%" mas não sabem quais atividades faltam ou o que precisam fazer para avançar.</p>
+  <p><strong>O desafio:</strong> Tornar o progresso compreensível e acionável para o estudante.</p>
+  <p><strong>Pense como professor:</strong> O bloco exibe apenas percentual ou também lista as atividades pendentes? As mensagens são claras?</p>
+  <p><strong>Pense como estudante:</strong> Você saberia exatamente o que fazer para aumentar seu progresso?</p>
+  <p><strong>Possibilidades:</strong> Configurar alertas para atividades pendentes; adicionar mensagens explicativas; combinar o bloco com orientações claras.</p>
+  <p><strong>Para refletir:</strong> O progresso está visível e compreensível?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 3 — Bloco sobrecarrega a interface</div>
+  <p><strong>Contexto:</strong> O professor Carlos adicionou vários blocos ao curso, incluindo o Progresso da Conclusão. A interface ficou poluída e os estudantes reclamam de excesso de informações.</p>
+  <p><strong>O desafio:</strong> Equilibrar a visualização do progresso com uma interface limpa e focada.</p>
+  <p><strong>Pense como professor:</strong> O bloco é realmente necessário? Ele agrega valor ou apenas ocupa espaço?</p>
+  <p><strong>Pense como estudante:</strong> Como você se sentiria com uma interface cheia de blocos e informações?</p>
+  <p><strong>Possibilidades:</strong> Remover blocos desnecessários; mover o bloco para o painel do estudante; simplificar a exibição.</p>
+  <p><strong>Para refletir:</strong> A interface está a serviço da aprendizagem ou da distração?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== MISSÕES ========== -->
+
+<section class="chapter" id="c16">
+ <div class="breadcrumb">Refletir › Missões práticas</div>
+ <span class="position-indicator">Capítulo 16 de 19</span>
+ <span class="eyebrow">Missões</span>
+ <h2>Missões práticas</h2>
+
+ <div class="mission">
+  <div class="mission-title">🎯 MISSÃO 1 — Configurar bloco para autorregulação</div>
+  <p>Adicione o Bloco Progresso da Conclusão em um curso e configure-o para que o estudante veja claramente seu progresso e as atividades pendentes.</p>
+  <ol class="steps">
+   <li>Ative o acompanhamento da conclusão no curso.</li>
+   <li>Configure os critérios de conclusão das atividades.</li>
+   <li>Adicione o bloco e personalize o título e as cores.</li>
+   <li>Ative alertas para atividades atrasadas.</li>
+   <li>Teste com um usuário de estudante.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Captura de tela do bloco configurado e do teste.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="mission">
+  <div class="mission-title">🎯 MISSÃO 2 — Criar alertas visuais de progresso</div>
+  <p>Configure o bloco para exibir alertas visuais quando o estudante estiver com atividades atrasadas ou próximo dos prazos.</p>
+  <ol class="steps">
+   <li>Defina datas de conclusão esperada para as atividades.</li>
+   <li>Configure o bloco para exibir alertas.</li>
+   <li>Personalize as mensagens de alerta.</li>
+   <li>Teste com diferentes cenários de atraso.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Print do bloco com alertas ativos e descrição do comportamento.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="mission">
+  <div class="mission-title">🎯 PROJETO FINAL — Bloco integrado ao acompanhamento</div>
+  <p>Projete uma semana do seu curso com o bloco integrado ao acompanhamento da conclusão e às restrições de acesso.</p>
+  <ol class="steps">
+   <li>Defina as atividades da semana e seus critérios de conclusão.</li>
+   <li>Configure o acompanhamento em cada atividade.</li>
+   <li>Adicione restrições de acesso baseadas na conclusão.</li>
+   <li>Configure o bloco para refletir o progresso.</li>
+   <li>Teste o fluxo com diferentes cenários.</li>
+   <li>Documente a experiência.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Mapa da semana + capturas de tela + relato reflexivo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== SÍNTESE E AVALIAÇÃO ========== -->
+
+<section class="chapter" id="c17">
+ <div class="breadcrumb">Concluir › Síntese</div>
+ <span class="position-indicator">Capítulo 17 de 19</span>
+ <span class="eyebrow">Síntese</span>
+ <h2>O que aprendemos?</h2>
+ <p>Ao longo deste livro, exploramos o Bloco Progresso da Conclusão como uma ferramenta de visualização, autorregulação e monitoramento. Principais aprendizados:</p>
+ <div class="card">
+  <p><strong>O bloco é uma ponte entre dados e autonomia.</strong> Ele transforma registros de conclusão em uma experiência visual significativa.</p>
+  <p><strong>A visualização do progresso promove autorregulação</strong> quando é clara, compreensível e acionável.</p>
+  <p><strong>O professor também se beneficia:</strong> o bloco oferece uma visão rápida do engajamento da turma.</p>
+  <p><strong>A integração com acompanhamento, restrições e emblemas</strong> cria um ecossistema coerente de aprendizagem.</p>
+  <p><strong>O equilíbrio é essencial:</strong> o bloco deve servir à aprendizagem, não sobrecarregar a interface.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="quote">Uma barra de progresso é mais do que um gráfico: é um convite para continuar.</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 Para levar com você</div>
+  <p><strong>Não pergunte apenas "como adicionar o bloco?"</strong></p>
+  <p>Pergunte: <strong>"Como a visualização do progresso pode apoiar a autonomia e o engajamento do estudante?"</strong></p>
+  <p>Essa mudança de perspectiva transforma o bloco em uma ferramenta de inclusão e personalização.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== REFERÊNCIAS ========== -->
+
+<section class="chapter" id="c18">
+ <div class="breadcrumb">Concluir › Referências</div>
+ <span class="position-indicator">Capítulo 18 de 19</span>
+ <span class="eyebrow">Fontes</span>
+ <h2>Referências</h2>
+ <div class="card">
+  <h3>Documentação oficial do Moodle</h3>
+  <p>Bloco Progresso da Conclusão: <a href="https://docs.moodle.org" target="_blank" rel="noopener">https://docs.moodle.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>UNESCO — Educação e Tecnologia</h3>
+  <p>Diretrizes sobre educação digital e inclusão: <a href="https://www.unesco.org" target="_blank" rel="noopener">https://www.unesco.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>W3C — WCAG 2.1</h3>
+  <p>Diretrizes de acessibilidade: <a href="https://www.w3.org/WAI/WCAG21" target="_blank" rel="noopener">https://www.w3.org/WAI/WCAG21</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>Design Universal para Aprendizagem</h3>
+  <p>CAST - Universal Design for Learning: <a href="https://www.cast.org" target="_blank" rel="noopener">https://www.cast.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>Bloom e Mastery Learning</h3>
+  <p>BLOOM, B. S. <strong>Human characteristics and school learning.</strong> New York: McGraw-Hill, 1976.</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== AUTORIA E TRANSPARÊNCIA ========== -->
+
+<section class="chapter" id="c19">
+ <div class="breadcrumb">Concluir › Autoria</div>
+ <span class="position-indicator">Capítulo 19 de 19</span>
+ <span class="eyebrow">Autoria e transparência</span>
+ <h2>Sobre esta publicação</h2>
+ <div class="card">
+  <h3>Autoria</h3>
+  <p><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+ </div>
+ <div class="card">
+  <h3>Ficha da publicação</h3>
+  <p><strong>LDI:</strong> Bloco Progresso da Conclusão — v1.0<br>
+  <strong>Recurso estudado:</strong> Bloco Progresso da Conclusão (bloco do Moodle)<br>
+  <strong>Versão do Moodle considerada:</strong> 4.5<br>
+  <strong>Formatos:</strong> HTML interativo e PDF editorial<br>
+  <strong>Atualizado em:</strong> 07/09/2026<br>
+  <strong>Edição:</strong> 1.0<br>
+  <strong>Ano:</strong> 2026</p>
+ </div>
+ <div class="card callout idea">
+  <div class="callout-title">🤖 Transparência sobre o uso de IA</div>
+  <p>Esta publicação foi elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com apoio de ferramentas de Inteligência Artificial generativa em etapas de planejamento, elaboração, revisão, organização e desenvolvimento de elementos textuais, visuais e computacionais.</p>
+  <p>A utilização de Inteligência Artificial não substitui a autoria, a responsabilidade intelectual, a revisão humana ou a validação do conteúdo pelo autor. Cabe ao autor a responsabilidade final pelas decisões editoriais, pedagógicas, técnicas e acadêmicas apresentadas nesta publicação.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="go('inicio')">🏠 Início</button>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="footer-inner">
+  <h2>Bloco Progresso da Conclusão</h2>
+  <p>Visualização, autorregulação e monitoramento no Moodle.</p>
+  <p class="small"><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p class="small"><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p class="small"><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p class="small"><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+  <p class="small">LDI — Bloco Progresso da Conclusão — v1.0 · 07/09/2026</p>
+  <div class="disclosure">
+   <strong>Transparência de autoria e uso de Inteligência Artificial</strong>
+   <p>Publicação elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com uso de ferramentas de IA generativa como apoio. A responsabilidade final é do autor.</p>
+  </div>
+ </div>
+</footer>
+
+<script>
+const root = document.documentElement;
+const sections = [...document.querySelectorAll("main .chapter")];
+let speechMode = null;
+let resumeChapterIndex = null;
+let currentVoice = null;
+
+function tools(){
+ const panel = document.getElementById("toolPanel");
+ const button = document.querySelector(".tool-main");
+ panel.classList.toggle("open");
+ button.setAttribute("aria-expanded", panel.classList.contains("open"));
+}
+
+function go(id){
+ const target = document.getElementById(id);
+ if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function getCurrent(){
+ const y = window.scrollY + window.innerHeight * .25;
+ let current = sections[0];
+ for(const section of sections){
+  if(section.offsetTop <= y) current = section;
+ }
+ return current;
+}
+
+function previous(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index > 0) sections[index - 1].scrollIntoView({behavior:"smooth"});
+}
+
+function next(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index < sections.length - 1) sections[index + 1].scrollIntoView({behavior:"smooth"});
+}
+
+function saveReadingPosition(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ localStorage.setItem("ldi-bloco-progresso-reading-position", index);
+}
+
+function offerResume(){
+ const saved = localStorage.getItem("ldi-bloco-progresso-reading-position");
+ if(saved !== null && saved !== undefined){
+  const index = parseInt(saved);
+  if(index > 0 && index < sections.length){
+   resumeChapterIndex = index;
+   document.getElementById("resumeBanner").classList.add("open");
+  }
+ }
+}
+
+function resumeReading(){
+ if(resumeChapterIndex !== null){
+  sections[resumeChapterIndex].scrollIntoView({behavior:"smooth"});
+  document.getElementById("resumeBanner").classList.remove("open");
+ }
+}
+
+function dismissResume(){
+ document.getElementById("resumeBanner").classList.remove("open");
+ localStorage.removeItem("ldi-bloco-progresso-reading-position");
+}
+
+function dark(){root.classList.add("dark");localStorage.setItem("ldi-theme","dark");}
+function light(){root.classList.remove("dark");localStorage.setItem("ldi-theme","light");}
+
+function fontUp(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.min(1.5, size + .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontDown(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.max(.85, size - .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontReset(){
+ root.style.setProperty("--font", 1);
+ localStorage.setItem("ldi-font", 1);
+}
+
+function reading(){document.body.classList.toggle("reading-mode");}
+
+function loadVoices(){
+ return new Promise((resolve) => {
+  const voices = speechSynthesis.getVoices();
+  if(voices.length > 0){
+   resolve(voices);
+  } else {
+   speechSynthesis.onvoiceschanged = () => {
+    resolve(speechSynthesis.getVoices());
+   };
+  }
+ });
+}
+
+function getPortugueseVoices(voices){
+ return voices.filter(voice => voice.lang === "pt-BR" || voice.lang === "pt-PT");
+}
+
+async function populateVoiceSelector(){
+ const voices = await loadVoices();
+ const ptVoices = getPortugueseVoices(voices);
+ const select = document.getElementById("voiceList");
+ select.innerHTML = "";
+ ptVoices.forEach(voice => {
+  const option = document.createElement("option");
+  option.value = voice.name;
+  option.textContent = voice.name + " (" + voice.lang + ")";
+  if(voice.name.toLowerCase().includes("francisca")){
+   option.textContent = "⭐ " + option.textContent;
+  }
+  select.appendChild(option);
+ });
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  select.value = savedVoice;
+ }
+}
+
+function showVoiceSelector(){
+ document.getElementById("voiceSelector").classList.add("open");
+ populateVoiceSelector();
+}
+
+function closeVoiceSelector(){
+ document.getElementById("voiceSelector").classList.remove("open");
+}
+
+function selectVoice(voiceName){
+ localStorage.setItem("ldi-voice", voiceName);
+ applyVoice(voiceName);
+}
+
+async function applyVoice(voiceName){
+ const voices = await loadVoices();
+ const voice = voices.find(v => v.name === voiceName);
+ if(voice){
+  currentVoice = voice;
+ }
+}
+
+async function getVoice(){
+ if(currentVoice) return currentVoice;
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  const voices = await loadVoices();
+  const voice = voices.find(v => v.name === savedVoice);
+  if(voice) return voice;
+ }
+ const voices = await loadVoices();
+ const francisca = voices.find(v => v.name.toLowerCase().includes("francisca"));
+ if(francisca) return francisca;
+ const ptBR = voices.find(v => v.lang === "pt-BR");
+ if(ptBR) return ptBR;
+ const ptPT = voices.find(v => v.lang === "pt-PT");
+ if(ptPT) return ptPT;
+ return voices[0] || null;
+}
+
+function cleanTextForSpeech(element){
+ const clone = element.cloneNode(true);
+ const speakBtns = clone.querySelectorAll(".speak-block-btn");
+ speakBtns.forEach(b => b.remove());
+ const mediaElements = clone.querySelectorAll(".media");
+ mediaElements.forEach(m => m.remove());
+ const visualElements = clone.querySelectorAll(".badge, .icon, .emoji");
+ visualElements.forEach(v => v.remove());
+ const navElements = clone.querySelectorAll(".chapter-nav");
+ navElements.forEach(n => n.remove());
+ const toolbarElements = clone.querySelectorAll(".toolbar");
+ toolbarElements.forEach(t => t.remove());
+ let text = clone.innerText || clone.textContent || "";
+ text = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "");
+ text = text.replace(/[←→↑↓↔⇒⇐⇑⇓⇔]/gu, "");
+ text = text.replace(/\s*→\s*/g, " ");
+ text = text.replace(/\n{3,}/g, "\n\n");
+ text = text.replace(/[ \t]+/g, " ").trim();
+ return text;
+}
+
+async function speakChapter(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ stopSpeak();
+ const current = getCurrent();
+ const text = cleanTextForSpeech(current);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "chapter";
+ utterance.onend = function(){speechMode = null;};
+ speechSynthesis.speak(utterance);
+}
+
+async function speakBlock(btn){
+ const block = btn.closest(".callout, .problem-box, .mission, .card, .notice");
+ if(!block) return;
+ if(!("speechSynthesis" in window)){
+  alert("Seu navegador não oferece leitura em voz alta.");
+  return;
+ }
+ if(btn.classList.contains("speaking")){
+  stopSpeak();
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+  return;
+ }
+ stopSpeak();
+ const text = cleanTextForSpeech(block);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ btn.classList.add("speaking"); 
+ btn.textContent = "🔇 Parar";
+ utterance.onend = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ utterance.onerror = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ speechSynthesis.speak(utterance);
+}
+
+async function speakSelection(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ const selection = window.getSelection();
+ const text = selection ? selection.toString().trim() : "";
+ if(!text){hideSelectionTools();return;}
+ stopSpeak();
+ const status = document.getElementById("readingStatus");
+ status.style.display = "block";
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "selection";
+ utterance.onend = function(){status.style.display = "none";speechMode = null;};
+ utterance.onerror = function(){status.style.display = "none";speechMode = null;};
+ speechSynthesis.speak(utterance);
+ hideSelectionTools();
+}
+
+function stopSpeak(){
+ if("speechSynthesis" in window) speechSynthesis.cancel();
+ document.getElementById("readingStatus").style.display = "none";
+ speechMode = null;
+}
+
+function showSelectionTools(){
+ const selection = window.getSelection();
+ if(!selection || selection.isCollapsed || !selection.toString().trim()){hideSelectionTools();return;}
+ const range = selection.getRangeAt(0);
+ const rect = range.getBoundingClientRect();
+ const tools = document.getElementById("selectionTools");
+ tools.style.display = "block";
+ let left = rect.left + (rect.width / 2) - 90;
+ let top = rect.top - 52;
+ if(left < 10) left = 10;
+ if(left + 190 > window.innerWidth - 10) left = window.innerWidth - 200;
+ if(top < 10) top = rect.bottom + 10;
+ tools.style.left = left + "px";
+ tools.style.top = top + "px";
+}
+
+function hideSelectionTools(){
+ document.getElementById("selectionTools").style.display = "none";
+}
+
+function about(){
+ alert("Bloco Progresso da Conclusão — LDI v1.0\n\nAutor: Dirceu Nogueira de Sales Duarte Junior\nCurrículo Lattes: http://lattes.cnpq.br/8037598190568108\nUFU — CEaD\n\nPublicação educacional com apoio de ferramentas de IA generativa.");
+}
+
+window.addEventListener("scroll", function(){
+ const top = window.scrollY;
+ const total = document.documentElement.scrollHeight - window.innerHeight;
+ const value = total > 0 ? (top / total) * 100 : 0;
+ document.getElementById("progress").style.width = value + "%";
+});
+
+document.addEventListener("mouseup", function(){setTimeout(showSelectionTools, 50);});
+document.addEventListener("touchend", function(){setTimeout(showSelectionTools, 150);});
+document.addEventListener("mousedown", function(event){
+ const tools = document.getElementById("selectionTools");
+ if(tools.style.display === "block" && !tools.contains(event.target)) hideSelectionTools();
+});
+
+(function(){
+ const theme = localStorage.getItem("ldi-theme");
+ const font = localStorage.getItem("ldi-font");
+ if(theme === "dark") root.classList.add("dark");
+ if(font) root.style.setProperty("--font", font);
+})();
+
+setInterval(saveReadingPosition, 5000);
+setTimeout(offerResume, 2000);
+</script>
+
+</body>
+</html>
