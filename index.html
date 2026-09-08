@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+<meta name="author" content="Dirceu Nogueira de Sales Duarte Junior">
+<meta name="description" content="Coleção de Formação Docente sobre o Moodle — Livros Digitais Interativos de Aprendizagem.">
+<meta name="generator" content="LDI - Livro Digital Interativo de Aprendizagem — PROMPT-MESTRE 8.0">
+
+<title>Coleção de Formação Docente sobre o Moodle — Livros Digitais Interativos de Aprendizagem</title>
+
+<style>
+:root{
+ --bg:#f4f7fb;
+ --surface:#fff;
+ --surface2:#edf3f9;
+ --text:#172033;
+ --muted:#637084;
+ --primary:#315d9d;
+ --primary2:#234775;
+ --accent:#e0a13a;
+ --green:#438368;
+ --purple:#73599d;
+ --red:#b85c5c;
+ --border:#d8e0ea;
+ --shadow:0 12px 35px rgba(30,55,90,.10);
+ --radius:20px;
+ --font:1;
+ --width:850px;
+}
+
+html.dark{
+ --bg:#0f151d;
+ --surface:#19222d;
+ --surface2:#232e3b;
+ --text:#edf3f8;
+ --muted:#b5c0cc;
+ --primary:#8db7ee;
+ --primary2:#b0cdf1;
+ --accent:#efbd62;
+ --green:#7cb89b;
+ --purple:#b39bd7;
+ --red:#e08b8b;
+ --border:#354454;
+ --shadow:0 12px 35px rgba(0,0,0,.32);
+ color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75;font-size:calc(17px * var(--font));transition:.25s}
+a{color:var(--primary);text-decoration:none}
+button{font:inherit;cursor:pointer}
+::selection{background:rgba(49,93,157,.25)}
+
+.progress{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:5000}
+.skip{position:absolute;left:-9999px;top:10px;z-index:9000;padding:12px 18px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px}
+.skip:focus{left:10px}
+
+.resume-banner{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:15px 25px;box-shadow:var(--shadow);z-index:8000;display:none;gap:15px;align-items:center}
+.resume-banner.open{display:flex}
+.resume-banner button{padding:8px 16px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700}
+.resume-banner button.secondary{background:var(--surface2);color:var(--text)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:60px 22px;background:radial-gradient(circle at 15% 20%,rgba(49,93,157,.22),transparent 35%),radial-gradient(circle at 85% 75%,rgba(224,161,58,.18),transparent 35%),var(--bg)}
+.hero-inner{width:100%;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.kicker{color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+h1{font-size:clamp(2.6rem,5.5vw,5rem);line-height:1.05;letter-spacing:-.04em;margin:20px 0}
+.hero h2{font-size:clamp(1.3rem,2.8vw,2rem);font-weight:500}
+.hero p{color:var(--muted);font-size:1.1rem}
+
+.cover{min-height:500px;border-radius:40px;color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:45px;box-shadow:var(--shadow);position:relative;overflow:hidden;background:linear-gradient(145deg,#28558f,#74599c)}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.2);border-radius:50%}
+.cover:before{width:440px;height:440px}
+.cover:after{width:260px;height:260px}
+.cover-content{position:relative;z-index:2;max-width:420px}
+.cover-icon{font-size:4.5rem}
+.meta{font-size:.9rem!important;color:rgba(255,255,255,.78)!important;margin-top:30px}
+
+main{max-width:var(--width);margin:auto;padding:60px 22px}
+section{scroll-margin-top:25px}
+.chapter{padding:80px 0;border-bottom:1px solid var(--border)}
+.eyebrow{color:var(--primary);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin-bottom:15px}
+.position-indicator{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 14px;font-size:.78rem;font-weight:800;margin-bottom:15px}
+h2{font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.15;margin:12px 0 25px}
+h3{font-size:1.45rem;line-height:1.25;margin-top:40px}
+.lead{font-size:1.2rem;color:var(--muted)}
+.quote{padding:25px 0;font-size:1.3rem;font-weight:750;color:var(--primary)}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0;box-shadow:0 7px 25px rgba(20,40,70,.05)}
+.callout{border-left:6px solid var(--primary);background:var(--surface2)}
+.callout.idea{border-left-color:var(--accent)}
+.callout.action{border-left-color:var(--green)}
+.callout-title{font-weight:800;margin-bottom:8px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid .card{margin:0}
+.badge{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:800}
+
+.ldi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.ldi-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:0 7px 25px rgba(20,40,70,.05);text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.ldi-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(20,40,70,.12);border-color:var(--primary)}
+.ldi-card::after{content:attr(data-number);position:absolute;right:15px;top:-15px;font-size:80px;font-weight:900;color:rgba(21,87,166,0.06)}
+.ldi-tag{display:inline-block;background:#eaf3ff;color:var(--primary);padding:4px 10px;border-radius:999px;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.ldi-card h3{color:var(--primary2);font-size:1.3rem;margin:0 0 10px}
+.ldi-card p{font-size:.95rem;color:var(--muted);margin:0}
+
+.speak-block-btn{background:transparent;border:1px solid var(--border);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:13px;color:var(--primary);margin-top:12px;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:inherit}
+.speak-block-btn:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.speak-block-btn.speaking{background:var(--red);color:white;border-color:var(--red)}
+
+.toolbar{position:fixed;right:18px;bottom:18px;z-index:4000;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tool-main{width:56px;height:56px;border:0;border-radius:50%;background:var(--primary);color:white;box-shadow:var(--shadow);font-size:22px}
+.tool-panel{display:none;width:285px;padding:10px;grid-template-columns:1fr 1fr;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+.tool-panel.open{display:grid}
+.tool-panel button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:11px;padding:9px}
+.tool-panel button:hover{background:var(--surface2)}
+
+.voice-selector{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:var(--shadow);z-index:9000;width:350px;max-width:90vw;display:none}
+.voice-selector.open{display:block}
+.voice-selector h3{margin-top:0;color:var(--primary)}
+.voice-selector select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font:inherit;margin:15px 0}
+.voice-selector button{padding:10px 20px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700;cursor:pointer}
+
+.reading-mode main{max-width:720px}
+.reading-mode .decorative{display:none}
+
+.selection-tools{position:fixed;display:none;z-index:6000;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:7px;box-shadow:var(--shadow)}
+.selection-tools button{border:0;border-radius:9px;padding:8px 12px;background:var(--primary);color:white;font-weight:700}
+.selection-tools button:hover{background:var(--primary2)}
+
+.reading-status{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:999px;display:none;z-index:7000;font-size:.88rem;box-shadow:var(--shadow)}
+
+.notice{padding:15px 18px;border-radius:14px;background:var(--surface2);border:1px solid var(--border)}
+.table-wrap{overflow-x:auto;margin:25px 0}
+table{width:100%;border-collapse:collapse;background:var(--surface)}
+th,td{border:1px solid var(--border);padding:13px;text-align:left;vertical-align:top}
+th{background:var(--surface2);color:var(--primary)}
+
+footer{padding:65px 22px;background:var(--surface);border-top:1px solid var(--border)}
+.footer-inner{max-width:850px;margin:auto}
+.small{color:var(--muted);font-size:.88rem}
+.disclosure{font-size:.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:20px;margin-top:30px}
+
+@media(max-width:800px){
+ .hero-inner{grid-template-columns:1fr}
+ .grid,.ldi-grid{grid-template-columns:1fr}
+ .cover{min-height:380px}
+ .chapter{padding:55px 0}
+ .toolbar{right:12px;bottom:12px}
+ .tool-panel{width:250px}
+ .resume-banner{flex-direction:column;text-align:center;width:90%}
+}
+
+@media print{
+ @page{size:A4;margin:18mm 16mm 20mm}
+ body{background:white!important;color:#111!important;font-size:11.5pt}
+ .toolbar,.progress,.skip,.selection-tools,.reading-status,.resume-banner,.chapter-nav,.speak-block-btn,.voice-selector,.no-print{display:none!important}
+ .hero{min-height:250mm;page-break-after:always;background:white!important}
+ .cover{box-shadow:none}
+ main{max-width:none;padding:0}
+ .chapter{page-break-before:always;border:0;padding:0}
+ .card,.ldi-card{break-inside:avoid;box-shadow:none}
+ h2,h3{break-after:avoid}
+ a{color:#111}
+ footer{page-break-before:always}
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" id="progress"></div>
+
+<div class="resume-banner" id="resumeBanner">
+ <span>📖 Continuar de onde você parou?</span>
+ <button onclick="resumeReading()">Continuar</button>
+ <button class="secondary" onclick="dismissResume()">Recomeçar</button>
+</div>
+
+<div class="selection-tools" id="selectionTools">
+ <button onclick="speakSelection()">🔊 Ouvir seleção</button>
+</div>
+
+<div class="reading-status" id="readingStatus">🔊 Lendo seleção...</div>
+
+<div class="voice-selector" id="voiceSelector">
+ <h3>🎙️ Escolha a voz</h3>
+ <select id="voiceList" onchange="selectVoice(this.value)"></select>
+ <button onclick="closeVoiceSelector()">Fechar</button>
+</div>
+
+<div class="toolbar">
+ <div class="tool-panel" id="toolPanel">
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="go('apresentacao')">📖 Apresentação</button>
+  <button onclick="go('objetivo')">🎯 Objetivo</button>
+  <button onclick="go('ldis')">📚 LDIs</button>
+  <button onclick="go('autoria')">ℹ️ Autoria</button>
+  <button onclick="light()">☀️ Claro</button>
+  <button onclick="dark()">🌙 Escuro</button>
+  <button onclick="fontDown()">A−</button>
+  <button onclick="fontReset()">A</button>
+  <button onclick="fontUp()">A+</button>
+  <button onclick="reading()">📖 Leitura</button>
+  <button onclick="speakChapter()">🔊 Ouvir</button>
+  <button onclick="showVoiceSelector()">🎙️ Voz</button>
+  <button onclick="stopSpeak()">⏹ Parar</button>
+  <button onclick="window.print()">🖨️ PDF</button>
+  <button onclick="about()">ℹ️ Sobre</button>
+ </div>
+ <button class="tool-main" onclick="tools()" aria-label="Abrir ferramentas de leitura" aria-expanded="false">☰</button>
+</div>
+
+<header class="hero" id="inicio">
+ <div class="hero-inner">
+  <div>
+   <div class="kicker">Livro Digital Interativo de Aprendizagem</div>
+   <h1>Coleção de Formação Docente sobre o Moodle</h1>
+   <h2>Do "como fazer" ao "por que fazer"</h2>
+   <p>Uma proposta de formação docente para o uso pedagógico do Moodle no contexto da Educação a Distância da UFU.</p>
+   <p>Livros Digitais Interativos de Aprendizagem que articulam conhecimento técnico, situações-problema, fundamentos pedagógicos, experimentação e reflexão.</p>
+   <p class="meta">Dirceu Nogueira de Sales Duarte Junior · Universidade Federal de Uberlândia — UFU · Centro de Educação a Distância — CEaD</p>
+  </div>
+  <div class="cover decorative">
+   <div class="cover-content">
+    <div class="cover-icon">📚🧩🎯</div>
+    <h2>Uma coleção para transformar o uso do Moodle em prática pedagógica intencional.</h2>
+    <p>Quatro LDIs que se complementam para formar uma jornada completa de aprendizagem.</p>
+   </div>
+  </div>
+ </div>
+</header>
+
+<main id="conteudo">
+
+<section class="chapter" id="apresentacao">
+ <div class="breadcrumb">Início › Apresentação</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Apresentação</span>
+ <h2>Uma coleção para além do "como fazer".</h2>
+ <p class="lead">A Coleção de Formação Docente sobre o Moodle reúne Livros Digitais Interativos de Aprendizagem (LDIs) que foram desenvolvidos para apoiar docentes no uso pedagógico do Moodle, a partir de uma perspectiva que articula teoria, prática e reflexão.</p>
+ <p>Cada LDI explora um recurso específico do Moodle, apresentando suas características técnicas e, principalmente, suas possibilidades pedagógicas. A coleção não se limita a ensinar onde clicar: ela convida o docente a pensar quando, por que e para que utilizar cada funcionalidade.</p>
+ <p>Os materiais foram estruturados a partir de situações-problema, fundamentos pedagógicos, exemplos práticos e missões, buscando aproximar o conhecimento técnico da realidade do ensino superior.</p>
+ <div class="quote">O Moodle é a ferramenta. A aprendizagem é o propósito.</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 Como utilizar esta coleção</div>
+  <p>Cada LDI é independente e pode ser lido separadamente. No entanto, os quatro volumes foram pensados para se complementarem. Recomendamos a leitura na ordem sugerida, pois cada volume constrói bases para o entendimento do próximo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+</section>
+
+<section class="chapter" id="objetivo">
+ <div class="breadcrumb">Início › Objetivo</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Objetivo do projeto</span>
+ <h2>O que esta coleção pretende alcançar?</h2>
+ <div class="card">
+  <h3>Objetivo geral</h3>
+  <p>Desenvolver uma proposta de formação docente para o uso pedagógico do Moodle, articulando conhecimentos técnicos, situações-problema, fundamentos pedagógicos, experimentação e reflexão no contexto da Educação a Distância da UFU.</p>
+ </div>
+ <div class="grid">
+  <div class="card">
+   <h3>Objetivos específicos</h3>
+   <ul>
+    <li>Desenvolver Livros Digitais Interativos de Aprendizagem (LDIs) para formação docente.</li>
+    <li>Articular conhecimento técnico a situações concretas de ensino e aprendizagem.</li>
+    <li>Estimular a reflexão sobre quando, por que e para que utilizar diferentes recursos do Moodle.</li>
+    <li>Estruturar uma abordagem que possa futuramente ser ampliada para outros recursos e formatos de formação.</li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>Princípios orientadores</h3>
+   <ul>
+    <li>A tecnologia é o meio; a aprendizagem é o propósito.</li>
+    <li>O professor é autor das decisões pedagógicas.</li>
+    <li>O estudante é sujeito da experiência de aprendizagem.</li>
+    <li>Situações-problema aproximam conhecimento e prática.</li>
+    <li>Fundamentação teórica sustenta as escolhas pedagógicas.</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<section class="chapter" id="ldis">
+ <div class="breadcrumb">Início › LDIs</div>
+ <span class="position-indicator">Coleção</span>
+ <span class="eyebrow">Livros Digitais Interativos</span>
+ <h2>Quatro LDIs, uma jornada de aprendizagem.</h2>
+ <p>Cada volume explora um aspecto do ecossistema de acompanhamento e personalização do Moodle. Juntos, eles formam um percurso que vai do registro do progresso à criação de trilhas adaptativas.</p>
+ <div class="ldi-grid">
+  <a href="ldi-acompanhamento-conclusao.html" class="ldi-card" data-number="01">
+   <span class="ldi-tag">LDI 01</span>
+   <h3>Acompanhamento da Conclusão</h3>
+   <p>Explora o acompanhamento das atividades como instrumento para registrar evidências de progresso e apoiar decisões pedagógicas.</p>
+  </a>
+  <a href="ldi-restricao-acesso.html" class="ldi-card" data-number="02">
+   <span class="ldi-tag">LDI 02</span>
+   <h3>Restrição de Acesso</h3>
+   <p>Aborda restrições como possibilidades de organização de percursos, pré-requisitos e diferentes caminhos de aprendizagem.</p>
+  </a>
+  <a href="ldi-bloco-progresso-conclusao.html" class="ldi-card" data-number="03">
+   <span class="ldi-tag">LDI 03</span>
+   <h3>Bloco Progresso da Conclusão</h3>
+   <p>Explora a visualização do progresso como recurso de acompanhamento e autorregulação da aprendizagem.</p>
+  </a>
+  <a href="ldi-trilhas-aprendizagem.html" class="ldi-card" data-number="04">
+   <span class="ldi-tag">LDI 04</span>
+   <h3>Trilhas de Aprendizagem</h3>
+   <p>Integra os recursos anteriores para demonstrar como diferentes funcionalidades podem compor percursos coerentes de aprendizagem.</p>
+  </a>
+ </div>
+ <div class="card callout action" style="margin-top:25px;">
+  <div class="callout-title">🔗 Integração pedagógica</div>
+  <p>Os quatro LDIs foram pensados para se complementarem. Juntos, eles formam um ecossistema de acompanhamento e personalização: do registro do progresso à visualização, da visualização à orientação e da orientação à adaptação do percurso de aprendizagem.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+</section>
+
+<section class="chapter" id="autoria">
+ <div class="breadcrumb">Início › Autoria e transparência</div>
+ <span class="position-indicator">Créditos</span>
+ <span class="eyebrow">Sobre esta coleção</span>
+ <h2>Autoria, licença e transparência</h2>
+ <div class="card">
+  <h3>Autoria</h3>
+  <p><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+ </div>
+ <div class="card">
+  <h3>Ficha da coleção</h3>
+  <p><strong>Coleção:</strong> Formação Docente sobre o Moodle<br>
+  <strong>Volumes:</strong> 4 LDIs<br>
+  <strong>Versão do Moodle considerada:</strong> 4.5<br>
+  <strong>Formatos:</strong> HTML interativo e PDF editorial<br>
+  <strong>Atualizado em:</strong> 07/09/2026<br>
+  <strong>Edição:</strong> 1.0<br>
+  <strong>Ano:</strong> 2026</p>
+ </div>
+ <div class="card">
+  <h3>Licença de uso</h3>
+  <p>
+   Esta coleção está licenciada sob a licença
+   <strong>Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)</strong>.
+  </p>
+  <p>
+   Você pode compartilhar e adaptar o material, desde que:
+  </p>
+  <ul>
+   <li>Atribua o crédito ao autor original.</li>
+   <li>Não utilize para fins comerciais.</li>
+   <li>Compartilhe obras derivadas sob a mesma licença.</li>
+  </ul>
+  <p style="font-size:.85rem;color:var(--muted);">
+   Para mais detalhes:
+   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR</a>
+  </p>
+ </div>
+ <div class="card callout idea">
+  <div class="callout-title">🤖 Transparência sobre o uso de IA</div>
+  <p>Esta coleção foi elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com apoio de ferramentas de Inteligência Artificial generativa em etapas de planejamento, elaboração, revisão, organização e desenvolvimento de elementos textuais, visuais e computacionais.</p>
+  <p>A utilização de Inteligência Artificial não substitui a autoria, a responsabilidade intelectual, a revisão humana ou a validação do conteúdo pelo autor. Cabe ao autor a responsabilidade final pelas decisões editoriais, pedagógicas, técnicas e acadêmicas apresentadas nesta publicação.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="footer-inner">
+  <h2>Coleção de Formação Docente sobre o Moodle</h2>
+  <p>Do "como fazer" ao "por que fazer".</p>
+  <p class="small"><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p class="small"><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p class="small"><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p class="small"><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+  <p class="small">Coleção — 4 LDIs — v1.0 · 07/09/2026</p>
+  <p class="small">Licença: CC BY-NC-SA 4.0 — Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</p>
+  <div class="disclosure">
+   <strong>Transparência de autoria e uso de Inteligência Artificial</strong>
+   <p>Publicação elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com uso de ferramentas de IA generativa como apoio. A responsabilidade final é do autor.</p>
+  </div>
+ </div>
+</footer>
+
+<script>
+const root = document.documentElement;
+const sections = [...document.querySelectorAll("main .chapter")];
+let speechMode = null;
+let resumeChapterIndex = null;
+let currentVoice = null;
+
+function tools(){
+ const panel = document.getElementById("toolPanel");
+ const button = document.querySelector(".tool-main");
+ panel.classList.toggle("open");
+ button.setAttribute("aria-expanded", panel.classList.contains("open"));
+}
+
+function go(id){
+ const target = document.getElementById(id);
+ if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function getCurrent(){
+ const y = window.scrollY + window.innerHeight * .25;
+ let current = sections[0];
+ for(const section of sections){
+  if(section.offsetTop <= y) current = section;
+ }
+ return current;
+}
+
+function previous(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index > 0) sections[index - 1].scrollIntoView({behavior:"smooth"});
+}
+
+function next(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index < sections.length - 1) sections[index + 1].scrollIntoView({behavior:"smooth"});
+}
+
+function saveReadingPosition(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ localStorage.setItem("ldi-index-reading-position", index);
+}
+
+function offerResume(){
+ const saved = localStorage.getItem("ldi-index-reading-position");
+ if(saved !== null && saved !== undefined){
+  const index = parseInt(saved);
+  if(index > 0 && index < sections.length){
+   resumeChapterIndex = index;
+   document.getElementById("resumeBanner").classList.add("open");
+  }
+ }
+}
+
+function resumeReading(){
+ if(resumeChapterIndex !== null){
+  sections[resumeChapterIndex].scrollIntoView({behavior:"smooth"});
+  document.getElementById("resumeBanner").classList.remove("open");
+ }
+}
+
+function dismissResume(){
+ document.getElementById("resumeBanner").classList.remove("open");
+ localStorage.removeItem("ldi-index-reading-position");
+}
+
+function dark(){root.classList.add("dark");localStorage.setItem("ldi-theme","dark");}
+function light(){root.classList.remove("dark");localStorage.setItem("ldi-theme","light");}
+
+function fontUp(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.min(1.5, size + .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontDown(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.max(.85, size - .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontReset(){
+ root.style.setProperty("--font", 1);
+ localStorage.setItem("ldi-font", 1);
+}
+
+function reading(){document.body.classList.toggle("reading-mode");}
+
+function loadVoices(){
+ return new Promise((resolve) => {
+  const voices = speechSynthesis.getVoices();
+  if(voices.length > 0){
+   resolve(voices);
+  } else {
+   speechSynthesis.onvoiceschanged = () => {
+    resolve(speechSynthesis.getVoices());
+   };
+  }
+ });
+}
+
+function getPortugueseVoices(voices){
+ return voices.filter(voice => voice.lang === "pt-BR" || voice.lang === "pt-PT");
+}
+
+async function populateVoiceSelector(){
+ const voices = await loadVoices();
+ const ptVoices = getPortugueseVoices(voices);
+ const select = document.getElementById("voiceList");
+ select.innerHTML = "";
+ ptVoices.forEach(voice => {
+  const option = document.createElement("option");
+  option.value = voice.name;
+  option.textContent = voice.name + " (" + voice.lang + ")";
+  if(voice.name.toLowerCase().includes("francisca")){
+   option.textContent = "⭐ " + option.textContent;
+  }
+  select.appendChild(option);
+ });
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  select.value = savedVoice;
+ }
+}
+
+function showVoiceSelector(){
+ document.getElementById("voiceSelector").classList.add("open");
+ populateVoiceSelector();
+}
+
+function closeVoiceSelector(){
+ document.getElementById("voiceSelector").classList.remove("open");
+}
+
+function selectVoice(voiceName){
+ localStorage.setItem("ldi-voice", voiceName);
+ applyVoice(voiceName);
+}
+
+async function applyVoice(voiceName){
+ const voices = await loadVoices();
+ const voice = voices.find(v => v.name === voiceName);
+ if(voice){
+  currentVoice = voice;
+ }
+}
+
+async function getVoice(){
+ if(currentVoice) return currentVoice;
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  const voices = await loadVoices();
+  const voice = voices.find(v => v.name === savedVoice);
+  if(voice) return voice;
+ }
+ const voices = await loadVoices();
+ const francisca = voices.find(v => v.name.toLowerCase().includes("francisca"));
+ if(francisca) return francisca;
+ const ptBR = voices.find(v => v.lang === "pt-BR");
+ if(ptBR) return ptBR;
+ const ptPT = voices.find(v => v.lang === "pt-PT");
+ if(ptPT) return ptPT;
+ return voices[0] || null;
+}
+
+function cleanTextForSpeech(element){
+ const clone = element.cloneNode(true);
+ const speakBtns = clone.querySelectorAll(".speak-block-btn");
+ speakBtns.forEach(b => b.remove());
+ const mediaElements = clone.querySelectorAll(".media");
+ mediaElements.forEach(m => m.remove());
+ const visualElements = clone.querySelectorAll(".badge, .icon, .emoji");
+ visualElements.forEach(v => v.remove());
+ const navElements = clone.querySelectorAll(".chapter-nav");
+ navElements.forEach(n => n.remove());
+ const toolbarElements = clone.querySelectorAll(".toolbar");
+ toolbarElements.forEach(t => t.remove());
+ let text = clone.innerText || clone.textContent || "";
+ text = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "");
+ text = text.replace(/[←→↑↓↔⇒⇐⇑⇓⇔]/gu, "");
+ text = text.replace(/\s*→\s*/g, " ");
+ text = text.replace(/\n{3,}/g, "\n\n");
+ text = text.replace(/[ \t]+/g, " ").trim();
+ return text;
+}
+
+async function speakChapter(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ stopSpeak();
+ const current = getCurrent();
+ const text = cleanTextForSpeech(current);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "chapter";
+ utterance.onend = function(){speechMode = null;};
+ speechSynthesis.speak(utterance);
+}
+
+async function speakBlock(btn){
+ const block = btn.closest(".callout, .card, .notice");
+ if(!block) return;
+ if(!("speechSynthesis" in window)){
+  alert("Seu navegador não oferece leitura em voz alta.");
+  return;
+ }
+ if(btn.classList.contains("speaking")){
+  stopSpeak();
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+  return;
+ }
+ stopSpeak();
+ const text = cleanTextForSpeech(block);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ btn.classList.add("speaking"); 
+ btn.textContent = "🔇 Parar";
+ utterance.onend = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ utterance.onerror = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ speechSynthesis.speak(utterance);
+}
+
+async function speakSelection(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ const selection = window.getSelection();
+ const text = selection ? selection.toString().trim() : "";
+ if(!text){hideSelectionTools();return;}
+ stopSpeak();
+ const status = document.getElementById("readingStatus");
+ status.style.display = "block";
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "selection";
+ utterance.onend = function(){status.style.display = "none";speechMode = null;};
+ utterance.onerror = function(){status.style.display = "none";speechMode = null;};
+ speechSynthesis.speak(utterance);
+ hideSelectionTools();
+}
+
+function stopSpeak(){
+ if("speechSynthesis" in window) speechSynthesis.cancel();
+ document.getElementById("readingStatus").style.display = "none";
+ speechMode = null;
+}
+
+function showSelectionTools(){
+ const selection = window.getSelection();
+ if(!selection || selection.isCollapsed || !selection.toString().trim()){hideSelectionTools();return;}
+ const range = selection.getRangeAt(0);
+ const rect = range.getBoundingClientRect();
+ const tools = document.getElementById("selectionTools");
+ tools.style.display = "block";
+ let left = rect.left + (rect.width / 2) - 90;
+ let top = rect.top - 52;
+ if(left < 10) left = 10;
+ if(left + 190 > window.innerWidth - 10) left = window.innerWidth - 200;
+ if(top < 10) top = rect.bottom + 10;
+ tools.style.left = left + "px";
+ tools.style.top = top + "px";
+}
+
+function hideSelectionTools(){
+ document.getElementById("selectionTools").style.display = "none";
+}
+
+function about(){
+ alert("Coleção de Formação Docente sobre o Moodle — v1.0\n\nAutor: Dirceu Nogueira de Sales Duarte Junior\nCurrículo Lattes: http://lattes.cnpq.br/8037598190568108\nUFU — CEaD\n\n4 LDIs · Licença CC BY-NC-SA 4.0\nPublicação educacional com apoio de ferramentas de IA generativa.");
+}
+
+window.addEventListener("scroll", function(){
+ const top = window.scrollY;
+ const total = document.documentElement.scrollHeight - window.innerHeight;
+ const value = total > 0 ? (top / total) * 100 : 0;
+ document.getElementById("progress").style.width = value + "%";
+});
+
+document.addEventListener("mouseup", function(){setTimeout(showSelectionTools, 50);});
+document.addEventListener("touchend", function(){setTimeout(showSelectionTools, 150);});
+document.addEventListener("mousedown", function(event){
+ const tools = document.getElementById("selectionTools");
+ if(tools.style.display === "block" && !tools.contains(event.target)) hideSelectionTools();
+});
+
+(function(){
+ const theme = localStorage.getItem("ldi-theme");
+ const font = localStorage.getItem("ldi-font");
+ if(theme === "dark") root.classList.add("dark");
+ if(font) root.style.setProperty("--font", font);
+})();
+
+setInterval(saveReadingPosition, 5000);
+setTimeout(offerResume, 2000);
+</script>
+
+</body>
+</html>
