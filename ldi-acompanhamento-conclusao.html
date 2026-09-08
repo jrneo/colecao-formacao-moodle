@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+<meta name="author" content="Dirceu Nogueira de Sales Duarte Junior">
+<meta name="description" content="Livro Digital Interativo de Aprendizagem sobre Acompanhamento da Conclusão no Moodle — Coleção de Formação Docente.">
+<meta name="generator" content="LDI - Livro Digital Interativo de Aprendizagem — PROMPT-MESTRE 8.0">
+
+<title>Acompanhamento da Conclusão no Moodle — Livro Digital Interativo de Aprendizagem</title>
+
+<style>
+:root{
+ --bg:#f4f7fb;
+ --surface:#fff;
+ --surface2:#edf3f9;
+ --text:#172033;
+ --muted:#637084;
+ --primary:#315d9d;
+ --primary2:#234775;
+ --accent:#e0a13a;
+ --green:#438368;
+ --purple:#73599d;
+ --red:#b85c5c;
+ --border:#d8e0ea;
+ --shadow:0 12px 35px rgba(30,55,90,.10);
+ --radius:20px;
+ --font:1;
+ --width:850px;
+}
+
+html.dark{
+ --bg:#0f151d;
+ --surface:#19222d;
+ --surface2:#232e3b;
+ --text:#edf3f8;
+ --muted:#b5c0cc;
+ --primary:#8db7ee;
+ --primary2:#b0cdf1;
+ --accent:#efbd62;
+ --green:#7cb89b;
+ --purple:#b39bd7;
+ --red:#e08b8b;
+ --border:#354454;
+ --shadow:0 12px 35px rgba(0,0,0,.32);
+ color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75;font-size:calc(17px * var(--font));transition:.25s}
+a{color:var(--primary)}
+button{font:inherit;cursor:pointer}
+::selection{background:rgba(49,93,157,.25)}
+
+.progress{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:5000}
+.skip{position:absolute;left:-9999px;top:10px;z-index:9000;padding:12px 18px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px}
+.skip:focus{left:10px}
+
+.resume-banner{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:15px 25px;box-shadow:var(--shadow);z-index:8000;display:none;gap:15px;align-items:center}
+.resume-banner.open{display:flex}
+.resume-banner button{padding:8px 16px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700}
+.resume-banner button.secondary{background:var(--surface2);color:var(--text)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:60px 22px;background:radial-gradient(circle at 15% 20%,rgba(49,93,157,.22),transparent 35%),radial-gradient(circle at 85% 75%,rgba(224,161,58,.18),transparent 35%),var(--bg)}
+.hero-inner{width:100%;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.kicker{color:var(--primary);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+h1{font-size:clamp(2.6rem,5.5vw,5rem);line-height:1.05;letter-spacing:-.04em;margin:20px 0}
+.hero h2{font-size:clamp(1.3rem,2.8vw,2rem);font-weight:500}
+.hero p{color:var(--muted);font-size:1.1rem}
+
+.cover{min-height:500px;border-radius:40px;color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:45px;box-shadow:var(--shadow);position:relative;overflow:hidden;background:linear-gradient(145deg,#28558f,#74599c)}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.2);border-radius:50%}
+.cover:before{width:440px;height:440px}
+.cover:after{width:260px;height:260px}
+.cover-content{position:relative;z-index:2;max-width:420px}
+.cover-icon{font-size:4.5rem}
+.meta{font-size:.9rem!important;color:rgba(255,255,255,.78)!important;margin-top:30px}
+
+main{max-width:var(--width);margin:auto;padding:60px 22px}
+section{scroll-margin-top:25px}
+.chapter{padding:80px 0;border-bottom:1px solid var(--border)}
+.eyebrow{color:var(--primary);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin-bottom:15px}
+.position-indicator{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 14px;font-size:.78rem;font-weight:800;margin-bottom:15px}
+h2{font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.15;margin:12px 0 25px}
+h3{font-size:1.45rem;line-height:1.25;margin-top:40px}
+.lead{font-size:1.2rem;color:var(--muted)}
+.quote{padding:25px 0;font-size:1.3rem;font-weight:750;color:var(--primary)}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0;box-shadow:0 7px 25px rgba(20,40,70,.05)}
+.callout{border-left:6px solid var(--primary);background:var(--surface2)}
+.callout.idea{border-left-color:var(--accent)}
+.callout.action{border-left-color:var(--green)}
+.callout.problem{border-left-color:var(--purple)}
+.callout.care{border-left-color:var(--red)}
+.callout.fundamento{border-left-color:var(--purple)}
+.callout.integracao{border-left-color:var(--green)}
+.callout.adaptacao{border-left-color:var(--red)}
+.callout-title{font-weight:800;margin-bottom:8px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid .card{margin:0}
+.badge{display:inline-block;background:var(--surface2);color:var(--primary);border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:800}
+
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:25px;padding:28px;box-shadow:var(--shadow)}
+.toc a{display:block;padding:12px 10px;text-decoration:none;border-bottom:1px solid var(--border);color:var(--text)}
+.toc a:hover{background:var(--surface2)}
+.toc-group{margin:18px 0 8px;color:var(--primary);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+
+.problem-box{background:var(--surface);border:2px solid var(--purple);border-radius:24px;padding:30px;margin:30px 0}
+.question{color:var(--purple);font-weight:800}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:10px 0;border-bottom:1px solid var(--border)}
+.checklist li:before{content:"☐";color:var(--primary);margin-right:10px}
+
+.media{border:2px dashed var(--border);background:var(--surface2);border-radius:20px;padding:26px;margin:25px 0}
+.media strong{display:block;color:var(--primary)}
+
+.mission{border:2px solid var(--accent);background:linear-gradient(135deg,var(--surface),var(--surface2));border-radius:25px;padding:30px;margin:30px 0}
+.mission-title{color:var(--accent);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+
+.steps{counter-reset:step;list-style:none;padding:0}
+.steps li{counter-increment:step;padding:15px 15px 15px 55px;position:relative;margin:10px 0;background:var(--surface2);border-radius:14px}
+.steps li:before{content:counter(step);position:absolute;left:15px;top:12px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--primary);color:#fff;font-weight:800}
+
+.chapter-nav{display:flex;justify-content:space-between;gap:12px;margin-top:45px;flex-wrap:wrap}
+.chapter-nav button{padding:12px 17px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);cursor:pointer;font:inherit}
+.chapter-nav button:hover{background:var(--surface2)}
+
+.speak-block-btn{background:transparent;border:1px solid var(--border);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:13px;color:var(--primary);margin-top:12px;display:inline-flex;align-items:center;gap:5px;transition:all .2s;font-family:inherit}
+.speak-block-btn:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.speak-block-btn.speaking{background:var(--red);color:white;border-color:var(--red)}
+
+.toolbar{position:fixed;right:18px;bottom:18px;z-index:4000;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tool-main{width:56px;height:56px;border:0;border-radius:50%;background:var(--primary);color:white;box-shadow:var(--shadow);font-size:22px}
+.tool-panel{display:none;width:285px;padding:10px;grid-template-columns:1fr 1fr;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+.tool-panel.open{display:grid}
+.tool-panel button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:11px;padding:9px}
+.tool-panel button:hover{background:var(--surface2)}
+
+.voice-selector{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:var(--shadow);z-index:9000;width:350px;max-width:90vw;display:none}
+.voice-selector.open{display:block}
+.voice-selector h3{margin-top:0;color:var(--primary)}
+.voice-selector select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font:inherit;margin:15px 0}
+.voice-selector button{padding:10px 20px;border:0;border-radius:10px;background:var(--primary);color:white;font-weight:700;cursor:pointer}
+
+.reading-mode main{max-width:720px}
+.reading-mode .decorative{display:none}
+.reading-mode .media{display:none}
+
+.selection-tools{position:fixed;display:none;z-index:6000;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:7px;box-shadow:var(--shadow)}
+.selection-tools button{border:0;border-radius:9px;padding:8px 12px;background:var(--primary);color:white;font-weight:700}
+.selection-tools button:hover{background:var(--primary2)}
+
+.reading-status{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:999px;display:none;z-index:7000;font-size:.88rem;box-shadow:var(--shadow)}
+
+.notice{padding:15px 18px;border-radius:14px;background:var(--surface2);border:1px solid var(--border)}
+.table-wrap{overflow-x:auto;margin:25px 0}
+table{width:100%;border-collapse:collapse;background:var(--surface)}
+th,td{border:1px solid var(--border);padding:13px;text-align:left;vertical-align:top}
+th{background:var(--surface2);color:var(--primary)}
+
+footer{padding:65px 22px;background:var(--surface);border-top:1px solid var(--border)}
+.footer-inner{max-width:850px;margin:auto}
+.small{color:var(--muted);font-size:.88rem}
+.disclosure{font-size:.9rem;color:var(--muted);border-top:1px solid var(--border);padding-top:20px;margin-top:30px}
+
+@media(max-width:800px){
+ .hero-inner{grid-template-columns:1fr}
+ .grid{grid-template-columns:1fr}
+ .cover{min-height:380px}
+ .chapter{padding:55px 0}
+ .toolbar{right:12px;bottom:12px}
+ .tool-panel{width:250px}
+ .resume-banner{flex-direction:column;text-align:center;width:90%}
+}
+
+@media print{
+ @page{size:A4;margin:18mm 16mm 20mm}
+ body{background:white!important;color:#111!important;font-size:11.5pt}
+ .toolbar,.progress,.skip,.selection-tools,.reading-status,.resume-banner,.chapter-nav,.speak-block-btn,.voice-selector,.no-print{display:none!important}
+ .hero{min-height:250mm;page-break-after:always;background:white!important}
+ .cover{box-shadow:none}
+ main{max-width:none;padding:0}
+ .chapter{page-break-before:always;border:0;padding:0}
+ .card,.problem-box,.mission,.media{break-inside:avoid;box-shadow:none}
+ h2,h3{break-after:avoid}
+ a{color:#111}
+ .toc a{color:#111}
+ footer{page-break-before:always}
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" id="progress"></div>
+
+<div class="resume-banner" id="resumeBanner">
+ <span>📖 Continuar de onde você parou?</span>
+ <button onclick="resumeReading()">Continuar</button>
+ <button class="secondary" onclick="dismissResume()">Recomeçar</button>
+</div>
+
+<div class="selection-tools" id="selectionTools">
+ <button onclick="speakSelection()">🔊 Ouvir seleção</button>
+</div>
+
+<div class="reading-status" id="readingStatus">🔊 Lendo seleção...</div>
+
+<div class="voice-selector" id="voiceSelector">
+ <h3>🎙️ Escolha a voz</h3>
+ <select id="voiceList" onchange="selectVoice(this.value)"></select>
+ <button onclick="closeVoiceSelector()">Fechar</button>
+</div>
+
+<div class="toolbar">
+ <div class="tool-panel" id="toolPanel">
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="next()">→ Próximo</button>
+  <button onclick="light()">☀️ Claro</button>
+  <button onclick="dark()">🌙 Escuro</button>
+  <button onclick="fontDown()">A−</button>
+  <button onclick="fontReset()">A</button>
+  <button onclick="fontUp()">A+</button>
+  <button onclick="reading()">📖 Leitura</button>
+  <button onclick="speakChapter()">🔊 Capítulo</button>
+  <button onclick="showVoiceSelector()">🎙️ Voz</button>
+  <button onclick="stopSpeak()">⏹ Parar</button>
+  <button onclick="window.print()">🖨️ PDF</button>
+  <button onclick="about()">ℹ️ Sobre</button>
+ </div>
+ <button class="tool-main" onclick="tools()" aria-label="Abrir ferramentas de leitura" aria-expanded="false">☰</button>
+</div>
+
+<header class="hero" id="inicio">
+ <div class="hero-inner">
+  <div>
+   <div class="kicker">Livro Digital Interativo de Aprendizagem</div>
+   <h1>Acompanhamento da Conclusão</h1>
+   <h2>Monitoramento, progresso e autorregulação no Moodle</h2>
+   <p>Como utilizar o rastreamento de conclusão para acompanhar o progresso dos estudantes, dar feedback e apoiar a autorregulação da aprendizagem.</p>
+   <p>Uma jornada para dominar uma funcionalidade essencial do Moodle que conecta atividades, restrições e relatórios de progresso.</p>
+   <p class="meta">Dirceu Nogueira de Sales Duarte Junior · Universidade Federal de Uberlândia — UFU · Centro de Educação a Distância — CEaD</p>
+  </div>
+  <div class="cover decorative">
+   <div class="cover-content">
+    <div class="cover-icon">📊✅🔄</div>
+    <h2>E se você pudesse ver, em tempo real, o progresso de cada estudante?</h2>
+    <p>Acompanhar a conclusão de atividades é mais do que marcar caixas: é entender o percurso e apoiar o estudante.</p>
+   </div>
+  </div>
+ </div>
+</header>
+
+<main id="conteudo">
+
+<section class="chapter" id="apresentacao">
+ <div class="breadcrumb">Início › Apresentação</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Apresentação</span>
+ <h2>Concluir uma atividade é um marco de aprendizagem.</h2>
+ <p class="lead">No Moodle, o acompanhamento da conclusão permite que professores e estudantes visualizem o progresso em um curso. Mas seu potencial vai muito além do simples rastreamento: quando bem utilizado, torna-se uma ferramenta de autorregulação, feedback e design instrucional avançado.</p>
+ <p>Este Livro Digital Interativo de Aprendizagem explora em profundidade o <strong>Acompanhamento da Conclusão</strong> — uma funcionalidade transversal que se integra a atividades, recursos, restrições de acesso, emblemas e relatórios. No nível avançado, você aprenderá a configurar critérios de conclusão, interpretar relatórios, combinar com trilhas adaptativas e promover a autonomia do estudante.</p>
+ <p>A pergunta central que nos guiará:</p>
+ <div class="quote">Como transformar o rastreamento de conclusão em uma ferramenta de aprendizagem, e não apenas de controle?</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 O potencial do acompanhamento</div>
+  <p>Quando o estudante vê seu próprio progresso, ele desenvolve metacognição e autorregulação. Quando o professor acompanha o progresso da turma, pode intervir de forma direcionada. O acompanhamento da conclusão é a ponte entre esses dois mundos.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital mostrando um painel de progresso de curso no Moodle, com barras de conclusão, caixas de seleção e ícones de atividades concluídas. Estilo flat design, cores azul e verde, visual limpo e acolhedor."</p>
+  <p><strong>Descrição alternativa:</strong> "Painel de progresso de curso no Moodle com barras de conclusão e atividades marcadas."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="como-usar">
+ <div class="breadcrumb">Início › Como utilizar este LDI</div>
+ <span class="position-indicator">Seção introdutória</span>
+ <span class="eyebrow">Como utilizar</span>
+ <h2>Esta publicação é uma jornada de design e acompanhamento.</h2>
+ <p>Não leia apenas para aprender a configurar. Leia para compreender quando, por que e como o acompanhamento da conclusão pode melhorar a experiência do estudante e a eficácia do seu curso.</p>
+ <div class="grid">
+  <div class="card"><span class="badge">01</span><h3>Compreenda</h3><p>Entenda o que é o acompanhamento da conclusão, seus critérios e possibilidades técnicas no Moodle.</p></div>
+  <div class="card"><span class="badge">02</span><h3>Questione</h3><p>Analise quando usar o acompanhamento e quando ele pode se tornar apenas burocracia.</p></div>
+  <div class="card"><span class="badge">03</span><h3>Planeje</h3><p>Desenhe critérios de conclusão alinhados aos objetivos e à progressão do curso.</p></div>
+  <div class="card"><span class="badge">04</span><h3>Fundamente</h3><p>Conecte suas escolhas a teorias como Vygotsky, Freire e o Design Universal para Aprendizagem.</p></div>
+ </div>
+ <div class="card callout action">
+  <div class="callout-title">🛠️ Uma recomendação importante</div>
+  <p>Durante a leitura, você pode selecionar qualquer trecho e ouvi-lo. O botão <strong>"Ouvir seleção"</strong> aparecerá automaticamente. Além disso, os blocos de destaque possuem botões individuais de leitura em voz alta.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="sumario">
+ <div class="breadcrumb">Início › Sumário</div>
+ <span class="position-indicator">Navegação</span>
+ <span class="eyebrow">Sumário navegável</span>
+ <h2>Nosso caminho</h2>
+ <p>Você pode percorrer o livro em sequência ou acessar diretamente qualquer seção pelo sumário abaixo.</p>
+ <div class="toc">
+  <div class="toc-group">Começo da jornada</div>
+  <a href="#apresentacao">Apresentação</a>
+  <a href="#como-usar">Como utilizar este LDI</a>
+  <div class="toc-group">Compreender</div>
+  <a href="#c1">01 · O que é Acompanhamento da Conclusão?</a>
+  <a href="#c2">02 · Critérios de conclusão disponíveis</a>
+  <a href="#c3">03 · Quando utilizar o acompanhamento?</a>
+  <a href="#c4">04 · Quando não utilizar?</a>
+  <div class="toc-group">Planejar</div>
+  <a href="#c5">05 · Planejamento pedagógico do acompanhamento</a>
+  <a href="#c6">06 · Configuração passo a passo</a>
+  <a href="#c7">07 · Relatórios de progresso</a>
+  <div class="toc-group">Aplicar</div>
+  <a href="#c8">08 · Acompanhamento e autorregulação</a>
+  <a href="#c9">09 · Integração com restrições de acesso</a>
+  <a href="#c10">10 · Emblemas e gamificação</a>
+  <div class="toc-group">Fundamentar</div>
+  <a href="#c11">11 · Fundamentos pedagógicos</a>
+  <a href="#c12">12 · Rubrica para design de acompanhamento</a>
+  <div class="toc-group">Integrar e adaptar</div>
+  <a href="#c13">13 · Integração com outras atividades</a>
+  <a href="#c14">14 · Adaptação a diferentes contextos</a>
+  <div class="toc-group">Refletir</div>
+  <a href="#c15">15 · Situações-problema</a>
+  <a href="#c16">16 · Missões práticas</a>
+  <div class="toc-group">Concluir</div>
+  <a href="#c17">17 · Síntese e avaliação do LDI</a>
+  <a href="#c18">18 · Referências</a>
+  <a href="#c19">19 · Autoria e transparência</a>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('inicio')">🏠 Início</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 1-4 ========== -->
+
+<section class="chapter" id="c1">
+ <div class="breadcrumb">Compreender › Capítulo 1</div>
+ <span class="position-indicator">Capítulo 1 de 19</span>
+ <span class="eyebrow">Capítulo 01</span>
+ <h2>O que é Acompanhamento da Conclusão?</h2>
+ <p>O <strong>Acompanhamento da Conclusão</strong> é uma funcionalidade do Moodle que permite registrar se uma atividade ou recurso foi concluído pelo estudante, com base em critérios predefinidos. Esses critérios podem incluir: visualização, envio, nota mínima, participação, ou até mesmo a marcação manual pelo estudante ou professor.</p>
+ <p>Quando o acompanhamento está ativado, o Moodle exibe caixas de seleção ao lado das atividades na página do curso. Os estudantes podem ver seu próprio progresso, e os professores podem acompanhar o progresso de toda a turma por meio de relatórios.</p>
+ <p>Essa funcionalidade é transversal: pode ser aplicada a qualquer recurso (Arquivo, Página, URL, Livro) ou atividade (Fórum, Tarefa, Questionário, Lição). Ela é a base para muitas estratégias avançadas, como trilhas adaptativas, gamificação e liberação condicional de conteúdo.</p>
+ <div class="card">
+  <h3>O que o acompanhamento permite</h3>
+  <ul class="checklist">
+   <li>Registrar a conclusão de atividades com base em critérios objetivos.</li>
+   <li>Exibir o progresso do estudante em uma barra de progresso no curso.</li>
+   <li>Gerar relatórios de progresso para o professor.</li>
+   <li>Permitir que o estudante marque manualmente uma atividade como concluída.</li>
+   <li>Servir como base para restrições de acesso e emblemas.</li>
+  </ul>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <p>É importante distinguir: o acompanhamento da conclusão <strong>não atribui nota</strong> automaticamente, mas pode ser combinado com notas. Ele registra o <strong>estado</strong> de uma atividade: concluída ou não concluída.</p>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital mostrando a página de um curso Moodle com caixas de seleção ao lado das atividades, algumas marcadas como concluídas. Estilo flat design, cores azul e branco, interface limpa e didática."</p>
+  <p><strong>Descrição alternativa:</strong> "Página de curso Moodle com caixas de seleção indicando conclusão de atividades."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c2">
+ <div class="breadcrumb">Compreender › Capítulo 2</div>
+ <span class="position-indicator">Capítulo 2 de 19</span>
+ <span class="eyebrow">Capítulo 02</span>
+ <h2>Critérios de conclusão disponíveis</h2>
+ <p>O Moodle oferece diferentes critérios de conclusão, que variam conforme o tipo de atividade ou recurso. Conhecer esses critérios é essencial para configurar o acompanhamento de forma alinhada aos objetivos.</p>
+ <div class="table-wrap">
+  <table>
+   <thead>
+    <tr><th>Critério</th><th>Descrição</th><th>Exemplo de uso</th></tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Visualização</strong></td>
+     <td>O estudante visualizou o recurso ou atividade.</td>
+     <td>Concluir a leitura de um Arquivo ao abri-lo.</td>
+    </tr>
+    <tr>
+     <td><strong>Nota mínima</strong></td>
+     <td>O estudante alcançou uma nota mínima na atividade.</td>
+     <td>Concluir o Questionário com nota ≥ 6.</td>
+    </tr>
+    <tr>
+     <td><strong>Envio</strong></td>
+     <td>O estudante enviou uma Tarefa.</td>
+     <td>Concluir a Tarefa ao fazer o envio.</td>
+    </tr>
+    <tr>
+     <td><strong>Participação</strong></td>
+     <td>O estudante participou de uma atividade (ex.: postou em um Fórum).</td>
+     <td>Concluir o Fórum ao fazer uma postagem.</td>
+    </tr>
+    <tr>
+     <td><strong>Marcação manual</strong></td>
+     <td>O estudante marca a atividade como concluída.</td>
+     <td>Permitir que o estudante registre que leu um material opcional.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p>A escolha do critério deve refletir o que você considera evidência de conclusão. Por exemplo, para uma leitura obrigatória, a visualização pode ser suficiente; para uma atividade prática, o envio de uma Tarefa pode ser mais adequado.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c3">
+ <div class="breadcrumb">Compreender › Capítulo 3</div>
+ <span class="position-indicator">Capítulo 3 de 19</span>
+ <span class="eyebrow">Capítulo 03</span>
+ <h2>Quando utilizar o acompanhamento?</h2>
+ <p>O acompanhamento da conclusão é especialmente útil em contextos que exigem <strong>progressão estruturada</strong>, <strong>autorregulação</strong> ou <strong>monitoramento do progresso</strong>. Alguns cenários típicos:</p>
+ <div class="grid">
+  <div class="card">
+   <h3>📊 Monitoramento do progresso</h3>
+   <p>Permitir que o professor visualize rapidamente quem está em dia e quem precisa de atenção.</p>
+  </div>
+  <div class="card">
+   <h3>🔄 Autorregulação do estudante</h3>
+   <p>Permitir que o estudante visualize seu próprio progresso e planeje seu estudo.</p>
+  </div>
+  <div class="card">
+   <h3>🔒 Base para restrições</h3>
+   <p>Utilizar a conclusão como condição para liberar outras atividades.</p>
+  </div>
+  <div class="card">
+   <h3>🎖️ Gamificação e emblemas</h3>
+   <p>Conceder emblemas automaticamente quando uma atividade ou conjunto de atividades é concluído.</p>
+  </div>
+ </div>
+ <p>Em todos esses casos, o acompanhamento não é um fim em si mesmo, mas um <strong>meio para apoiar a aprendizagem</strong>.</p>
+ <div class="callout idea">
+  <div class="callout-title">💡 Pense no estudante</div>
+  <p>Uma barra de progresso visível pode ser um poderoso motivador. Mas também pode gerar ansiedade se o estudante não souber o que fazer para concluir as atividades. A transparência dos critérios é fundamental.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c4">
+ <div class="breadcrumb">Compreender › Capítulo 4</div>
+ <span class="position-indicator">Capítulo 4 de 19</span>
+ <span class="eyebrow">Capítulo 04</span>
+ <h2>Quando não utilizar?</h2>
+ <p>Apesar do potencial, o acompanhamento da conclusão pode se tornar <strong>burocrático</strong> ou <strong>contraproducente</strong> se mal utilizado. Evite quando:</p>
+ <ul class="checklist">
+  <li><strong>Não há clareza sobre o que significa "concluir":</strong> se os critérios são ambíguos, o acompanhamento perde o sentido.</li>
+  <li><strong>O estudante não precisa ver o progresso:</strong> em cursos muito curtos ou informais, pode ser desnecessário.</li>
+  <li><strong>Os critérios de conclusão não refletem aprendizagem:</strong> marcar como concluído apenas ao visualizar pode não ser significativo.</li>
+  <li><strong>Há excesso de atividades obrigatórias:</strong> acompanhar tudo pode sobrecarregar o estudante e o professor.</li>
+  <li><strong>O acompanhamento vira apenas cobrança:</strong> se for usado apenas para pressionar, perde o valor pedagógico.</li>
+ </ul>
+ <div class="callout care">
+  <div class="callout-title">⚠️ Cuidado importante</div>
+  <p>O acompanhamento da conclusão não deve ser confundido com avaliação somativa. Concluir uma atividade não significa necessariamente ter aprendido. Use-o como um sinal de progresso, não como prova de competência.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 5-7 ========== -->
+
+<section class="chapter" id="c5">
+ <div class="breadcrumb">Planejar › Capítulo 5</div>
+ <span class="position-indicator">Capítulo 5 de 19</span>
+ <span class="eyebrow">Capítulo 05</span>
+ <h2>Planejamento pedagógico do acompanhamento</h2>
+ <p>Antes de configurar o acompanhamento, é essencial planejar o percurso de aprendizagem como um todo. Um bom design começa com perguntas:</p>
+ <ul class="checklist">
+  <li>Quais são os objetivos de aprendizagem de cada módulo?</li>
+  <li>Quais atividades são realmente obrigatórias para a progressão?</li>
+  <li>Que critérios de conclusão são mais adequados para cada atividade?</li>
+  <li>Como o estudante visualizará seu progresso?</li>
+  <li>Como o professor utilizará os relatórios de progresso?</li>
+ </ul>
+ <p>Uma estratégia eficaz é desenhar um <strong>mapa do curso</strong> com as atividades e os critérios de conclusão de cada uma. Isso ajuda a visualizar onde o acompanhamento é necessário e onde pode ser dispensado.</p>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Ilustração digital de um mapa conceitual de um curso, mostrando atividades com caixas de seleção e setas indicando progressão. Estilo flat design, cores azul e dourado, visual organizado e acolhedor."</p>
+  <p><strong>Descrição alternativa:</strong> "Mapa de curso com caixas de seleção e setas indicando progressão."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <p>Planejar também significa antecipar possíveis problemas: e se o estudante não conseguir concluir uma atividade? E se a conclusão for marcada erroneamente? Tenha planos de contingência.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c6">
+ <div class="breadcrumb">Planejar › Capítulo 6</div>
+ <span class="position-indicator">Capítulo 6 de 19</span>
+ <span class="eyebrow">Capítulo 06</span>
+ <h2>Configuração passo a passo</h2>
+ <p>A configuração do acompanhamento da conclusão é feita em cada atividade ou recurso, na seção <strong>Conclusão da atividade</strong>. Veja o passo a passo:</p>
+ <ol class="steps">
+  <li>Abra o curso e ative o modo de edição.</li>
+  <li>Clique na atividade ou recurso ao qual deseja aplicar o acompanhamento, ou crie um novo.</li>
+  <li>Nas configurações, role até a seção <strong>"Conclusão da atividade"</strong>.</li>
+  <li>Marque a opção <strong>"Rastrear conclusão"</strong> para habilitar o acompanhamento.</li>
+  <li>Escolha o critério de conclusão desejado (visualização, nota, envio, participação, etc.).</li>
+  <li>Configure os parâmetros do critério (ex.: nota mínima, número de postagens).</li>
+  <li>Se desejar, marque a opção para permitir que o estudante marque manualmente a atividade como concluída.</li>
+  <li>Defina uma data de conclusão esperada, se aplicável.</li>
+  <li>Salve as alterações.</li>
+ </ol>
+ <div class="notice">
+  <strong>Observação:</strong> Para que o acompanhamento funcione em todo o curso, é necessário ativar a funcionalidade no nível do curso. Acesse "Conclusão de curso" nas configurações do curso e habilite o rastreamento.
+ </div>
+ <div class="media">
+  <strong>📸 IMAGEM SUGERIDA</strong>
+  <p><strong>Prompt para geração de imagem:</strong> "Captura de tela da seção 'Conclusão da atividade' do Moodle, mostrando as opções de rastreamento e critérios. Interface em português, estilo flat design, cores padrão do Moodle."</p>
+  <p><strong>Descrição alternativa:</strong> "Seção Conclusão da atividade no Moodle com opções de rastreamento."</p>
+  <p><strong>Dimensão sugerida:</strong> 1200x630px</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c7">
+ <div class="breadcrumb">Planejar › Capítulo 7</div>
+ <span class="position-indicator">Capítulo 7 de 19</span>
+ <span class="eyebrow">Capítulo 07</span>
+ <h2>Relatórios de progresso</h2>
+ <p>O Moodle oferece relatórios que permitem ao professor visualizar o progresso dos estudantes. O principal é o <strong>Relatório de Conclusão de Atividades</strong>, que mostra uma tabela com os estudantes e as atividades do curso, indicando o status de conclusão.</p>
+ <p>Para acessar:</p>
+ <ol class="steps">
+  <li>No curso, clique em <strong>"Relatórios"</strong> no menu de administração.</li>
+  <li>Selecione <strong>"Conclusão de atividades"</strong>.</li>
+  <li>Filtre por estudante, grupo ou atividade, conforme necessário.</li>
+ </ol>
+ <p>Esse relatório permite identificar rapidamente quem está em dia, quem está atrasado e quem precisa de apoio. É uma ferramenta valiosa para a <strong>intervenção pedagógica precoce</strong>.</p>
+ <div class="callout action">
+  <div class="callout-title">🛠️ Boa prática</div>
+  <p>Utilize o relatório de conclusão semanalmente para identificar estudantes com baixo progresso e entrar em contato proativamente, oferecendo ajuda antes que eles desistam.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 8-10 ========== -->
+
+<section class="chapter" id="c8">
+ <div class="breadcrumb">Aplicar › Capítulo 8</div>
+ <span class="position-indicator">Capítulo 8 de 19</span>
+ <span class="eyebrow">Capítulo 08</span>
+ <h2>Acompanhamento e autorregulação</h2>
+ <p>Quando o estudante vê seu próprio progresso, ele desenvolve <strong>metacognição</strong> e <strong>autorregulação</strong>. Ele aprende a planejar seu estudo, monitorar seu avanço e avaliar seu próprio desempenho.</p>
+ <p>Para potencializar essa dimensão:</p>
+ <ul class="checklist">
+  <li><strong>Exiba o progresso de forma clara:</strong> utilize barras de progresso e caixas de seleção visíveis.</li>
+  <li><strong>Explique os critérios:</strong> o estudante precisa saber o que fazer para concluir cada atividade.</li>
+  <li><strong>Permita a marcação manual:</strong> em atividades opcionais, deixe que o estudante registre sua própria conclusão.</li>
+  <li><strong>Ofereça feedback contínuo:</strong> combine o acompanhamento com comentários e orientações.</li>
+ </ul>
+ <div class="callout integracao">
+  <div class="callout-title">🔗 Exemplo prático</div>
+  <p>Em um curso de escrita acadêmica, a professora configurou a conclusão manual para leituras complementares. Os estudantes podem marcar que leram um artigo e adicionar uma nota pessoal. Isso promove a autorregulação e a reflexão.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c9">
+ <div class="breadcrumb">Aplicar › Capítulo 9</div>
+ <span class="position-indicator">Capítulo 9 de 19</span>
+ <span class="eyebrow">Capítulo 09</span>
+ <h2>Integração com restrições de acesso</h2>
+ <p>O acompanhamento da conclusão é a base para as <strong>restrições de acesso</strong>. Quando uma atividade é marcada como concluída, ela pode liberar automaticamente outras atividades. Isso permite criar trilhas adaptativas e progressões condicionais.</p>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo: Leitura → Fórum</div>
+  <p>Configure a leitura de um Arquivo com conclusão por visualização. Em seguida, adicione uma restrição de acesso no Fórum: "somente se a leitura estiver concluída". O Fórum só será liberado após o estudante abrir o Arquivo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <p>Essa integração cria uma <strong>sequência lógica</strong> que orienta o estudante pelo percurso desejado, garantindo que os pré-requisitos sejam atendidos.</p>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c10">
+ <div class="breadcrumb">Aplicar › Capítulo 10</div>
+ <span class="position-indicator">Capítulo 10 de 19</span>
+ <span class="eyebrow">Capítulo 10</span>
+ <h2>Emblemas e gamificação</h2>
+ <p>O Moodle permite conceder <strong>emblemas</strong> automaticamente quando o estudante conclui atividades ou atinge determinados critérios. Os emblemas são uma forma de reconhecimento e motivação.</p>
+ <p>Para configurar:</p>
+ <ol class="steps">
+  <li>No curso, acesse <strong>"Emblemas"</strong> no menu de administração.</li>
+  <li>Clique em <strong>"Adicionar emblema"</strong>.</li>
+  <li>Defina os critérios do emblema, que podem incluir a conclusão de atividades específicas.</li>
+  <li>Configure a imagem e a descrição do emblema.</li>
+  <li>Salve e aguarde o sistema conceder automaticamente.</li>
+ </ol>
+ <p>Combine emblemas com o acompanhamento para criar um sistema de recompensas que reconhece o esforço e a progressão.</p>
+ <div class="callout idea">
+  <div class="callout-title">💡 Dica</div>
+  <p>Use emblemas para marcos importantes, não para tudo. O reconhecimento deve ser significativo, não trivial.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== CAPÍTULOS 11-14 ========== -->
+
+<section class="chapter" id="c11">
+ <div class="breadcrumb">Fundamentar › Capítulo 11</div>
+ <span class="position-indicator">Capítulo 11 de 19</span>
+ <span class="eyebrow">Fundamentos pedagógicos</span>
+ <h2>Fundamentos pedagógicos</h2>
+ <p>O acompanhamento da conclusão encontra respaldo em teorias de aprendizagem e design instrucional.</p>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Vygotsky e a Zona de Desenvolvimento Proximal</div>
+  <p>Ao acompanhar o progresso, o professor pode identificar onde cada estudante precisa de suporte. O acompanhamento funciona como um mapa da ZDP, mostrando quem está pronto para avançar e quem precisa de ajuda.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Freire e a autonomia</div>
+  <p>O acompanhamento transparente promove a autonomia ao permitir que o estudante monitore seu próprio progresso e tome decisões sobre seu estudo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Design Universal para Aprendizagem (DUA)</div>
+  <p>Oferecer múltiplos meios de engajamento e ação é um princípio do DUA. O acompanhamento pode ser uma ferramenta para dar ao estudante controle sobre seu percurso.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout fundamento">
+  <div class="callout-title">📚 Aprendizagem para o domínio (Mastery Learning)</div>
+  <p>O acompanhamento permite verificar se o estudante atingiu o domínio antes de avançar. A conclusão baseada em nota mínima é uma aplicação direta desse princípio.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c12">
+ <div class="breadcrumb">Fundamentar › Capítulo 12</div>
+ <span class="position-indicator">Capítulo 12 de 19</span>
+ <span class="eyebrow">Rubrica</span>
+ <h2>Rubrica para design de acompanhamento</h2>
+ <p>Utilize esta rubrica para avaliar a qualidade do design do acompanhamento da conclusão em um curso.</p>
+ <div class="table-wrap">
+  <table>
+   <thead>
+    <tr><th>Critério</th><th>Insuficiente</th><th>Básico</th><th>Proficiente</th><th>Avançado</th></tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Clareza dos critérios</strong></td>
+     <td>Os critérios de conclusão não estão definidos ou são ambíguos.</td>
+     <td>Critérios definidos, mas não comunicados ao estudante.</td>
+     <td>Critérios claros e comunicados ao estudante.</td>
+     <td>Critérios claros, comunicados e alinhados aos objetivos, com exemplos.</td>
+    </tr>
+    <tr>
+     <td><strong>Alinhamento com objetivos</strong></td>
+     <td>O acompanhamento não se relaciona com os objetivos.</td>
+     <td>Relação parcial com os objetivos.</td>
+     <td>O acompanhamento reflete os objetivos e a progressão desejada.</td>
+     <td>O acompanhamento promove objetivos e oferece rotas alternativas coerentes.</td>
+    </tr>
+    <tr>
+     <td><strong>Transparência para o estudante</strong></td>
+     <td>Estudante não sabe o que precisa fazer para concluir.</td>
+     <td>Informações genéricas sobre conclusão.</td>
+     <td>Critérios claros e visíveis para o estudante.</td>
+     <td>Além dos critérios, há feedback contínuo e orientações personalizadas.</td>
+    </tr>
+    <tr>
+     <td><strong>Uso dos relatórios</strong></td>
+     <td>Professor não utiliza relatórios de progresso.</td>
+     <td>Utiliza relatórios esporadicamente, sem ação.</td>
+     <td>Utiliza relatórios regularmente para intervenção.</td>
+     <td>Utiliza relatórios de forma sistemática, com intervenção precoce e personalizada.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c13">
+ <div class="breadcrumb">Integrar e adaptar › Capítulo 13</div>
+ <span class="position-indicator">Capítulo 13 de 19</span>
+ <span class="eyebrow">Integração</span>
+ <h2>Integração com outras atividades</h2>
+ <p>O acompanhamento da conclusão ganha poder quando combinado com outras atividades do Moodle. Veja alguns fluxos integrados:</p>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 1: Questionário → Conclusão → Emblema</div>
+  <p><strong>Questionário</strong> (nota mínima) → Conclusão registrada → <strong>Emblema</strong> concedido automaticamente.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 2: Leitura → Conclusão → Restrição → Fórum</div>
+  <p><strong>Arquivo</strong> (conclusão por visualização) → Restrição de acesso libera <strong>Fórum</strong>.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout integracao">
+  <div class="callout-title">🔗 Fluxo 3: Tarefa → Conclusão → Relatório → Intervenção</div>
+  <p><strong>Tarefa</strong> (envio) → Conclusão registrada → <strong>Relatório</strong> identifica estudantes atrasados → Professor intervém.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<section class="chapter" id="c14">
+ <div class="breadcrumb">Integrar e adaptar › Capítulo 14</div>
+ <span class="position-indicator">Capítulo 14 de 19</span>
+ <span class="eyebrow">Adaptação</span>
+ <h2>Adaptação a diferentes contextos</h2>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Ensino presencial</div>
+  <p>Use o acompanhamento para monitorar a conclusão de leituras prévias e atividades preparatórias, liberando tempo de aula para discussões.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Educação a distância</div>
+  <p>O acompanhamento é essencial para monitorar o progresso e identificar estudantes em risco. Utilize relatórios regularmente e entre em contato proativamente.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Ensino híbrido</div>
+  <p>Combine o acompanhamento online com atividades presenciais. Por exemplo, a conclusão de um questionário online libera a participação em uma atividade prática presencial.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Turmas grandes e pequenas</div>
+  <p>Em turmas grandes, use grupos para segmentar os relatórios. Em turmas pequenas, personalize o acompanhamento com mensagens individuais.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="card callout adaptacao">
+  <div class="callout-title">🌍 Acessibilidade e inclusão</div>
+  <p>Garanta que as caixas de seleção e barras de progresso sejam acessíveis, e que os critérios sejam claros para todos os estudantes.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== SITUAÇÕES-PROBLEMA ========== -->
+
+<section class="chapter" id="c15">
+ <div class="breadcrumb">Refletir › Situações-problema</div>
+ <span class="position-indicator">Capítulo 15 de 19</span>
+ <span class="eyebrow">Situações-problema</span>
+ <h2>Situações-problema</h2>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 1 — Critério de conclusão ambíguo</div>
+  <p><strong>Contexto:</strong> O professor João configurou a conclusão de um Fórum como "participação". No entanto, não definiu o número mínimo de postagens. Alguns estudantes postaram apenas uma vez e foram marcados como concluídos, enquanto outros postaram várias vezes. O professor percebeu que o critério não refletia a qualidade da participação.</p>
+  <p><strong>O desafio:</strong> Como definir um critério de conclusão mais alinhado ao objetivo da atividade?</p>
+  <p><strong>Pense como professor:</strong> O que você considera participação adequada? Um número mínimo de postagens? A qualidade das contribuições?</p>
+  <p><strong>Pense como estudante:</strong> Você saberia exatamente o que fazer para concluir a atividade?</p>
+  <p><strong>Possibilidades:</strong> Definir número mínimo de postagens; combinar com nota mínima; usar rubrica para avaliar a qualidade.</p>
+  <p><strong>Para refletir:</strong> Seus critérios de conclusão refletem o que você realmente valoriza?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 2 — Relatório de progresso ignorado</div>
+  <p><strong>Contexto:</strong> A professora Ana ativou o acompanhamento da conclusão, mas nunca consulta os relatórios. Os estudantes visualizam suas barras de progresso, mas não recebem nenhum feedback ou intervenção da professora.</p>
+  <p><strong>O desafio:</strong> Como utilizar os relatórios de progresso de forma eficaz para apoiar a aprendizagem?</p>
+  <p><strong>Pense como professor:</strong> Que ações você poderia tomar com base nos dados de progresso?</p>
+  <p><strong>Pense como estudante:</strong> Você se sentiria motivado a concluir as atividades se ninguém acompanhasse seu progresso?</p>
+  <p><strong>Possibilidades:</strong> Estabelecer rotina semanal de análise; enviar mensagens de incentivo; oferecer ajuda aos estudantes atrasados.</p>
+  <p><strong>Para refletir:</strong> O acompanhamento está servindo para apoiar a aprendizagem ou apenas para registrar?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="problem-box">
+  <div class="question">🧩 Situação 3 — Estudante não vê progresso</div>
+  <p><strong>Contexto:</strong> O professor Carlos ativou o acompanhamento, mas os estudantes não conseguem ver suas barras de progresso porque a configuração não foi ativada no nível do curso.</p>
+  <p><strong>O desafio:</strong> Garantir que o estudante visualize seu progresso de forma clara e acessível.</p>
+  <p><strong>Pense como professor:</strong> Você já verificou se o acompanhamento está visível para os estudantes?</p>
+  <p><strong>Pense como estudante:</strong> Como você se sentiria se não pudesse ver seu progresso?</p>
+  <p><strong>Possibilidades:</strong> Ativar a conclusão no nível do curso; configurar a exibição da barra de progresso; testar com um usuário de teste.</p>
+  <p><strong>Para refletir:</strong> O progresso do estudante está visível e compreensível?</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== MISSÕES ========== -->
+
+<section class="chapter" id="c16">
+ <div class="breadcrumb">Refletir › Missões práticas</div>
+ <span class="position-indicator">Capítulo 16 de 19</span>
+ <span class="eyebrow">Missões</span>
+ <h2>Missões práticas</h2>
+
+ <div class="mission">
+  <div class="mission-title">🎯 MISSÃO 1 — Configurar acompanhamento para uma unidade</div>
+  <p>Escolha uma unidade do seu curso e configure o acompanhamento da conclusão para todas as atividades da unidade.</p>
+  <ol class="steps">
+   <li>Liste as atividades da unidade.</li>
+   <li>Defina o critério de conclusão para cada uma.</li>
+   <li>Ative o rastreamento de conclusão no nível do curso.</li>
+   <li>Configure cada atividade com seu critério.</li>
+   <li>Teste com um usuário de teste.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Captura de tela das configurações e do relatório de progresso.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="mission">
+  <div class="mission-title">🎯 MISSÃO 2 — Criar um relatório de intervenção</div>
+  <p>Utilize os relatórios de progresso do Moodle para identificar estudantes com baixo progresso e planejar uma intervenção.</p>
+  <ol class="steps">
+   <li>Acesse o relatório de conclusão de atividades.</li>
+   <li>Identifique estudantes com progresso abaixo de 50%.</li>
+   <li>Planeje uma mensagem ou ação de apoio para esses estudantes.</li>
+   <li>Registre a intervenção e seus resultados.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Print do relatório e descrição da intervenção.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+
+ <div class="mission">
+  <div class="mission-title">🎯 PROJETO FINAL — Acompanhamento integrado com restrições</div>
+  <p>Projete uma semana do seu curso com acompanhamento da conclusão integrado a restrições de acesso.</p>
+  <ol class="steps">
+   <li>Defina os objetivos da semana.</li>
+   <li>Liste as atividades e seus pré-requisitos.</li>
+   <li>Configure o acompanhamento para cada atividade.</li>
+   <li>Adicione restrições de acesso baseadas na conclusão.</li>
+   <li>Teste o fluxo com diferentes cenários.</li>
+   <li>Documente a experiência.</li>
+  </ol>
+  <p><strong>Evidência:</strong> Mapa da semana + capturas de tela + relato reflexivo.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== SÍNTESE E AVALIAÇÃO ========== -->
+
+<section class="chapter" id="c17">
+ <div class="breadcrumb">Concluir › Síntese</div>
+ <span class="position-indicator">Capítulo 17 de 19</span>
+ <span class="eyebrow">Síntese</span>
+ <h2>O que aprendemos?</h2>
+ <p>Ao longo deste livro, exploramos o acompanhamento da conclusão como uma ferramenta de design pedagógico avançado. Principais aprendizados:</p>
+ <div class="card">
+  <p><strong>O acompanhamento é mais do que marcar caixas.</strong> Quando bem planejado, promove autorregulação, transparência e intervenção precoce.</p>
+  <p><strong>Existem múltiplos critérios de conclusão</strong> que podem ser combinados para refletir os objetivos de aprendizagem.</p>
+  <p><strong>A transparência é essencial:</strong> o estudante deve saber o que fazer para concluir cada atividade.</p>
+  <p><strong>Os relatórios de progresso são ferramentas de intervenção:</strong> use-os para apoiar, não apenas para controlar.</p>
+  <p><strong>A integração com restrições e emblemas</strong> potencializa a personalização e a gamificação.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="quote">O acompanhamento da conclusão é um mapa: mostra onde o estudante está, para onde pode ir e onde precisa de ajuda.</div>
+ <div class="card callout idea">
+  <div class="callout-title">💡 Para levar com você</div>
+  <p><strong>Não pergunte apenas "como marcar como concluído?"</strong></p>
+  <p>Pergunte: <strong>"Como o acompanhamento pode apoiar a aprendizagem do estudante?"</strong></p>
+  <p>Essa mudança de perspectiva transforma a funcionalidade em uma ferramenta de inclusão e personalização.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== REFERÊNCIAS ========== -->
+
+<section class="chapter" id="c18">
+ <div class="breadcrumb">Concluir › Referências</div>
+ <span class="position-indicator">Capítulo 18 de 19</span>
+ <span class="eyebrow">Fontes</span>
+ <h2>Referências</h2>
+ <div class="card">
+  <h3>Documentação oficial do Moodle</h3>
+  <p>Acompanhamento da Conclusão: <a href="https://docs.moodle.org" target="_blank" rel="noopener">https://docs.moodle.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>UNESCO — Educação e Tecnologia</h3>
+  <p>Diretrizes sobre educação digital e inclusão: <a href="https://www.unesco.org" target="_blank" rel="noopener">https://www.unesco.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>W3C — WCAG 2.1</h3>
+  <p>Diretrizes de acessibilidade: <a href="https://www.w3.org/WAI/WCAG21" target="_blank" rel="noopener">https://www.w3.org/WAI/WCAG21</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>Design Universal para Aprendizagem</h3>
+  <p>CAST - Universal Design for Learning: <a href="https://www.cast.org" target="_blank" rel="noopener">https://www.cast.org</a> <em>[VERIFICAR URL EXATA]</em></p>
+ </div>
+ <div class="card">
+  <h3>Bloom e Mastery Learning</h3>
+  <p>BLOOM, B. S. <strong>Human characteristics and school learning.</strong> New York: McGraw-Hill, 1976.</p>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="next()">→ Próximo</button>
+ </div>
+</section>
+
+<!-- ========== AUTORIA E TRANSPARÊNCIA ========== -->
+
+<section class="chapter" id="c19">
+ <div class="breadcrumb">Concluir › Autoria</div>
+ <span class="position-indicator">Capítulo 19 de 19</span>
+ <span class="eyebrow">Autoria e transparência</span>
+ <h2>Sobre esta publicação</h2>
+ <div class="card">
+  <h3>Autoria</h3>
+  <p><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+ </div>
+ <div class="card">
+  <h3>Ficha da publicação</h3>
+  <p><strong>LDI:</strong> Acompanhamento da Conclusão — v1.0<br>
+  <strong>Recurso estudado:</strong> Acompanhamento da Conclusão (funcionalidade transversal)<br>
+  <strong>Versão do Moodle considerada:</strong> 4.5<br>
+  <strong>Formatos:</strong> HTML interativo e PDF editorial<br>
+  <strong>Atualizado em:</strong> 07/09/2026<br>
+  <strong>Edição:</strong> 1.0<br>
+  <strong>Ano:</strong> 2026</p>
+ </div>
+ <div class="card callout idea">
+  <div class="callout-title">🤖 Transparência sobre o uso de IA</div>
+  <p>Esta publicação foi elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com apoio de ferramentas de Inteligência Artificial generativa em etapas de planejamento, elaboração, revisão, organização e desenvolvimento de elementos textuais, visuais e computacionais.</p>
+  <p>A utilização de Inteligência Artificial não substitui a autoria, a responsabilidade intelectual, a revisão humana ou a validação do conteúdo pelo autor. Cabe ao autor a responsabilidade final pelas decisões editoriais, pedagógicas, técnicas e acadêmicas apresentadas nesta publicação.</p>
+  <button class="speak-block-btn" onclick="speakBlock(this)">🔊 Ouvir este trecho</button>
+ </div>
+ <div class="chapter-nav">
+  <button onclick="previous()">← Anterior</button>
+  <button onclick="go('sumario')">☰ Sumário</button>
+  <button onclick="go('inicio')">🏠 Início</button>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="footer-inner">
+  <h2>Acompanhamento da Conclusão</h2>
+  <p>Monitoramento, progresso e autorregulação no Moodle.</p>
+  <p class="small"><strong>Autor:</strong> Dirceu Nogueira de Sales Duarte Junior</p>
+  <p class="small"><strong>Currículo Lattes:</strong> <a href="http://lattes.cnpq.br/8037598190568108" target="_blank" rel="noopener">http://lattes.cnpq.br/8037598190568108</a></p>
+  <p class="small"><strong>Instituição:</strong> Universidade Federal de Uberlândia — UFU</p>
+  <p class="small"><strong>Unidade:</strong> Centro de Educação a Distância — CEaD</p>
+  <p class="small">LDI — Acompanhamento da Conclusão — v1.0 · 07/09/2026</p>
+  <div class="disclosure">
+   <strong>Transparência de autoria e uso de Inteligência Artificial</strong>
+   <p>Publicação elaborada sob autoria e responsabilidade de Dirceu Nogueira de Sales Duarte Junior, com uso de ferramentas de IA generativa como apoio. A responsabilidade final é do autor.</p>
+  </div>
+ </div>
+</footer>
+
+<script>
+const root = document.documentElement;
+const sections = [...document.querySelectorAll("main .chapter")];
+let speechMode = null;
+let resumeChapterIndex = null;
+let currentVoice = null;
+
+function tools(){
+ const panel = document.getElementById("toolPanel");
+ const button = document.querySelector(".tool-main");
+ panel.classList.toggle("open");
+ button.setAttribute("aria-expanded", panel.classList.contains("open"));
+}
+
+function go(id){
+ const target = document.getElementById(id);
+ if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function getCurrent(){
+ const y = window.scrollY + window.innerHeight * .25;
+ let current = sections[0];
+ for(const section of sections){
+  if(section.offsetTop <= y) current = section;
+ }
+ return current;
+}
+
+function previous(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index > 0) sections[index - 1].scrollIntoView({behavior:"smooth"});
+}
+
+function next(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ if(index < sections.length - 1) sections[index + 1].scrollIntoView({behavior:"smooth"});
+}
+
+function saveReadingPosition(){
+ const current = getCurrent();
+ const index = sections.indexOf(current);
+ localStorage.setItem("ldi-acompanhamento-reading-position", index);
+}
+
+function offerResume(){
+ const saved = localStorage.getItem("ldi-acompanhamento-reading-position");
+ if(saved !== null && saved !== undefined){
+  const index = parseInt(saved);
+  if(index > 0 && index < sections.length){
+   resumeChapterIndex = index;
+   document.getElementById("resumeBanner").classList.add("open");
+  }
+ }
+}
+
+function resumeReading(){
+ if(resumeChapterIndex !== null){
+  sections[resumeChapterIndex].scrollIntoView({behavior:"smooth"});
+  document.getElementById("resumeBanner").classList.remove("open");
+ }
+}
+
+function dismissResume(){
+ document.getElementById("resumeBanner").classList.remove("open");
+ localStorage.removeItem("ldi-acompanhamento-reading-position");
+}
+
+function dark(){root.classList.add("dark");localStorage.setItem("ldi-theme","dark");}
+function light(){root.classList.remove("dark");localStorage.setItem("ldi-theme","light");}
+
+function fontUp(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.min(1.5, size + .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontDown(){
+ let size = parseFloat(getComputedStyle(root).getPropertyValue("--font")) || 1;
+ size = Math.max(.85, size - .1);
+ root.style.setProperty("--font", size);
+ localStorage.setItem("ldi-font", size);
+}
+
+function fontReset(){
+ root.style.setProperty("--font", 1);
+ localStorage.setItem("ldi-font", 1);
+}
+
+function reading(){document.body.classList.toggle("reading-mode");}
+
+function loadVoices(){
+ return new Promise((resolve) => {
+  const voices = speechSynthesis.getVoices();
+  if(voices.length > 0){
+   resolve(voices);
+  } else {
+   speechSynthesis.onvoiceschanged = () => {
+    resolve(speechSynthesis.getVoices());
+   };
+  }
+ });
+}
+
+function getPortugueseVoices(voices){
+ return voices.filter(voice => voice.lang === "pt-BR" || voice.lang === "pt-PT");
+}
+
+async function populateVoiceSelector(){
+ const voices = await loadVoices();
+ const ptVoices = getPortugueseVoices(voices);
+ const select = document.getElementById("voiceList");
+ select.innerHTML = "";
+ ptVoices.forEach(voice => {
+  const option = document.createElement("option");
+  option.value = voice.name;
+  option.textContent = voice.name + " (" + voice.lang + ")";
+  if(voice.name.toLowerCase().includes("francisca")){
+   option.textContent = "⭐ " + option.textContent;
+  }
+  select.appendChild(option);
+ });
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  select.value = savedVoice;
+ }
+}
+
+function showVoiceSelector(){
+ document.getElementById("voiceSelector").classList.add("open");
+ populateVoiceSelector();
+}
+
+function closeVoiceSelector(){
+ document.getElementById("voiceSelector").classList.remove("open");
+}
+
+function selectVoice(voiceName){
+ localStorage.setItem("ldi-voice", voiceName);
+ applyVoice(voiceName);
+}
+
+async function applyVoice(voiceName){
+ const voices = await loadVoices();
+ const voice = voices.find(v => v.name === voiceName);
+ if(voice){
+  currentVoice = voice;
+ }
+}
+
+async function getVoice(){
+ if(currentVoice) return currentVoice;
+ const savedVoice = localStorage.getItem("ldi-voice");
+ if(savedVoice){
+  const voices = await loadVoices();
+  const voice = voices.find(v => v.name === savedVoice);
+  if(voice) return voice;
+ }
+ const voices = await loadVoices();
+ const francisca = voices.find(v => v.name.toLowerCase().includes("francisca"));
+ if(francisca) return francisca;
+ const ptBR = voices.find(v => v.lang === "pt-BR");
+ if(ptBR) return ptBR;
+ const ptPT = voices.find(v => v.lang === "pt-PT");
+ if(ptPT) return ptPT;
+ return voices[0] || null;
+}
+
+function cleanTextForSpeech(element){
+ const clone = element.cloneNode(true);
+ const speakBtns = clone.querySelectorAll(".speak-block-btn");
+ speakBtns.forEach(b => b.remove());
+ const mediaElements = clone.querySelectorAll(".media");
+ mediaElements.forEach(m => m.remove());
+ const visualElements = clone.querySelectorAll(".badge, .icon, .emoji");
+ visualElements.forEach(v => v.remove());
+ const navElements = clone.querySelectorAll(".chapter-nav");
+ navElements.forEach(n => n.remove());
+ const toolbarElements = clone.querySelectorAll(".toolbar");
+ toolbarElements.forEach(t => t.remove());
+ let text = clone.innerText || clone.textContent || "";
+ text = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "");
+ text = text.replace(/[←→↑↓↔⇒⇐⇑⇓⇔]/gu, "");
+ text = text.replace(/\s*→\s*/g, " ");
+ text = text.replace(/\n{3,}/g, "\n\n");
+ text = text.replace(/[ \t]+/g, " ").trim();
+ return text;
+}
+
+async function speakChapter(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ stopSpeak();
+ const current = getCurrent();
+ const text = cleanTextForSpeech(current);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "chapter";
+ utterance.onend = function(){speechMode = null;};
+ speechSynthesis.speak(utterance);
+}
+
+async function speakBlock(btn){
+ const block = btn.closest(".callout, .problem-box, .mission, .card, .notice");
+ if(!block) return;
+ if(!("speechSynthesis" in window)){
+  alert("Seu navegador não oferece leitura em voz alta.");
+  return;
+ }
+ if(btn.classList.contains("speaking")){
+  stopSpeak();
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+  return;
+ }
+ stopSpeak();
+ const text = cleanTextForSpeech(block);
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ btn.classList.add("speaking"); 
+ btn.textContent = "🔇 Parar";
+ utterance.onend = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ utterance.onerror = function(){
+  btn.classList.remove("speaking");
+  btn.textContent = "🔊 Ouvir este trecho";
+ };
+ speechSynthesis.speak(utterance);
+}
+
+async function speakSelection(){
+ if(!("speechSynthesis" in window)){alert("Seu navegador não oferece leitura em voz alta.");return;}
+ const selection = window.getSelection();
+ const text = selection ? selection.toString().trim() : "";
+ if(!text){hideSelectionTools();return;}
+ stopSpeak();
+ const status = document.getElementById("readingStatus");
+ status.style.display = "block";
+ const utterance = new SpeechSynthesisUtterance(text);
+ utterance.lang = "pt-BR";
+ utterance.rate = .95;
+ const voice = await getVoice();
+ if(voice){
+  utterance.voice = voice;
+  utterance.lang = voice.lang;
+ }
+ speechMode = "selection";
+ utterance.onend = function(){status.style.display = "none";speechMode = null;};
+ utterance.onerror = function(){status.style.display = "none";speechMode = null;};
+ speechSynthesis.speak(utterance);
+ hideSelectionTools();
+}
+
+function stopSpeak(){
+ if("speechSynthesis" in window) speechSynthesis.cancel();
+ document.getElementById("readingStatus").style.display = "none";
+ speechMode = null;
+}
+
+function showSelectionTools(){
+ const selection = window.getSelection();
+ if(!selection || selection.isCollapsed || !selection.toString().trim()){hideSelectionTools();return;}
+ const range = selection.getRangeAt(0);
+ const rect = range.getBoundingClientRect();
+ const tools = document.getElementById("selectionTools");
+ tools.style.display = "block";
+ let left = rect.left + (rect.width / 2) - 90;
+ let top = rect.top - 52;
+ if(left < 10) left = 10;
+ if(left + 190 > window.innerWidth - 10) left = window.innerWidth - 200;
+ if(top < 10) top = rect.bottom + 10;
+ tools.style.left = left + "px";
+ tools.style.top = top + "px";
+}
+
+function hideSelectionTools(){
+ document.getElementById("selectionTools").style.display = "none";
+}
+
+function about(){
+ alert("Acompanhamento da Conclusão — LDI v1.0\n\nAutor: Dirceu Nogueira de Sales Duarte Junior\nCurrículo Lattes: http://lattes.cnpq.br/8037598190568108\nUFU — CEaD\n\nPublicação educacional com apoio de ferramentas de IA generativa.");
+}
+
+window.addEventListener("scroll", function(){
+ const top = window.scrollY;
+ const total = document.documentElement.scrollHeight - window.innerHeight;
+ const value = total > 0 ? (top / total) * 100 : 0;
+ document.getElementById("progress").style.width = value + "%";
+});
+
+document.addEventListener("mouseup", function(){setTimeout(showSelectionTools, 50);});
+document.addEventListener("touchend", function(){setTimeout(showSelectionTools, 150);});
+document.addEventListener("mousedown", function(event){
+ const tools = document.getElementById("selectionTools");
+ if(tools.style.display === "block" && !tools.contains(event.target)) hideSelectionTools();
+});
+
+(function(){
+ const theme = localStorage.getItem("ldi-theme");
+ const font = localStorage.getItem("ldi-font");
+ if(theme === "dark") root.classList.add("dark");
+ if(font) root.style.setProperty("--font", font);
+})();
+
+setInterval(saveReadingPosition, 5000);
+setTimeout(offerResume, 2000);
+</script>
+
+</body>
+</html>
